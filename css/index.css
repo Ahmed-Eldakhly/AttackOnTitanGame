@@ -2,13 +2,26 @@ body{
     background-image: url("../image/Background/main.jpg");
     background-size: 1380px 700px;
     background-repeat: no-repeat;
+    font-family:'Berkshire Swash', cursive; 
+    /*color: #894C4E;*/
+
 }
 div{
     text-align: center;
-    padding-top: 15%;
+}
+.titleClass{
+    font-size: 50px;
+    font-weight: bold;
+    
 }
 .links{
     display: block;
     color: black;
     text-decoration: none;
+    background-color: blur;
+    font-weight: bold;
+    padding-bottom: 25px;
+    font-size: 30px;
+    
+    
 }
