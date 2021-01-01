@@ -61,6 +61,13 @@ body {
 .container .character h1 {
     font-size: 38px;
 }
+
+.container .character:hover {cursor: pointer;}
+.container .character:hover > img{
+    transform:scale(1.3);
+    transition: 1.5s ease-out;
+} 
+
 /* End Content Section */
 
 /* Start Level Section */
@@ -89,5 +96,12 @@ body {
 
 .levels h1 {
     margin: 0;
+}
+
+.levels .level:hover {
+    cursor: pointer;
+    box-sizing: border-box;
+    transform: scale(1.2);
+    transition: 0.4s ease-out;
 }
 /* End Level Section */
