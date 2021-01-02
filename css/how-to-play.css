@@ -13,6 +13,11 @@ span
 {
     display: inline-block;
 }
+
+#flagImage {
+    margin: 20px 0px 0px 20px;
+}
+
 #HowToPlayTitle
 {
     /*width: 420px;*/
