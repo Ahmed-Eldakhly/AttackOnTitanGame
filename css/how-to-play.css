@@ -1,0 +1,114 @@
+body
+{
+    background-image: url("../image/Background/how.jpg");
+    background-size: 100%;
+    font-family: "Berkshire Swash";
+    overflow: hidden;
+}
+#flagImage
+{
+    width: 100px;
+    height:120px;
+}
+#HowToPlayTitle
+{
+    font-size: 80px;
+    font-weight: 500;
+    position: absolute;
+    left: 500px;
+    top: 50px;
+    padding: 10px 40px 10px 40px;
+    background-color: rgba(171, 144, 124 , 0.5);
+    border-radius: 50px;
+}
+video
+{
+    position: absolute;
+    left: 1000px;
+    top: 300px;
+    width: 500px; 
+    height: 500px;
+}
+#NextButton , #ExitButton
+{
+    font-size: 20px;
+    background-color: rgba(171, 144, 124 , 0.5);
+    border-radius: 50px;
+    position: absolute;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px 25px 10px 25px;
+    border: 2px solid black;
+}
+#NextButton
+{
+    right: 50px;
+    top: 30px;
+}
+#ExitButton
+{ 
+    right: 50px;
+    top: 100px;
+    color: black;
+}
+#NextButton:hover , #ExitButton:hover
+{
+    background-color: rgba(139, 1, 105, 0.5);
+    outline: none;
+}
+#instruction1 , #instruction2 , #instruction3 , #instruction4 , #instruction5
+{
+    display: inline-block;
+    padding: 20px;
+    font-size: 40px;
+    background-color: rgba(171, 144, 124 , 0.5);
+    border-radius: 50px;
+    position: absolute;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+#instruction1
+{
+    left: 50px;
+    top: 250px;
+    width: 100;
+    animation-name: currentInstruction;
+}
+#instruction2
+{
+    left: 250px;
+    top: 360px;
+    animation-name: stopAnimation;
+}
+#instruction3
+{
+    left: 50px;
+    top:470px;
+    animation-name: stopAnimation;
+}
+#instruction4
+{
+    left: 450px;
+    top: 470px;
+    animation-name: stopAnimation;
+}
+#instruction5
+{
+    left: 250px;
+    top: 580px;
+    animation-name: stopAnimation;
+}
+@keyframes currentInstruction
+{
+    from {font-size: 40px;}
+    to {font-size: 60px;}
+}
+@keyframes stopAnimation
+{
+}
+#instruction2 , #instruction3 , #instruction4 , #instruction5
+{
+    display: none;
+}
