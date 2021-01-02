@@ -1,3 +1,5 @@
+var characterFlage = -1;
+var levelFlage = -1;
 
 // Change Charecters
 var characters = document.getElementsByClassName('character');
@@ -14,7 +16,8 @@ function chooseCharecter(e,i) {
     }
     characters[i].style.background = "rgba(0,0,0,0.8)";    
     characters[i].style.color = "white";
-    characters[i].style.transition = " 0.5s ease-out";    
+    characters[i].style.transition = " 0.5s ease-out";
+    characterFlage = i;
 }
 
 // Change Levels
@@ -34,5 +37,28 @@ function chooseLevel(e,i) {
     }
     levels[i].style.background = "rgba(0,0,0,0.8)";    
     levels[i].style.color = "white";
-    levels[i].style.transition = " 0.5s ease-out";    
+    levels[i].style.transition = " 0.5s ease-out";
+    levelFlage = i;    
 }
+
+// Start Action
+var start = document.getElementById('start');
+var characterTitle = document.getElementById('title');
+var levelTitle = document.getElementById('level-title');
+
+start.addEventListener('click',startGame);
+
+function startGame() {
+    if (characterFlage == -1) {
+        characters[0].style.background = "rgba(0,0,0,0.8)";    
+        characters[0].style.color = "white";
+        characters[0].style.transition = " 0.5s ease-out";   
+    }
+    
+    if(levelFlage == -1){
+        levels[0].style.background = "rgba(0,0,0,0.8)";    
+        levels[0].style.color = "white";
+        levels[0].style.transition = " 0.5s ease-out";
+    }
+}
+
