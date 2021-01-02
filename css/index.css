@@ -1,0 +1,38 @@
+body {
+  background-image: url("../image/Background/main.jpg");
+  background-size: 1380px 700px;
+  background-repeat: no-repeat;
+  font-family: "Berkshire Swash", cursive;
+}
+div {
+  text-align: center;
+  width: 40%;
+  margin: auto;
+}
+.titleClass {
+  background-color: rgb(171, 144, 124, 0.5);
+  border-radius: 20px;
+  margin: 40px auto;
+  font-size: 50px;
+  font-weight: bold;
+  width: 70%;
+  border: 2px solid lightskyblue;
+}
+.links {
+  background-color: rgb(171, 144, 124, 0.5);
+  display: block;
+  color: black;
+  text-decoration: none;
+  background-color: blur;
+  font-weight: bold;
+  font-size: 30px;
+  width: 40%;
+  margin: 20px auto;
+  height: 45px;
+  padding-top: 5px;
+  border-radius: 10px;
+}
+
+.links:hover {
+  border: 2px solid lightskyblue;
+}
