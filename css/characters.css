@@ -10,6 +10,7 @@ body {
     background-size: cover;
     font-family: 'Berkshire Swash', cursive;
     padding: 20px;
+    overflow: hidden;
 }
 
 a {
@@ -109,3 +110,13 @@ a {
     transition: 0.4s ease-out;
 }
 /* End Level Section */
+
+/* Start Media Section */
+
+@media screen and (max-height: 700px) {
+    .container {
+        margin-top: 25px;
+    }
+}
+
+/* End Media Section */
