@@ -1,64 +1,60 @@
-var characterFlage = -1;
-var levelFlage = -1;
-
-// Change Charecters
-var characters = document.getElementsByClassName('character');
-
-for (let i = 0; i < characters.length; i++) {
-    characters[i].addEventListener('click',function(e) {chooseCharecter(e,i)});
-}
-
-function chooseCharecter(e,i) {
-    for (let j = 0; j < characters.length; j++) {
-        characters[j].style.background = "rgba(171, 144, 124,0.7)";    
-        characters[j].style.color = "black";
-        characters[j].style.transition = " 0.5s ease-out";
+var idCounter = 0;
+var move;
+var jump;
+class Character {
+    id = 0;
+    constructor(name, level, forwardImages, jumpImages) {
+        this.name = name;
+        this.level = level;
+        this.forwardImages = forwardImages;
+        this.jumpImages = jumpImages
+        this.id = ++idCounter;
+        this.forward = 0;
     }
-    characters[i].style.background = "rgba(0,0,0,0.8)";    
-    characters[i].style.color = "white";
-    characters[i].style.transition = " 0.5s ease-out";
-    characterFlage = i;
-}
 
-// Change Levels
-var levels = document.getElementsByClassName('level');
-
-for (let i = 0; i < levels.length; i++) {
-    levels[i].addEventListener('click',function(e) {
-        chooseLevel(e,i)
-    })
-}
-
-function chooseLevel(e,i) {
-    for (let j = 0; j < levels.length; j++) {
-        levels[j].style.background = "rgba(171, 144, 124,0.7)";    
-        levels[j].style.color = "black";
-        levels[j].style.transition = " 0.5s ease-out";
+    forwardMove(position) {
+        this.forward = 1;
+        var i = 0;
+        var images = this.forwardImages;
+        move = setInterval(function () {
+            if (i == images.length) {
+                i = 0;
+            }
+            $("#character").attr('src', "image/sprit-sheet/characters/forward-move/" + images[i]);
+            $("#character").css('left', position.left += 20);
+            i++;
+        }, 120);
     }
-    levels[i].style.background = "rgba(0,0,0,0.8)";    
-    levels[i].style.color = "white";
-    levels[i].style.transition = " 0.5s ease-out";
-    levelFlage = i;    
+
+    stopMove() {
+        this.forward = 0;
+        $("#character").attr('src', "image/sprit-sheet/characters/forward-move/1.png");
+        clearInterval(move);
+    }
+
+    jumpMove(position) {
+        clearInterval(move);
+        var i = 0;
+        var images = this.jumpImages;
+        move = setInterval(function () {
+            console.log(images.length);
+            if (i == images.length) {
+                i = 0;
+                $("#character").css('top', position.top -= 80);
+                $("#character").css('left', position.left += 30);
+                clearInterval(move);
+            }
+            $("#character").attr('src', "image/sprit-sheet/characters/jump-move/" + images[i]);
+            i++;
+        }, 120);
+
+        $("#character").css('top', position.top += 50);
+
+    }
+
+
 }
 
-// Start Action
-var start = document.getElementById('start');
-var characterTitle = document.getElementById('title');
-var levelTitle = document.getElementById('level-title');
-
-start.addEventListener('click',startGame);
-
-function startGame() {
-    if (characterFlage == -1) {
-        characters[0].style.background = "rgba(0,0,0,0.8)";    
-        characters[0].style.color = "white";
-        characters[0].style.transition = " 0.5s ease-out";   
-    }
-    
-    if(levelFlage == -1){
-        levels[0].style.background = "rgba(0,0,0,0.8)";    
-        levels[0].style.color = "white";
-        levels[0].style.transition = " 0.5s ease-out";
-    }
-}
-
+    Object.defineProperty(Character, 'id', {
+    writable: false
+});
