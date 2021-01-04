@@ -1,132 +1,129 @@
-html{
-    height: 100%;
-    width: 100%;
+html {
+  height: 100%;
+  width: 100%;
 }
-body
-{
-    background-image: url("../image/Background/how.jpg");
-    background-size: cover;
-    font-family: "Berkshire Swash";
-    overflow: hidden;
+body {
+  background-image: url("../image/Background/how.jpg");
+  background-size: cover;
+  font-family: "Berkshire Swash";
+  overflow: hidden;
 }
-span
-{
-    display: inline-block;
+span {
+  display: inline-block;
 }
 
 #flagImage {
-    margin: 20px 0px 0px 20px;
+  margin: 20px 0px 0px 20px;
 }
 
-#HowToPlayTitle
-{
-    /*width: 420px;*/
-    width: max-content;
-    font-size: 80px;
-    font-weight: 500;
-    position: absolute;
-    left: 520px;
-    top: 50px;
-    padding: 10px 40px 10px 40px;
-    background-color: rgba(171, 144, 124 , 0.5);
-    border-radius: 50px;
-    
+#HowToPlayTitle {
+  /*width: 420px;*/
+  width: max-content;
+  font-size: 80px;
+  font-weight: 500;
+  position: absolute;
+  left: 520px;
+  top: 50px;
+  padding: 10px 40px 10px 40px;
+  background-color: rgba(171, 144, 124, 0.5);
+  border-radius: 50px;
 }
-video
-{
-    position: absolute;
-    left: 1000px;
-    top: 400px;
-    width: 500px; 
-    height: 280px;
-    border-radius: 40px;
-    box-shadow: 0px 5px 5px;
+video {
+  position: absolute;
+  left: 1000px;
+  top: 400px;
+  width: 500px;
+  height: 280px;
+  border-radius: 40px;
+  box-shadow: 0px 5px 5px;
 }
-#NextButton , #ExitButton
-{
-    width: 50px;
-    font-size: 20px;
-    background-color: rgba(171, 144, 124 , 0.5);
-    border-radius: 50px;
-    position: absolute;
-    outline: none;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 10px 25px 10px 35px;
-    border: 2px solid black;
+#NextButton,
+#ExitButton {
+  width: 50px;
+  font-size: 20px;
+  background-color: rgba(171, 144, 124, 0.5);
+  border-radius: 50px;
+  position: absolute;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px 25px 10px 35px;
+  border: 2px solid black;
 }
-#NextButton
-{
-    left: 1370px;
-    top: 30px;
+#NextButton {
+  left: 1370px;
+  top: 30px;
 }
-#ExitButton
-{ 
-    left: 1370px;
-    top: 100px;
-    color: black;
+#ExitButton {
+  left: 1370px;
+  top: 100px;
+  color: black;
 }
-#NextButton:hover , #ExitButton:hover
-{
-    background-color: rgba(139, 1, 105, 0.5);
-    outline: none;
+#NextButton:hover,
+#ExitButton:hover {
+  background-color: rgba(139, 1, 105, 0.5);
+  outline: none;
 }
-#instruction1 , #instruction2 , #instruction3 , #instruction4 , #instruction5
-{
-    width: max-content;
-    padding: 20px;
+#instruction1,
+#instruction2,
+#instruction3,
+#instruction4,
+#instruction5 {
+  width: max-content;
+  padding: 20px;
+  font-size: 40px;
+  background-color: rgba(171, 144, 124, 0.5);
+  border-radius: 50px;
+  position: absolute;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+#instruction1 {
+  /*width: 445px;*/
+  left: 50px;
+  top: 250px;
+  animation-name: currentInstruction;
+}
+#instruction2 {
+  /*width: 475px;*/
+  left: 250px;
+  top: 360px;
+  animation-name: stopAnimation;
+}
+#instruction3 {
+  /*width: 300px;*/
+  left: 50px;
+  top: 470px;
+  animation-name: stopAnimation;
+}
+#instruction4 {
+  /*width: 320px;*/
+  left: 450px;
+  top: 470px;
+  animation-name: stopAnimation;
+}
+#instruction5 {
+  /*width: 300px;*/
+  left: 250px;
+  top: 580px;
+  animation-name: stopAnimation;
+}
+@keyframes currentInstruction {
+  from {
     font-size: 40px;
-    background-color: rgba(171, 144, 124 , 0.5);
-    border-radius: 50px;
-    position: absolute;
-    animation-duration: 2s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
+    width: max-content;
+  }
+  to {
+    font-size: 60px;
+    width: max-content;
+  }
 }
-#instruction1
-{
-    /*width: 445px;*/
-    left: 50px;
-    top: 250px;
-    animation-name: currentInstruction;
+@keyframes stopAnimation {
 }
-#instruction2
-{
-    /*width: 475px;*/
-    left: 250px;
-    top: 360px;
-    animation-name: stopAnimation;
-}
-#instruction3
-{
-    /*width: 300px;*/
-    left: 50px;
-    top:470px;
-    animation-name: stopAnimation;
-}
-#instruction4
-{
-    /*width: 320px;*/
-    left: 450px;
-    top: 470px;
-    animation-name: stopAnimation;
-}
-#instruction5
-{
-    /*width: 300px;*/
-    left: 250px;
-    top: 580px;
-    animation-name: stopAnimation;
-}
-@keyframes currentInstruction
-{
-    from {font-size: 40px; width: max-content;}
-    to {font-size: 60px; width: max-content;}
-}
-@keyframes stopAnimation
-{
-}
-#instruction2 , #instruction3 , #instruction4 , #instruction5
-{
-    display: none;
+#instruction2,
+#instruction3,
+#instruction4,
+#instruction5 {
+  display: none;
 }

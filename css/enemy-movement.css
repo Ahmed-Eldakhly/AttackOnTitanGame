@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  margin-left: 3%;
+  margin-top: 20%;
+  width: 1300px;
+  height: 300px;
+  border: 1px solid black;
+}
+img {
+  height: 300px;
+}
