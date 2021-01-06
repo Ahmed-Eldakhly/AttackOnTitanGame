@@ -1,28 +1,34 @@
+/* get the user browser dimensions. */
+document.getElementById("htmlID").style.height = window.outerHeight;
+document.getElementById("htmlID").style.width = window.outerWidth;
+/* make the window response at any size. */
+window.addEventListener("resize", function () {
+    /* get the user browser dimensions. */
+    document.getElementById("htmlID").style.height = window.outerHeight;
+    document.getElementById("htmlID").style.width = window.outerWidth;
+});
 /* varible to sync between instructions to show it using animation attribute. */
 var currentInstructionElement = 0;
 /* get the next button to check if the user pressed on it or not. */
 var NextBtn = document.getElementById("NextButton");
 /* add Event listener on the next key to appear new instruction when the user presses on it. */
-NextBtn.addEventListener("click" , currentIns)
+NextBtn.addEventListener("click", currentIns)
 /* make interval event to show all instuction continousuly, if the user doesn't press on the next key. */
-setInterval(currentInsInterval , 4000);
+setInterval(currentInsInterval, 4000);
 /* next listener function. */
-function currentIns(obj)
-{
+function currentIns(obj) {
     /* stop the default response of the link tag of next button. */
     obj.preventDefault();
     /* call the animation function to show instructions in animated way. */
     animationMethod();
 }
 /* interval function */
-function currentInsInterval()
-{
+function currentInsInterval() {
     /* call the animation function to show instructions in animated way. */
     animationMethod();
 }
 
-function animationMethod()
-{
+function animationMethod() {
     /* get the five instuction tags from html object to modifiy them bassed on the user or the time. */
     var ins1 = document.getElementById("instruction1");
     var ins2 = document.getElementById("instruction2");
@@ -34,8 +40,7 @@ function animationMethod()
     /* var to stop last instruction from animated mode. */
     var Stop = "stopAnimation"
     /* check to know which should be in animated mode. */
-    if(currentInstructionElement === 0)
-    {
+    if (currentInstructionElement === 0) {
         /* stop the last instruction from animated mode. */
         ins1.style.animationName = Stop;
         /* put the new instruction in animated mode. */
@@ -45,29 +50,25 @@ function animationMethod()
         /* increment the sync var to sync between instructions. */
         currentInstructionElement++;
     }
-    else if(currentInstructionElement === 1)
-    {
+    else if (currentInstructionElement === 1) {
         ins2.style.animationName = Stop;
         ins3.style.animationName = animation;
         ins3.style.display = "block";
         currentInstructionElement++;
     }
-    else if(currentInstructionElement === 2)
-    {
+    else if (currentInstructionElement === 2) {
         ins3.style.animationName = Stop;
         ins4.style.animationName = animation;
         ins4.style.display = "block";
         currentInstructionElement++;
     }
-    else if(currentInstructionElement === 3)
-    {
+    else if (currentInstructionElement === 3) {
         ins4.style.animationName = Stop;
         ins5.style.animationName = animation;
         ins5.style.display = "block";
         currentInstructionElement++;
     }
-    else
-    {
+    else {
         /* make all instructions in freeze mode. */
         ins5.style.animationName = Stop;
     }
