@@ -5,16 +5,14 @@ var character = [];
 
 class Enemy {
     //static id = 0;
-    constructor(images, speed,id) {
+    constructor(images, speed, id) {
         this.images = images;
         this.speed = speed;
         this.id = id
     }
 
     move() {
-        console.log(this.id);
         character[this.id] = document.createElement("img");
-       // id += 1;
         var body = document.getElementsByTagName("body")[0];
 
         character[this.id].classList.add("enemy");
@@ -23,7 +21,7 @@ class Enemy {
 
         body.appendChild(character[this.id]);
 
-        var pos = window.outerWidth;  
+        var pos = window.outerWidth;
         character[this.id].style.left = pos + "px";
 
         var id = setInterval(frame, this.speed);
@@ -33,7 +31,7 @@ class Enemy {
         function frame() {
             if (pos <= -160) {
                 //clearInterval(id);
-                pos = window.outerWidth; 
+                pos = window.outerWidth;
             }
             else {
                 character[idd].src = "image/characters/enemy-" + img[i];

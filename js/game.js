@@ -1,6 +1,6 @@
 
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
-
+var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
@@ -8,7 +8,10 @@ var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
 /****** Hossam Multible enemy edit ******/
 
 //var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
-var building2 = new Building("back2.jpg", 1540, 760, "0px", "0px");
+var background1 = new Building("back2.jpg", 1536, 760, "0px", "4.5px");
+var background2 = new Building("back3.jpg", 1536, 760, "-1590px", "0px");
+
+//var background2 = new Building("back2.jpg", 1540, 760, "1550px", "0px");
 //var building2 = new Building("houses.png", 800, 800, "800px", "35px");
 // var building2 = new Building("houses.png", 500, 800, "1060px", "35px");
 var floorPosetionX = 0;
@@ -66,6 +69,10 @@ function stateMachine() {
 document.addEventListener("keydown", KeyListen);
 /*jumpKeyListenerID = document.addEventListener("keydown" , KeyListen);*/
 function KeyListen(jumpObject) {
+    // if (!createdBackground) {
+    //     var background2 = new Building("back2.jpg", 1540, 760, "1550px", "0px");
+    //     createdBackground = 1;
+    // }
     if (jumpObject.keyCode == 38) {
         if (EREN_STATE == MOVING)
             EREN_STATE = JUMP_FROM_MOVE_FORWARD;
@@ -91,19 +98,28 @@ $(document).keydown(function (e) {
     switch (e.keyCode) {
         case 39:
             $(".build-img").each((i) => {
-                var position = $(".build-img")[i].style.left;
+                var position = parseInt($(".build-img")[i].style.left);
+                if (position < -1500) {
+                    position = 1536;
+                }
+
                 //right 
-                $(".build-img")[i].style.left = parseInt(position) - 20 + "px";
+                $(".build-img")[i].style.left = position - 20 + "px";
+            })
+            $(".floor-img").each((i) => {
+                var position = parseInt($(".floor-img")[i].style.left);
+                if (position < -500) {
+                    position = 500;
+                }
+
+                //right 
+                $(".floor-img")[i].style.left = position - 20 + "px";
             })
     }
 });
 
 // Build floor
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 4; i++) {
     var floor1 = new Building("floor.png", 500, 150, floorPosetionX, "0px");
-    // $(".floor").append("<img src='image/background/floor.png' alt='floor' class='floorImage'>");
-    // $('.floor .floorImage:eq(' + i + ')').css("left", floorPosetionX);
     floorPosetionX += 520;
-
-    console.log($(".floor").css('height'));
 }
