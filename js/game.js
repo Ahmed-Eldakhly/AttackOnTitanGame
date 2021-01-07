@@ -2,9 +2,9 @@
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
 var enemy1 = new Enemy(enemyPhotosArray, 100);
 //var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
-var building2 = new Building("side-house.png", 300, 300, "20px", "35px");
-var building2 = new Building("side-house.png", 300, 300, "320px", "35px");
-var building2 = new Building("side-house.png", 300, 300, "620px", "35px");
+var building2 = new Building("back2.jpg", 1920, 1000, "0px", "35px");
+//var building2 = new Building("houses.png", 800, 800, "800px", "35px");
+// var building2 = new Building("houses.png", 500, 800, "1060px", "35px");
 var floorPosetionX = 0;
 enemy1.move();
 
@@ -84,8 +84,11 @@ $(document).keydown(function (e) {
 });
 
 // Build floor
-for (let i = 0; i < 20; i++) {
-    $(".floor").append("<img src='image/background/floorg.png' alt='floor' class='floorImage'>");
-    $('.floor .floorImage:eq(' + i + ')').css("left", floorPosetionX);
-    floorPosetionX += 100;
+for (let i = 0; i < 3; i++) {
+    var floor1 = new Building("floor.png", 500, 150, floorPosetionX, "0px");
+    // $(".floor").append("<img src='image/background/floor.png' alt='floor' class='floorImage'>");
+    // $('.floor .floorImage:eq(' + i + ')').css("left", floorPosetionX);
+    floorPosetionX += 520;
+
+    console.log($(".floor").css('height'));
 }

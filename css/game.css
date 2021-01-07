@@ -20,7 +20,7 @@ img {
     bottom: 0;
     left: 0;
     z-index: 3;
-    height: 5%;
+    height: 20%;
     width: 100%;
 }
 
@@ -34,6 +34,8 @@ img {
 /* Start Character Section */
 #defenderPhotos
 {
+    height: 120px;
+    width: 120px;
     left: 250px;
     top: 580px;
     z-index: 10;

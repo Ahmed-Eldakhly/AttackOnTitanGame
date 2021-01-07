@@ -17,6 +17,10 @@ class Building {
         $("#build" + this.id).css("width", width);
         $("#build" + this.id).css("height", height);
 
+        if (this.id > 1) {
+            $("#build" + this.id).css("z-index", 3);
+        }
+
     }
 
 }

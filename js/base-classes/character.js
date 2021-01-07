@@ -20,7 +20,7 @@ class Characters {
         this.characterMovementPhotos = movementPhotos;
         this.characterElementHTML = HTML_Element;
         this.position_x = 10;
-        this.position_y = 640;
+        this.position_y = 490;
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
