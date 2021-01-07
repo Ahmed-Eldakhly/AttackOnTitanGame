@@ -43,11 +43,11 @@ function chooseLevel(e, i) {
 }
 
 // Start Action
-var start = document.getElementById('start');
+var startBtn = $('#start');
 var characterTitle = document.getElementById('title');
 var levelTitle = document.getElementById('level-title');
 
-start.addEventListener('click', startGame);
+startBtn.on('click', startGame);
 
 function startGame(event) {
     //event.preventDefault();

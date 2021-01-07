@@ -1,11 +1,13 @@
 var enemyPhotosArray = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png"];
+var baseTop = 0;
+var baseRight = 0;
 
 class Enemy {
-    constructor(images, lastPosition, speed) {
+    constructor(images, speed) {
         this.images = images;
         this.speed = speed;
-        this.lastPosition = lastPosition;
     }
+
     move() {
         var character = document.createElement("img");
         var body = document.getElementsByTagName("body")[0];
@@ -20,7 +22,6 @@ class Enemy {
         var id = setInterval(frame, this.speed);
 
         var img = this.images;
-        var last = this.lastPosition;
         var i = 0;
         function frame() {
             if (pos <= -120) {

@@ -4,19 +4,25 @@ body {
     overflow: hidden;
   }
 
+img  {
+    position: absolute;
+} 
+
 /* Start Enemy Section */
 .enemy {
-height: 300px;
-position: absolute;
-top: 60%;
+    height: 300px;
+    top: 450px;
 }
 /* End Enemy Section */
 
 /* Start Character Section */
 #defenderPhotos
 {
-    position: absolute;
     left: 250px;
     top: 580px;
 }
 /* End Character Section */
+
+
+ 
+  

@@ -1,6 +1,8 @@
 
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
-var enemy1 = new Enemy(enemyPhotosArray, 200, 100);
+var enemy1 = new Enemy(enemyPhotosArray, 100);
+var building = new Building("demo2.png", 600, 600, "0px", "100px");
+var building2 = new Building("demo1.png", 300, 300, "600px", "100px");
 
 enemy1.move();
 
@@ -68,4 +70,13 @@ $(document).keyup(function (jumpObject) {
     stateMachine();
 });
 
-
+$(document).keydown(function (e) {
+    switch (e.keyCode) {
+        case 39:
+            $(".build-img").each((i) => {
+                var position = $(".build-img")[i].style.right;
+                //right 
+                $(".build-img")[i].style.right = parseInt(position) + 20 + "px";
+            })
+    }
+})
