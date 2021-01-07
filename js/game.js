@@ -2,27 +2,14 @@ var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9
 var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
 var jumpIntervalID;
 
-//var idCounter = 0;
-var moveIntervalID;
-//var jump;
+/***/
+var MoveImageCureent = 0;
 
 /*var jumpKeyListenerID;*/
 var jumpState = 0;
 
-/**/
-var NotMoveWithJump = 0;
 
 class characters {
-    characterID;
-    characterName;
-    characterSpeed;
-    characterLevel;
-    characterJumpPhotos = [];
-    characterMovementPhotos = [];
-    characterElementHTML;
-    position_x;
-    position_y;
-    jumpPosition;
     constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, HTML_Element) {
         this.characterID = ID;
         this.characterName = Name;
@@ -36,9 +23,7 @@ class characters {
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
-        this.forward = 0;
     }
-
     /* jump only */
     jumpOnly_function(obj) {
         this.jumpPosition++;
@@ -64,8 +49,6 @@ class characters {
             case 8:
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
-                jumpState = 0;
-                NotMoveWithJump = 0;
                 EREN_STATE = STAND;
                 clearInterval(jumpIntervalID);
                 break;
@@ -105,9 +88,8 @@ class characters {
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
-                jumpState = 0;
-                EREN_STATE = MOVE_FOREARD_FROM_JUMP;
                 clearInterval(jumpIntervalID);
+                EREN_STATE = MOVE_FOREARD_FROM_JUMP;
                 $(document).triggerHandler("keyup");
                 /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
                     stateMachine();*/
@@ -122,14 +104,10 @@ class characters {
         this.position_x += 20;
         $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent]);
         this.characterElementHTML.style.left = (this.position_x) + "px";
-        /*this.characterElementHTML.css("left", (this.position_x) + "px");*/
-        /*$("#erenJumpPhotos").css('left', position.left = this.position_x);*/
         MoveImageCureent++;
-        Eren.forward = 1;
     }
     /* stop movement only */
     stopMove() {
-        this.forward = 0;
         $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/1.png");
         clearInterval(moveIntervalID);
     }
@@ -137,8 +115,6 @@ class characters {
 }
 
 var Eren = new characters(1, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("erenJumpPhotos"));
-
-var MoveImageCureent = 0;
 
 var STAND = 0;
 var MOVE_FORWARD_FROM_STAND = 1;
@@ -191,7 +167,6 @@ function stateMachine() {
 }
 
 document.addEventListener("keydown", KeyListen);
-/*jumpKeyListenerID = document.addEventListener("keydown" , KeyListen);*/
 function KeyListen(jumpObject) {
     if (jumpObject.keyCode == 38) {
         if (EREN_STATE == MOVING)
@@ -214,40 +189,3 @@ $(document).keyup(function (jumpObject) {
     stateMachine();
 });
 
-
-
-
-
-//document.addEventListener("keydown", KeyListen);
-/*jumpKeyListenerID = document.addEventListener("keydown" , KeyListen);*/
-/*function KeyListen(jumpObject) {
-    if (jumpObject.keyCode == 38 && jumpState === 0) {
-        var callBackJump = Eren.jumpOnly_function.bind(Eren)
-        jumpIntervalID = setInterval(callBackJump, 70);
-        jumpState = 1;
-        NotMoveWithJump = 1;
-    }
-}
-
-
-$(document).keydown(function (e) {
-
-    var position = $("#erenJumpPhotos").position();
-    switch (e.keyCode) {
-        case 39: //right
-            if (!Eren.forward) {
-                var callBackMove = Eren.forwardMove.bind(Eren)
-                moveIntervalID = setInterval(callBackMove, 70)
-            }
-            break;
-    }
-});
-
-
-$(document).keyup(function (e) {
-    switch (e.keyCode) {
-        case 39:
-            Eren.stopMove();
-            break;
-    }
-});*/
