@@ -11,9 +11,6 @@ var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
 var background1 = new Building("back2.jpg", 1536, 760, "0px", "4.5px");
 var background2 = new Building("back3.jpg", 1536, 760, "-1590px", "0px");
 
-//var background2 = new Building("back2.jpg", 1540, 760, "1550px", "0px");
-//var building2 = new Building("houses.png", 800, 800, "800px", "35px");
-// var building2 = new Building("houses.png", 500, 800, "1060px", "35px");
 var floorPosetionX = 0;
 /****** Hossam Multible enemy edit ******/
 enemy1.move();
@@ -103,16 +100,14 @@ $(document).keydown(function (e) {
                     position = 1536;
                 }
 
-                //right 
                 $(".build-img")[i].style.left = position - 20 + "px";
             })
             $(".floor-img").each((i) => {
                 var position = parseInt($(".floor-img")[i].style.left);
                 if (position < -500) {
-                    position = 500;
+                    position = 1500;
                 }
 
-                //right 
                 $(".floor-img")[i].style.left = position - 20 + "px";
             })
     }
@@ -120,6 +115,8 @@ $(document).keydown(function (e) {
 
 // Build floor
 for (let i = 0; i < 4; i++) {
-    var floor1 = new Building("floor.png", 500, 150, floorPosetionX, "0px");
+    var floor = new Building("floor.png", 500, 150, floorPosetionX, "0px");
     floorPosetionX += 520;
 }
+
+console.log(enemy1);
