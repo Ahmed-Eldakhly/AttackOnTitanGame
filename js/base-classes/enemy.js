@@ -13,6 +13,7 @@ class Enemy {
         var body = document.getElementsByTagName("body")[0];
         character.classList.add("enemy");
         character.src = "image/characters/enemy-" + this.images[0];
+        character.classList.zIndex = 2;
 
         body.appendChild(character);
 
