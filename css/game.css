@@ -2,11 +2,27 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
-  }
+}
 
-img  {
+img {
     position: absolute;
 } 
+
+#skyImage {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    height: 5%;
+    width: 100%;
+}
 
 /* Start Enemy Section */
 .enemy {
@@ -20,6 +36,7 @@ img  {
 {
     left: 250px;
     top: 580px;
+    z-index: 10;
 }
 /* End Character Section */
 

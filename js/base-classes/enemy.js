@@ -16,8 +16,10 @@ class Enemy {
         character[this.id] = document.createElement("img");
        // id += 1;
         var body = document.getElementsByTagName("body")[0];
+
         character[this.id].classList.add("enemy");
         character[this.id].src = "image/characters/enemy-" + this.images[0];
+
 
         body.appendChild(character[this.id]);
 

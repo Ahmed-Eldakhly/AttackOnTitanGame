@@ -12,8 +12,8 @@ class Building {
 
         $("#game").append("<img id='build" + this.id + "' class='build-img'></img>");
         $("#build" + this.id).attr('src', "image/Buildings/" + images);
-        $("#build" + this.id).css("right", positionx);
-        $("#build" + this.id).css("top", positiony);
+        $("#build" + this.id).css("left", positionx);
+        $("#build" + this.id).css("bottom", positiony);
         $("#build" + this.id).css("width", width);
         $("#build" + this.id).css("height", height);
 

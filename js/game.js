@@ -1,13 +1,21 @@
 
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
+
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120,0);
 var enemy2 = new Enemy(enemyPhotosArray, 120,1);
 var enemy3 = new Enemy(enemyPhotosArray, 120,2);
 /****** Hossam Multible enemy edit ******/
-var building = new Building("demo2.png", 600, 600, "0px", "100px");
-var building2 = new Building("demo1.png", 300, 300, "600px", "100px");
 
+
+
+
+
+//var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
+var building2 = new Building("side-house.png", 300, 300, "20px", "35px");
+var building2 = new Building("side-house.png", 300, 300, "320px", "35px");
+var building2 = new Building("side-house.png", 300, 300, "620px", "35px");
+var floorPosetionX = 0;
 /****** Hossam Multible enemy edit ******/
 enemy1.move();
 //enemy2.move();
@@ -87,9 +95,16 @@ $(document).keydown(function (e) {
     switch (e.keyCode) {
         case 39:
             $(".build-img").each((i) => {
-                var position = $(".build-img")[i].style.right;
+                var position = $(".build-img")[i].style.left;
                 //right 
-                $(".build-img")[i].style.right = parseInt(position) + 20 + "px";
+                $(".build-img")[i].style.left = parseInt(position) - 20 + "px";
             })
     }
-})
+});
+
+// Build floor
+for (let i = 0; i < 20; i++) {
+    $(".floor").append("<img src='image/background/floorg.png' alt='floor' class='floorImage'>");
+    $('.floor .floorImage:eq(' + i + ')').css("left", floorPosetionX);
+    floorPosetionX += 100;
+}
