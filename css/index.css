@@ -9,15 +9,7 @@ div {
   width: 40%;
   margin: auto;
 }
-.titleClass {
-  background-color: rgb(171, 144, 124, 0.5);
-  border-radius: 20px;
-  margin: 40px auto;
-  font-size: 50px;
-  font-weight: bold;
-  width: 70%;
-  border: 2px solid lightskyblue;
-}
+
 .links {
   background-color: rgb(171, 144, 124, 0.5);
   display: block;
@@ -27,7 +19,7 @@ div {
   font-weight: bold;
   font-size: 30px;
   width: 40%;
-  margin: 20px auto;
+  margin: 40px auto;
   height: 45px;
   padding-top: 5px;
   border-radius: 10px;
@@ -35,4 +27,44 @@ div {
 
 .links:hover {
   border: 2px solid lightskyblue;
+}
+
+.center {
+  text-align: center;
+}
+
+.text-animation {
+  transform: translate(-50%, 0%);
+  margin-left: 50%;
+  width: 1000px;
+}
+.text-animation h1 {
+  margin: 0;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 6em;
+  color: transparent;
+  background-image: url("https://preview.ibb.co/c6F389/atack.png");
+  background-repeat: repeat-x;
+  -webkit-background-clip: text;
+  background-position: 500px 150px;
+  font-family: arial;
+  animation: bloodAnimate 35s linear infinite;
+}
+@keyframes bloodAnimate {
+  0% {
+    background-position: left 0px top 0px;
+  }
+  40% {
+    background-position: left 400px top 0px;
+  }
+  60% {
+    background-position: left 500px top 0px;
+  }
+  80% {
+    background-position: left 600px top 0px;
+  }
+  100% {
+    background-position: left 800px top 0px;
+  }
 }
