@@ -2,17 +2,13 @@
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
 
 /****** Hossam Multible enemy edit ******/
-var enemy1 = new Enemy(enemyPhotosArray, 120,0);
-var enemy2 = new Enemy(enemyPhotosArray, 120,1);
-var enemy3 = new Enemy(enemyPhotosArray, 120,2);
+var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
+var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
+var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
 /****** Hossam Multible enemy edit ******/
 
-
-
-
-
 //var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
-var building2 = new Building("back2.jpg", 1920, 1000, "0px", "35px");
+var building2 = new Building("back2.jpg", 1540, 760, "0px", "0px");
 //var building2 = new Building("houses.png", 800, 800, "800px", "35px");
 // var building2 = new Building("houses.png", 500, 800, "1060px", "35px");
 var floorPosetionX = 0;
@@ -23,8 +19,8 @@ enemy1.move();
 var x = enemy2.move.bind(enemy2)
 var y = enemy3.move.bind(enemy3)
 
-setTimeout(x,2000);
-setTimeout(y,3000);
+setTimeout(x, 2000);
+setTimeout(y, 3000);
 /****** Hossam Multible enemy edit ******/
 
 function stateMachine() {
