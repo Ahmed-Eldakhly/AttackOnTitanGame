@@ -1,64 +1,134 @@
-var characterFlage = -1;
-var levelFlage = -1;
+var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
+var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
+var jumpIntervalID;
+var MoveImageCureent = 0;
+var moveIntervalID;
 
-// Change Charecters
-var characters = document.getElementsByClassName('character');
+/*var jumpKeyListenerID;*/
+var jumpState = 0;
 
-for (let i = 0; i < characters.length; i++) {
-    characters[i].addEventListener('click',function(e) {chooseCharecter(e,i)});
-}
+/**/
+var NotMoveWithJump = 0;
 
-function chooseCharecter(e,i) {
-    for (let j = 0; j < characters.length; j++) {
-        characters[j].style.background = "rgba(171, 144, 124,0.7)";    
-        characters[j].style.color = "black";
-        characters[j].style.transition = " 0.5s ease-out";
+class Characters {
+    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, HTML_Element) {
+        this.characterID = ID;
+        this.characterName = Name;
+        this.characterSpeed = speed;
+        this.characterLevel = level;
+        this.characterJumpPhotos = jumpPhotos;
+        this.characterMovementPhotos = movementPhotos;
+        this.characterElementHTML = HTML_Element;
+        this.position_x = 550;
+        this.position_y = 500;
+        this.characterElementHTML.style.top = this.position_y + "px";
+        this.characterElementHTML.style.left = this.position_x + "px";
+        this.jumpPosition = 0;
     }
-    characters[i].style.background = "rgba(0,0,0,0.8)";    
-    characters[i].style.color = "white";
-    characters[i].style.transition = " 0.5s ease-out";
-    characterFlage = i;
-}
 
-// Change Levels
-var levels = document.getElementsByClassName('level');
-
-for (let i = 0; i < levels.length; i++) {
-    levels[i].addEventListener('click',function(e) {
-        chooseLevel(e,i)
-    })
-}
-
-function chooseLevel(e,i) {
-    for (let j = 0; j < levels.length; j++) {
-        levels[j].style.background = "rgba(171, 144, 124,0.7)";    
-        levels[j].style.color = "black";
-        levels[j].style.transition = " 0.5s ease-out";
+    /* jump only */
+    jumpOnly_function(obj) {
+        this.jumpPosition++;
+        switch (this.jumpPosition) {
+            case 0:
+            case 1:
+            case 2:
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 3:
+            case 4:
+            case 5:
+                this.position_y -= 30;
+                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 6:
+            case 7:
+                this.position_y += 45;
+                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 8:
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                this.jumpPosition = 0;
+                jumpState = 0;
+                NotMoveWithJump = 0;
+                EREN_STATE = STAND;
+                clearInterval(jumpIntervalID);
+                stateMachine();
+                break;
+        }
     }
-    levels[i].style.background = "rgba(0,0,0,0.8)";    
-    levels[i].style.color = "white";
-    levels[i].style.transition = " 0.5s ease-out";
-    levelFlage = i;    
+
+    /* move and jump */
+    jumpWithMove_function(obj) {
+        this.jumpPosition++;
+        switch (this.jumpPosition) {
+            case 0:
+            case 1:
+            case 2:
+                this.position_x += 5;
+                this.characterElementHTML.style.left = (this.position_x) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 3:
+            case 4:
+            case 5:
+                this.position_x += 5;
+                this.position_y -= 30;
+                this.characterElementHTML.style.left = (this.position_x) + "px";
+                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 6:
+                this.position_x += 5;
+                this.position_y += 45;
+                this.characterElementHTML.style.left = (this.position_x) + "px";
+                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 7:
+                this.position_x += 5;
+                this.position_y += 45;
+                this.characterElementHTML.style.left = (this.position_x) + "px";
+                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                this.jumpPosition = 0;
+                jumpState = 0;
+                // EREN_STATE = MOVE_FOREARD_FROM_JUMP;
+                clearInterval(jumpIntervalID);
+                $(document).trigger("keyup");
+                /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
+                    stateMachine();*/
+                break;
+        }
+    }
+
+    /* movement only */
+    forwardMove() {
+        if (MoveImageCureent == this.characterMovementPhotos.length) {
+            MoveImageCureent = 0;
+        }
+        this.position_x += 20;
+        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent]);
+        this.characterElementHTML.style.left = (this.position_x) + "px";
+        MoveImageCureent++;
+    }
+
+    /* stop movement only */
+    stopMove() {
+        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/1.png");
+        clearInterval(moveIntervalID);
+    }
+
 }
 
-// Start Action
-var start = document.getElementById('start');
-var characterTitle = document.getElementById('title');
-var levelTitle = document.getElementById('level-title');
+var STAND = 0;
+var MOVE_FORWARD_FROM_STAND = 1;
+var MOVE_FOREARD_FROM_JUMP = 2;
+var MOVING = 3;
+var JUMP_FROM_STAND = 4;
+var JUMP_FROM_MOVE_FORWARD = 5;
+var JUMPING = 6;
 
-start.addEventListener('click',startGame);
-
-function startGame() {
-    if (characterFlage == -1) {
-        characters[0].style.background = "rgba(0,0,0,0.8)";    
-        characters[0].style.color = "white";
-        characters[0].style.transition = " 0.5s ease-out";   
-    }
-    
-    if(levelFlage == -1){
-        levels[0].style.background = "rgba(0,0,0,0.8)";    
-        levels[0].style.color = "white";
-        levels[0].style.transition = " 0.5s ease-out";
-    }
-}
-
+var EREN_STATE = STAND;
