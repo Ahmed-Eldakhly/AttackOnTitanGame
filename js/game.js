@@ -68,7 +68,6 @@ class characters {
                 NotMoveWithJump = 0;
                 EREN_STATE = STAND;
                 clearInterval(jumpIntervalID);
-                stateMachine();
                 break;
         }
     }
