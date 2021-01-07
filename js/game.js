@@ -1,7 +1,5 @@
 
-
-var Eren = new Characters(1, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("erenJumpPhotos"));
-
+var Eren = new Characters(1, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
 
 function stateMachine() {
     switch (EREN_STATE) {
@@ -45,6 +43,7 @@ function stateMachine() {
 
 document.addEventListener("keydown", KeyListen);
 function KeyListen(jumpObject) {
+    console.log("i am here");
     if (jumpObject.keyCode == 38) {
         if (EREN_STATE == MOVING)
             EREN_STATE = JUMP_FROM_MOVE_FORWARD;
@@ -65,4 +64,3 @@ $(document).keyup(function (jumpObject) {
     }
     stateMachine();
 });
-

@@ -19,7 +19,7 @@ class Characters {
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
         this.characterElementHTML = HTML_Element;
-        this.position_x = 550;
+        this.position_x = 100;
         this.position_y = 500;
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
@@ -67,37 +67,41 @@ class Characters {
             case 0:
             case 1:
             case 2:
-                this.position_x += 5;
+                if (this.position_x < 800)
+                    this.position_x += 5;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 3:
             case 4:
             case 5:
-                this.position_x += 5;
+                if (this.position_x < 800)
+                    this.position_x += 5;
                 this.position_y -= 30;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 6:
-                this.position_x += 5;
+                if (this.position_x < 800)
+                    this.position_x += 5;
                 this.position_y += 45;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 7:
-                this.position_x += 5;
+                if (this.position_x < 800)
+                    this.position_x += 5;
                 this.position_y += 45;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                // EREN_STATE = MOVE_FOREARD_FROM_JUMP;
+                EREN_STATE = MOVE_FOREARD_FROM_JUMP;
                 clearInterval(jumpIntervalID);
-                $(document).trigger("keyup");
+                /*$(document).trigger("keyup");*/
                 /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
                     stateMachine();*/
                 break;
@@ -109,15 +113,16 @@ class Characters {
         if (MoveImageCureent == this.characterMovementPhotos.length) {
             MoveImageCureent = 0;
         }
-        this.position_x += 20;
-        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent]);
+        if (this.position_x < 800)
+            this.position_x += 20;
+        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
     }
 
     /* stop movement only */
     stopMove() {
-        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/1.png");
+        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
         clearInterval(moveIntervalID);
     }
 
