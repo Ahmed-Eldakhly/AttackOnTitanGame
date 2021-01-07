@@ -9,13 +9,15 @@ function stateMachine() {
 
         case MOVE_FORWARD_FROM_STAND:
             var callBackMove = Eren.forwardMove.bind(Eren)
-            moveIntervalID = setInterval(callBackMove, 70)
+            if (moveIntervalID == null)
+                moveIntervalID = setInterval(callBackMove, 70)
             EREN_STATE = MOVING;
             break;
 
         case MOVE_FOREARD_FROM_JUMP:
             var callBackMove = Eren.forwardMove.bind(Eren)
-            moveIntervalID = setInterval(callBackMove, 70)
+            if (moveIntervalID == null)
+                moveIntervalID = setInterval(callBackMove, 70)
             EREN_STATE = MOVING;
             break;
 
@@ -24,14 +26,16 @@ function stateMachine() {
 
         case JUMP_FROM_STAND:
             var callBackJump = Eren.jumpOnly_function.bind(Eren)
-            jumpIntervalID = setInterval(callBackJump, 70);
+            if (jumpIntervalID == undefined)
+                jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
             break;
 
         case JUMP_FROM_MOVE_FORWARD:
             Eren.stopMove();
             var callBackJump = Eren.jumpWithMove_function.bind(Eren)
-            jumpIntervalID = setInterval(callBackJump, 70);
+            if (jumpIntervalID == undefined)
+                jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
             break;
 
@@ -41,16 +45,16 @@ function stateMachine() {
     }
 }
 
-document.addEventListener("keydown", KeyListen);
-function KeyListen(jumpObject) {
+var KeyDownListenerID = document.addEventListener("keydown", KeyListen);
+function KeyListen(KeyDownObject) {
     console.log("i am here");
-    if (jumpObject.keyCode == 38) {
+    if (KeyDownObject.keyCode == 38) {
         if (EREN_STATE == MOVING)
             EREN_STATE = JUMP_FROM_MOVE_FORWARD;
         else if (EREN_STATE == STAND)
             EREN_STATE = JUMP_FROM_STAND;
     }
-    else if (jumpObject.keyCode == 39) {
+    else if (KeyDownObject.keyCode == 39) {
         if (EREN_STATE == STAND)
             EREN_STATE = MOVE_FORWARD_FROM_STAND;
     }

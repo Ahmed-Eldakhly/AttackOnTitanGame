@@ -55,6 +55,7 @@ class Characters {
                 NotMoveWithJump = 0;
                 EREN_STATE = STAND;
                 clearInterval(jumpIntervalID);
+                jumpIntervalID = undefined;
                 stateMachine();
                 break;
         }
@@ -101,6 +102,7 @@ class Characters {
                 jumpState = 0;
                 EREN_STATE = MOVE_FOREARD_FROM_JUMP;
                 clearInterval(jumpIntervalID);
+                jumpIntervalID = undefined;
                 /*$(document).trigger("keyup");*/
                 /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
                     stateMachine();*/
@@ -124,6 +126,7 @@ class Characters {
     stopMove() {
         this.characterElementHTML.src = "image/characters move/forward-move/1.png";
         clearInterval(moveIntervalID);
+        moveIntervalID = undefined;
     }
 
 }
