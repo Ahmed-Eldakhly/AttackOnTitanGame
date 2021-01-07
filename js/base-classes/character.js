@@ -19,7 +19,7 @@ class Characters {
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
         this.characterElementHTML = HTML_Element;
-        this.position_x = 550;
+        this.position_x = 100;
         this.position_y = 500;
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
@@ -95,7 +95,7 @@ class Characters {
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                // EREN_STATE = MOVE_FOREARD_FROM_JUMP;
+                EREN_STATE = MOVE_FOREARD_FROM_JUMP;
                 clearInterval(jumpIntervalID);
                 $(document).trigger("keyup");
                 /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
@@ -110,14 +110,14 @@ class Characters {
             MoveImageCureent = 0;
         }
         this.position_x += 20;
-        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent]);
+        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
     }
 
     /* stop movement only */
     stopMove() {
-        $("#erenJumpPhotos").attr('src', "image/characters move/forward-move/1.png");
+        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
         clearInterval(moveIntervalID);
     }
 

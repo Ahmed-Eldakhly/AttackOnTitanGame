@@ -1,4 +1,8 @@
-var Eren = new Characters(1, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("erenJumpPhotos"));
+
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
+var enemy1 = new Enemy(enemyPhotosArray, 200, 100);
+
+enemy1.move();
 
 function stateMachine() {
     switch (EREN_STATE) {
@@ -63,3 +67,5 @@ $(document).keyup(function (jumpObject) {
     }
     stateMachine();
 });
+
+
