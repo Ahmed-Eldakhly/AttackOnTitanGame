@@ -10,13 +10,20 @@ class Building {
         this.positiony = positiony;
         this.forward = 0;
 
-        $("#game").append("<img id='build" + this.id + "' class='build-img'></img>");
+        if (this.id < 3) {
+            $("#game").append("<img id='build" + this.id + "' class='build-img'></img>");
+        } else {
+            $("#game").append("<img id='build" + this.id + "' class='floor-img'></img>");
+            $("#build" + this.id).css("z-index", 3);
+        }
+
         $("#build" + this.id).attr('src', "image/Buildings/" + images);
-        $("#build" + this.id).css("right", positionx);
-        $("#build" + this.id).css("top", positiony);
+        $("#build" + this.id).css("left", positionx);
+        $("#build" + this.id).css("bottom", positiony);
         $("#build" + this.id).css("width", width);
         $("#build" + this.id).css("height", height);
-
     }
+
+
 
 }

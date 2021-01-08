@@ -19,8 +19,8 @@ class Characters {
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
         this.characterElementHTML = HTML_Element;
-        this.position_x = 100;
-        this.position_y = 500;
+        this.position_x = 10;
+        this.position_y = 490;
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
@@ -101,8 +101,11 @@ class Characters {
                 this.jumpPosition = 0;
                 jumpState = 0;
                 EREN_STATE = MOVE_FOREARD_FROM_JUMP;
+                console.log(EREN_STATE);
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
+                /*$(document).trigger("keyup");*/
+                //stateMachine();
                 /*$(document).trigger("keyup");*/
                 /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
                     stateMachine();*/
@@ -120,6 +123,10 @@ class Characters {
         this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
+
+
+        levelElementsMovement()
+
     }
 
     /* stop movement only */
