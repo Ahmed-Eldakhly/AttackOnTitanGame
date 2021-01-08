@@ -7,8 +7,6 @@ var moveIntervalID;
 /*var jumpKeyListenerID;*/
 var jumpState = 0;
 
-/**/
-var NotMoveWithJump = 0;
 
 class Characters {
     constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, HTML_Element) {
@@ -38,13 +36,13 @@ class Characters {
             case 3:
             case 4:
             case 5:
-                this.position_y -= 30;
+                this.position_y -= 70;
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 6:
             case 7:
-                this.position_y += 45;
+                this.position_y += 105;
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
@@ -52,11 +50,9 @@ class Characters {
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                NotMoveWithJump = 0;
                 EREN_STATE = STAND;
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
-                stateMachine();
                 break;
         }
     }
@@ -69,7 +65,7 @@ class Characters {
             case 1:
             case 2:
                 if (this.position_x < 800)
-                    this.position_x += 5;
+                    this.position_x += 30;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
@@ -77,16 +73,16 @@ class Characters {
             case 4:
             case 5:
                 if (this.position_x < 800)
-                    this.position_x += 5;
-                this.position_y -= 30;
+                    this.position_x += 30;
+                this.position_y -= 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 6:
                 if (this.position_x < 800)
-                    this.position_x += 5;
-                this.position_y += 45;
+                    this.position_x += 30;
+                this.position_y += 105;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
@@ -94,21 +90,15 @@ class Characters {
             case 7:
                 if (this.position_x < 800)
                     this.position_x += 5;
-                this.position_y += 45;
+                this.position_y += 105;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.top = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                EREN_STATE = MOVE_FOREARD_FROM_JUMP;
-                console.log(EREN_STATE);
+                EREN_STATE = STAND;
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
-                /*$(document).trigger("keyup");*/
-                //stateMachine();
-                /*$(document).trigger("keyup");*/
-                /*if (EREN_STATE == MOVE_FOREARD_FROM_JUMP)
-                    stateMachine();*/
                 break;
         }
     }

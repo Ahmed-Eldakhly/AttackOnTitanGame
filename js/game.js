@@ -23,84 +23,39 @@ setTimeout(x, 2000);
 setTimeout(y, 3000);
 /****** Hossam Multible enemy edit ******/
 
-function stateMachine() {
-    switch (EREN_STATE) {
-        case STAND:
-            /* do nothing */
-            break;
-
-        case MOVE_FORWARD_FROM_STAND:
-            var callBackMove = Eren.forwardMove.bind(Eren)
-            if (moveIntervalID == undefined)
-                moveIntervalID = setInterval(callBackMove, 70)
-            EREN_STATE = MOVING;
-            break;
-
-        case MOVE_FOREARD_FROM_JUMP:
-            console.log("i am here");
-            var callBackMove = Eren.forwardMove.bind(Eren)
-            if (moveIntervalID == undefined)
-                moveIntervalID = setInterval(callBackMove, 70)
-            EREN_STATE = MOVING;
-            break;
-
-        case MOVING:
-            break;
-
-        case JUMP_FROM_STAND:
-            var callBackJump = Eren.jumpOnly_function.bind(Eren)
-            if (jumpIntervalID == undefined)
-                jumpIntervalID = setInterval(callBackJump, 70);
-            EREN_STATE = JUMPING;
-            break;
-
-        case JUMP_FROM_MOVE_FORWARD:
-            console.log("i am there");
+document.addEventListener("keydown", KeyListen);
+function KeyListen(jumpObject) {
+    if (jumpObject.keyCode == 38) {
+        if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
             Eren.stopMove();
             var callBackJump = Eren.jumpWithMove_function.bind(Eren)
             if (jumpIntervalID == undefined)
                 jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
-            break;
-
-        case JUMPING:
-            break;
-
-    }
-}
-
-document.addEventListener("keydown", KeyListen);
-function KeyListen(jumpObject) {
-    console.log("i am in keydown");
-    console.log(jumpObject.keyCode);
-    if (jumpObject.keyCode == 38) {
-        if (EREN_STATE == MOVING)
-            EREN_STATE = JUMP_FROM_MOVE_FORWARD;
-        else if (EREN_STATE == STAND)
-            EREN_STATE = JUMP_FROM_STAND;
+        }
+        else if (EREN_STATE == STAND) {
+            var callBackJump = Eren.jumpOnly_function.bind(Eren)
+            if (jumpIntervalID == undefined)
+                jumpIntervalID = setInterval(callBackJump, 70);
+            EREN_STATE = JUMPING;
+        }
     }
     else if (jumpObject.keyCode == 39) {
-        console.log("Move");
-        console.log(EREN_STATE);
-        if (EREN_STATE == STAND)
-            EREN_STATE = MOVE_FORWARD_FROM_STAND;
+        if (EREN_STATE == STAND) {
+            var callBackMove = Eren.forwardMove.bind(Eren)
+            if (moveIntervalID == undefined)
+                moveIntervalID = setInterval(callBackMove, 70)
+            EREN_STATE = MOVING;
+        }
     }
-    stateMachine();
 }
 
 $(document).keyup(function (jumpObject) {
-
-    console.log("i am in keyup");
     console.log(jumpObject.keyCode);
     if (jumpObject.keyCode == 39) {
         Eren.stopMove();
         EREN_STATE = STAND;
     }
-    else {
-        jumpObject.keyCode = 39;
-        KeyListen(jumpObject)
-    }
-    stateMachine();
 });
 
 function levelElementsMovement() {
