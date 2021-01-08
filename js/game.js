@@ -28,7 +28,7 @@ function KeyListen(jumpObject) {
     if (jumpObject.keyCode == 38) {
         if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
             Eren.stopMove();
-            var callBackJump = Eren.jumpWithMove_function.bind(Eren)
+            var callBackJump = Eren.jumpOnly_function.bind(Eren)
             if (jumpIntervalID == undefined)
                 jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
