@@ -114,8 +114,9 @@ class Characters {
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
 
-
-        levelElementsMovement()
+        //Element move with character
+        Building.buildingsMovement();
+        Background.backgroundsMovement();
 
     }
 

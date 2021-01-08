@@ -7,11 +7,19 @@ var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
 var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
 /****** Hossam Multible enemy edit ******/
 
-//var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
-var background1 = new Building("back2.jpg", 1536, 760, "0px", "4.5px");
-var background2 = new Building("back3.jpg", 1536, 760, "-1590px", "0px");
+//Game Background
+var background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
+var background2 = new Background("game-back2.jpg", 1536, 760, "-1590px", "4px");
 
-var floorPosetionX = 0;
+// Game Roof 
+var roofPosetionX = 0;
+
+// Build roof
+for (let i = 0; i < 4; i++) {
+    var roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
+    roofPosetionX += 520;
+}
+
 /****** Hossam Multible enemy edit ******/
 enemy1.move();
 //enemy2.move();
@@ -51,35 +59,8 @@ function KeyListen(jumpObject) {
 }
 
 $(document).keyup(function (jumpObject) {
-    console.log(jumpObject.keyCode);
     if (jumpObject.keyCode == 39) {
         Eren.stopMove();
         EREN_STATE = STAND;
     }
 });
-
-function levelElementsMovement() {
-    $(".build-img").each((i) => {
-        var position = parseInt($(".build-img")[i].style.left);
-        if (position < -1500) {
-            position = 1536;
-        }
-
-        $(".build-img")[i].style.left = position - 20 + "px";
-    })
-    $(".floor-img").each((i) => {
-        var position = parseInt($(".floor-img")[i].style.left);
-        if (position < -500) {
-            position = 1500;
-        }
-
-        $(".floor-img")[i].style.left = position - 20 + "px";
-    })
-}
-
-
-// Build floor
-for (let i = 0; i < 4; i++) {
-    var floor = new Building("floor.png", 500, 150, floorPosetionX, "0px");
-    floorPosetionX += 520;
-}
