@@ -13,14 +13,34 @@ var background2 = new Building("back3.jpg", 1536, 760, "-1590px", "0px");
 
 var floorPosetionX = 0;
 /****** Hossam Multible enemy edit ******/
-enemy1.move();
-//enemy2.move();
 
-var x = enemy2.move.bind(enemy2)
-var y = enemy3.move.bind(enemy3)
+function createAttackWave()
+{
+    console.log('hi');
+    enemy1.move();
+    var x = enemy2.move.bind(enemy2)
+    var y = enemy3.move.bind(enemy3)
+    setTimeout(x, 2000);
+    setTimeout(y, 3000);
+}
 
-setTimeout(x, 2000);
-setTimeout(y, 3000);
+
+function launchAttack()
+{
+    createAttackWave () ;
+    var wave = 5000;
+    for(let i = 0; i < 25; i++)
+    {   
+        setTimeout(createAttackWave , wave);
+        wave += 5000;
+    }
+}
+
+launchAttack();
+
+
+
+
 /****** Hossam Multible enemy edit ******/
 
 document.addEventListener("keydown", KeyListen);
