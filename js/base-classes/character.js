@@ -1,7 +1,11 @@
 var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
 var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
+
+var ErenWinPhotosArray = ["mov3", "mov4", "mov5", "mov6", "mov7", "mov1"];
+
 var ErenMovebackPhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png", "1.png"];
 var ErenLosePhotosArray = ["1.png", "1.png", "2.png", "3.png", "4.png"];
+
 var jumpIntervalID;
 var backIntervalID;
 var MoveImageCureent = 0;
@@ -13,13 +17,14 @@ var jumpState = 0;
 
 
 class Characters {
-    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, HTML_Element) {
+    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos,winPhotos, HTML_Element) {
         this.characterID = ID;
         this.characterName = Name;
         this.characterSpeed = speed;
         this.characterLevel = level;
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
+        this.characterWinPhotos = winPhotos;
         this.characterLosePhotos = losePhotos;
         this.characterElementHTML = HTML_Element;
         this.position_x = parseInt(3 * $(window).innerWidth() / 100);
@@ -178,6 +183,7 @@ class Characters {
     }
 
 
+
     /* lose game only */
     loseGame() {
         this.stopMove();
@@ -244,6 +250,49 @@ class Characters {
 
 }
 
+
+
+    winGame() {
+        this.stopMove();
+        document.removeEventListener("keydown", KeyListen);
+        document.removeEventListener("keyup", KeyUpListen);
+        //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        var audio = document.createElement('audio');
+        audio.setAttribute('src', 'attack-on-titans.mpeg');
+        audio.play();
+
+        var WinCureentImage = 0;
+        var photos = this.characterWinPhotos;
+        var positionX = this.position_x;
+        var positionY = this.position_y;
+        var characterElement = this.characterElementHTML;
+
+        var win = setInterval(characterWin, 300);
+
+        function characterWin() {
+            if (WinCureentImage >= photos.length) {
+                clearInterval(win);
+                $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
+                $('.win-div').append("<img src='image/win-logo.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
+                characterElement.style.display = "none";
+            } else {
+                if (WinCureentImage == photos.length - 1) {
+                    characterElement.style.width = "150px";
+                    characterElement.style.height = "80px";
+                    console.log(characterElement.style.top, (positionY - 20));
+                    characterElement.style.top = (positionY + 40) + "px";
+                }
+                characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
+                characterElement.style.left = positionX + "px";
+                positionX += 30;
+                WinCureentImage++;
+            }
+
+        }
+
+    }
+
+}
 var STAND = 0;
 var MOVE_FORWARD_FROM_STAND = 1;
 var MOVE_FOREARD_FROM_JUMP = 2;

@@ -1,5 +1,9 @@
-
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, document.getElementById("defenderPhotos"));
+//var for timer
+var timerval;
+var minutes;
+var seconds
+/////////////
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray,ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 var blurFlag = 0;
 /****** Hossam Multible enemy edit ******/
@@ -150,5 +154,32 @@ $(window).on('blur', function () {
         }
     }
 
+}*/
+
+
+function countdown() {
+    clearInterval(timerval);
+    timerval = setInterval(function () {
+        var timer = $('.js-timeout').html();
+        timer = timer.split(':');
+        minutes = timer[0];
+        seconds = timer[1];
+        seconds -= 1;
+        if (minutes < 0) return;
+        else if (seconds < 0 && minutes <= 1) {
+            minutes = 0;
+            seconds = 59;
+        }
+
+        else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+
+        $('.js-timeout').html(minutes + ':' + seconds);
+
+        if (minutes == 0 && seconds == 0) {
+            clearInterval(timerval);
+            var erenWin = Eren.winGame.bind(Eren)
+            setTimeout(erenWin, 2000)
+        }
+    }, 1000);
 }
-*/
+countdown();
