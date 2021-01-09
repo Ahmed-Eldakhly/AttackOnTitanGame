@@ -1,5 +1,5 @@
 
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
@@ -58,9 +58,14 @@ function KeyListen(jumpObject) {
     }
 }
 
-$(document).keyup(function (jumpObject) {
+document.addEventListener("keyup", KeyUpListen);
+function KeyUpListen(jumpObject) {
     if (jumpObject.keyCode == 39) {
         Eren.stopMove();
         EREN_STATE = STAND;
     }
-});
+}
+
+// Eren Lose 
+var erenLose = Eren.loseGame.bind(Eren)
+setTimeout(erenLose, 2000)

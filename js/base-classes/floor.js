@@ -12,4 +12,15 @@ class Floor extends LevelStructure {
             "z-index": 3
         });
     }
+
+    static floorMovement() {
+        $(".floor-img").each((i) => {
+            var position = parseInt($(".floor-img")[i].style.left);
+            if (position < - parseInt($(".floor-img").css('width'))) {
+                position = window.outerWidth;
+            }
+
+            $(".floor-img")[i].style.left = position - 30 + "px";
+        })
+    }
 }
