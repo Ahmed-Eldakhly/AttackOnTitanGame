@@ -69,3 +69,9 @@ function KeyUpListen(jumpObject) {
 // Eren Lose 
 var erenLose = Eren.loseGame.bind(Eren)
 setTimeout(erenLose, 2000)
+
+// $('window').one('mouseover', function () {
+//     var audio = document.createElement('audio');
+//     audio.setAttribute('src', 'audio/attack.mp3');
+//     audio.play();
+// })

@@ -152,7 +152,8 @@ class Characters {
             if (LoseCureentImage >= photos.length) {
                 clearInterval(lose);
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-                $('.lose-div').append("<a href='game.html' class='retry'>Retry</a>")
+                $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
+                characterElement.style.display = "none";
             } else {
                 if (LoseCureentImage == photos.length - 1) {
                     characterElement.style.width = "150px";
