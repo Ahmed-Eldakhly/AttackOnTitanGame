@@ -17,11 +17,13 @@ class Characters {
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
         this.characterElementHTML = HTML_Element;
-        this.position_x = 10;
-        this.position_y = 490;
-        this.characterElementHTML.style.top = this.position_y + "px";
+        this.position_x = parseInt(3 * $(window).innerWidth() / 100);
+        this.position_y = parseInt(20 * $(window).innerHeight() / 100);
+        this.characterElementHTML.style.bottom = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
+        console.log(this.characterElementHTML.style.bottom)
+        console.log(this.characterElementHTML.style.left)
     }
 
     /* jump only */
@@ -36,14 +38,14 @@ class Characters {
             case 3:
             case 4:
             case 5:
-                this.position_y -= 70;
-                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.position_y += 70;
+                this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 6:
             case 7:
-                this.position_y += 105;
-                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.position_y -= 105;
+                this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 8:
@@ -74,25 +76,26 @@ class Characters {
             case 5:
                 if (this.position_x < 800)
                     this.position_x += 30;
-                this.position_y -= 70;
+                this.position_y += 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
-                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 6:
-                if (this.position_x < 800)
-                    this.position_x += 30;
-                this.position_y += 105;
-                this.characterElementHTML.style.left = (this.position_x) + "px";
-                this.characterElementHTML.style.top = (this.position_y) + "px";
-                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
-                break;
             case 7:
                 if (this.position_x < 800)
-                    this.position_x += 5;
-                this.position_y += 105;
+                    this.position_x += 30;
+                this.position_y -= 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
-                this.characterElementHTML.style.top = (this.position_y) + "px";
+                this.characterElementHTML.style.bottom = (this.position_y) + "px";
+                this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
+                break;
+            case 8:
+                if (this.position_x < 800)
+                    this.position_x += 5;
+                this.position_y -= 70;
+                this.characterElementHTML.style.left = (this.position_x) + "px";
+                this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
@@ -100,6 +103,7 @@ class Characters {
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
                 break;
+
         }
     }
 

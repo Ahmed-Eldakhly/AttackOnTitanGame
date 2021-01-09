@@ -27,7 +27,6 @@ img {
 /* Start Enemy Section */
 .enemy {
     height: 300px;
-    top: 450px;
 }
 /* End Enemy Section */
 
@@ -36,8 +35,8 @@ img {
 {
     height: 120px;
     width: 120px;
-    left: 250px;
-    top: 580px;
+    /*left: 250px;
+    top: 580px;*/
     z-index: 10;
 }
 /* End Character Section */

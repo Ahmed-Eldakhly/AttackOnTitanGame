@@ -23,7 +23,7 @@ class Enemy {
 
         var pos = window.outerWidth;
         character[this.id].style.left = pos + "px";
-
+        character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var id = setInterval(frame, this.speed);
         var idd = this.id;
         var img = this.images;
