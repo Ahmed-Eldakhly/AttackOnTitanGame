@@ -1,7 +1,6 @@
 
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
-var blurFlag = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
@@ -109,9 +108,9 @@ onkeypress = function (KeyObject) {
 
 // Window blur
 $(window).on('blur', function () {
-    if (!blurFlag) {
+    if (EREN_STATE != LOSE) {
         Eren.loseGame();
-        blurFlag = 1;
+        EREN_STATE = LOSE;
     }
 });
 

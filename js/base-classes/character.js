@@ -237,7 +237,10 @@ class Characters {
         else {
             $('#healthBar').css('width', '0px');
             $('#healthBar').text('');
-            this.loseGame();
+            if (EREN_STATE != LOSE) {
+                Eren.loseGame();
+                EREN_STATE = LOSE;
+            }
             return false;
         }
     }
@@ -251,5 +254,6 @@ var MOVING = 3;
 var JUMP_FROM_STAND = 4;
 var JUMP_FROM_MOVE_FORWARD = 5;
 var JUMPING = 6;
+var LOSE = 7;
 
 var EREN_STATE = STAND;
