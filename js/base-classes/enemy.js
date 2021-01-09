@@ -23,25 +23,38 @@ class Enemy {
 
         var pos = window.outerWidth;
         character[this.id].style.left = pos + "px";
-
+        character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var id = setInterval(frame, this.speed);
         var idd = this.id;
         var img = this.images;
         var i = 0;
         function frame() {
             if (pos <= -160) {
-                //clearInterval(id);
+                clearInterval(id);
                 pos = window.outerWidth;
+                character[idd].remove();
             }
             else {
                 character[idd].src = "image/characters/enemy-" + img[i];
                 character[idd].style.left = pos + "px";
-                pos -= 40;
+                pos -= 45;
                 i = i + 1;
-                if (i > 7) {
+                if (i >= img.length) {
                     i = 0;
                 }
             }
+            //console.log((parseInt(character[idd].style.left)))
+            if (parseInt(character[idd].style.left) <= parseInt(Eren.characterElementHTML.style.left) && parseInt(character[idd].style.left) + 40 >= parseInt(Eren.characterElementHTML.style.left)) {
+                if (parseInt(Eren.characterElementHTML.style.bottom) < (parseInt(character[idd].style.bottom) + 300)) { /*gameOverVoice.play();*/ console.log("lose") }
+                else { //gameOverVoice.pause(); }
+                }
+            }
+            else {
+                // gameOverVoice.pause();
+            }
         }
     }
-};  
+};
+
+//var gameOverVoice = document.getElementById("gameOver");
+

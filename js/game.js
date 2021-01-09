@@ -3,30 +3,55 @@ var timerval;
 var minutes;
 var seconds
 /////////////
-
-
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray,ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
+var blurFlag = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
 var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
 /****** Hossam Multible enemy edit ******/
 
-//var initBuilding = new Building("demo1.png", 600, 600, "0px", "100px");
-var background1 = new Building("back2.jpg", 1536, 760, "0px", "4.5px");
-var background2 = new Building("back3.jpg", 1536, 760, "-1590px", "0px");
+//Game Background
+var background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
+var background2 = new Background("game-back2.jpg", 1536, 760, "-1590px", "4px");
 
-var floorPosetionX = 0;
+// Game Roof 
+var roofPosetionX = 0;
+
+// Build roof
+for (let i = 0; i < 4; i++) {
+    var roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
+    roofPosetionX += 520;
+}
+
 /****** Hossam Multible enemy edit ******/
-enemy1.move();
-//enemy2.move();
 
-var x = enemy2.move.bind(enemy2)
-var y = enemy3.move.bind(enemy3)
+function createAttackWave() {
+    enemy1.move();
+    var x = enemy2.move.bind(enemy2)
+    var y = enemy3.move.bind(enemy3)
+    setTimeout(x, 2000);
+    setTimeout(y, 3000);
+    console.log("hossam");
+}
 
-setTimeout(x, 2000);
-setTimeout(y, 3000);
+
+function launchAttack() {
+    createAttackWave();
+    var wave = 5000;
+    console.log("hossam");
+    for (let i = 0; i < 25; i++) {
+        setTimeout(createAttackWave, wave);
+        wave += 5000;
+    }
+}
+
+launchAttack();
+
+
+
+
 /****** Hossam Multible enemy edit ******/
 
 document.addEventListener("keydown", KeyListen);
@@ -34,7 +59,7 @@ function KeyListen(jumpObject) {
     if (jumpObject.keyCode == 38) {
         if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
             Eren.stopMove();
-            var callBackJump = Eren.jumpOnly_function.bind(Eren)
+            var callBackJump = Eren.jumpWithMove_function.bind(Eren)
             if (jumpIntervalID == undefined)
                 jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
@@ -64,34 +89,73 @@ function KeyUpListen(jumpObject) {
     }
 }
 
-function levelElementsMovement() {
-    $(".build-img").each((i) => {
-        var position = parseInt($(".build-img")[i].style.left);
-        if (position < -1500) {
-            position = 1536;
-        }
+onkeypress = function (KeyObject) {
+    if (KeyObject.keyCode == 97)
+        console.log("attack");
 
-        $(".build-img")[i].style.left = position - 20 + "px";
-    })
-    $(".floor-img").each((i) => {
-        var position = parseInt($(".floor-img")[i].style.left);
-        if (position < -500) {
-            position = 1500;
-        }
+    if (KeyObject.keyCode == 115)
+        Eren.characterSpeed = 60;
+    else
+        Eren.characterSpeed = 20;
 
-        $(".floor-img")[i].style.left = position - 20 + "px";
-    })
 }
 
 
-// Build floor
-for (let i = 0; i < 4; i++) {
-    var floor = new Building("floor.png", 500, 150, floorPosetionX, "0px");
-    floorPosetionX += 520;
-}
-//timer
+// Eren Lose 
+// var erenLose = Eren.loseGame.bind(Eren)
+// setTimeout(erenLose, 2000)
 
-//window.onload = function () {
+// $('body').one('mouseover', function () {
+//     var audio = document.createElement('audio');
+//     audio.setAttribute('src', 'audio/attack.mp3');
+//     audio.play();
+// })
+
+// Window blur
+$(window).on('blur', function () {
+    if (!blurFlag) {
+        Eren.loseGame();
+        blurFlag = 1;
+    }
+});
+
+
+
+/*onkeydown = onkeyup = function (jumpObject) {
+    if (jumpObject.type == "keydown") {
+        if (jumpObject.keyCode == 38) {
+            if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
+                Eren.stopMove();
+                var callBackJump = Eren.jumpWithMove_function.bind(Eren)
+                if (jumpIntervalID == undefined)
+                    jumpIntervalID = setInterval(callBackJump, 70);
+                EREN_STATE = JUMPING;
+            }
+            else if (EREN_STATE == STAND) {
+                var callBackJump = Eren.jumpOnly_function.bind(Eren)
+                if (jumpIntervalID == undefined)
+                    jumpIntervalID = setInterval(callBackJump, 70);
+                EREN_STATE = JUMPING;
+            }
+        }
+        else if (jumpObject.keyCode == 39) {
+            if (EREN_STATE == STAND || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
+                var callBackMove = Eren.forwardMove.bind(Eren)
+                if (moveIntervalID == undefined)
+                    moveIntervalID = setInterval(callBackMove, 70)
+                EREN_STATE = MOVING;
+            }
+        }
+    }
+    else {
+        if (jumpObject.keyCode == 39) {
+            Eren.stopMove();
+            EREN_STATE = STAND;
+        }
+    }
+
+}*/
+
 
 function countdown() {
     clearInterval(timerval);
@@ -102,9 +166,9 @@ function countdown() {
         seconds = timer[1];
         seconds -= 1;
         if (minutes < 0) return;
-        else if (seconds < 0 && minutes == 0) {
+        else if (seconds < 0 && minutes <= 1) {
             minutes = 0;
-            //seconds = 59;
+            seconds = 59;
         }
 
         else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
