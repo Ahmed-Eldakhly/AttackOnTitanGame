@@ -1,6 +1,7 @@
 var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
 var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
 var jumpIntervalID;
+var backIntervalID;
 var MoveImageCureent = 0;
 var moveIntervalID;
 
@@ -22,8 +23,6 @@ class Characters {
         this.characterElementHTML.style.bottom = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
-        console.log(this.characterElementHTML.style.bottom)
-        console.log(this.characterElementHTML.style.left)
     }
 
     /* jump only */
@@ -62,20 +61,19 @@ class Characters {
     /* move and jump */
     jumpWithMove_function(obj) {
         this.jumpPosition++;
+        levelElementsMovement()
         switch (this.jumpPosition) {
             case 0:
             case 1:
             case 2:
-                if (this.position_x < 800)
-                    this.position_x += 30;
+                this.position_x += 30;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 3:
             case 4:
             case 5:
-                if (this.position_x < 800)
-                    this.position_x += 30;
+                this.position_x += 30;
                 this.position_y += 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.bottom = (this.position_y) + "px";
@@ -83,16 +81,14 @@ class Characters {
                 break;
             case 6:
             case 7:
-                if (this.position_x < 800)
-                    this.position_x += 30;
+                this.position_x += 30;
                 this.position_y -= 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 break;
             case 8:
-                if (this.position_x < 800)
-                    this.position_x += 5;
+                this.position_x += 30;
                 this.position_y -= 70;
                 this.characterElementHTML.style.left = (this.position_x) + "px";
                 this.characterElementHTML.style.bottom = (this.position_y) + "px";
@@ -100,8 +96,19 @@ class Characters {
                 this.jumpPosition = 0;
                 jumpState = 0;
                 EREN_STATE = STAND;
+                if (this.position_x >= 800) {
+                    var callBackJump = Eren.backwardMove.bind(Eren)
+                    if (backIntervalID == undefined)
+                        backIntervalID = setInterval(callBackJump, 40);
+                }
+
+                /* if (this.position_x >= 800) {
+                     this.position_x = 800;
+                     this.characterElementHTML.style.left = (this.position_x) + "px";
+                 }*/
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
+
                 break;
 
         }
@@ -113,11 +120,28 @@ class Characters {
             MoveImageCureent = 0;
         }
         if (this.position_x < 800)
-            this.position_x += 20;
+            this.position_x += this.characterSpeed;
         this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
 
+
+        levelElementsMovement()
+
+    }
+    backwardMove() {
+        if (MoveImageCureent == this.characterMovementPhotos.length) {
+            MoveImageCureent = 0;
+        }
+        if (this.position_x > 800)
+            this.position_x -= this.characterSpeed;
+        else {
+            clearInterval(backIntervalID);
+            backIntervalID = undefined;
+        }
+        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
+        this.characterElementHTML.style.left = (this.position_x) + "px";
+        MoveImageCureent++;
 
         levelElementsMovement()
 

@@ -1,5 +1,5 @@
 
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
@@ -57,6 +57,18 @@ $(document).keyup(function (jumpObject) {
     }
 });
 
+onkeypress = function (KeyObject) {
+    if (KeyObject.keyCode == 97)
+        console.log("attack");
+
+    if (KeyObject.keyCode == 115)
+        Eren.characterSpeed = 60;
+    else
+        Eren.characterSpeed = 20;
+
+}
+
+
 function levelElementsMovement() {
     $(".build-img").each((i) => {
         var position = parseInt($(".build-img")[i].style.left);
@@ -84,3 +96,40 @@ for (let i = 0; i < 4; i++) {
 }
 
 
+
+
+/*onkeydown = onkeyup = function (jumpObject) {
+    if (jumpObject.type == "keydown") {
+        if (jumpObject.keyCode == 38) {
+            if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
+                Eren.stopMove();
+                var callBackJump = Eren.jumpWithMove_function.bind(Eren)
+                if (jumpIntervalID == undefined)
+                    jumpIntervalID = setInterval(callBackJump, 70);
+                EREN_STATE = JUMPING;
+            }
+            else if (EREN_STATE == STAND) {
+                var callBackJump = Eren.jumpOnly_function.bind(Eren)
+                if (jumpIntervalID == undefined)
+                    jumpIntervalID = setInterval(callBackJump, 70);
+                EREN_STATE = JUMPING;
+            }
+        }
+        else if (jumpObject.keyCode == 39) {
+            if (EREN_STATE == STAND || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
+                var callBackMove = Eren.forwardMove.bind(Eren)
+                if (moveIntervalID == undefined)
+                    moveIntervalID = setInterval(callBackMove, 70)
+                EREN_STATE = MOVING;
+            }
+        }
+    }
+    else {
+        if (jumpObject.keyCode == 39) {
+            Eren.stopMove();
+            EREN_STATE = STAND;
+        }
+    }
+
+}
+*/
