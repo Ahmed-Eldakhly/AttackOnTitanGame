@@ -30,7 +30,7 @@ class Enemy {
         var i = 0;
         function frame() {
             if (pos <= -160) {
-                //clearInterval(id);
+                clearInterval(id);
                 pos = window.outerWidth;
             }
             else {
