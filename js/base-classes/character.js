@@ -186,7 +186,8 @@ class Characters {
 
     /* lose game only */
     loseGame() {
-        this.stopMove();
+        //this.stopMove();
+        clearInterval(timerval);
         document.removeEventListener("keydown", KeyListen);
         document.removeEventListener("keyup", KeyUpListen);
         var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
@@ -221,9 +222,8 @@ class Characters {
                 positionX += 15;
                 LoseCureentImage++;
             }
-
         }
-
+        EREN_STATE = LOSE;
     }
 
     sethealth() {
@@ -239,12 +239,14 @@ class Characters {
         }
         if (cal > 40) {
             if (EREN_STATE != WIN) {
+                console.log("the state is " + EREN_STATE);
                 cal = cal - (0.2 * 200);
                 $('#healthBar').css('width', cal + 'px');
                 return true;
             }
         }
         else {
+            console.log("the state is " + EREN_STATE);
             $('#healthBar').css('width', '0px');
             $('#healthBar').text('');
             if (EREN_STATE != LOSE && EREN_STATE != WIN) {
@@ -256,7 +258,7 @@ class Characters {
     }
 
     winGame() {
-        this.stopMove();
+        //this.stopMove();
         document.removeEventListener("keydown", KeyListen);
         document.removeEventListener("keyup", KeyUpListen);
         //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
@@ -294,9 +296,9 @@ class Characters {
                 positionX += 30;
                 WinCureentImage++;
             }
-
         }
 
+        EREN_STATE = WIN;
     }
 
 }
