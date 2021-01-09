@@ -22,9 +22,7 @@ for (let i = 0; i < 4; i++) {
 
 /****** Hossam Multible enemy edit ******/
 
-function createAttackWave()
-{
-    console.log('hi');
+function createAttackWave() {
     enemy1.move();
     var x = enemy2.move.bind(enemy2)
     var y = enemy3.move.bind(enemy3)
@@ -33,13 +31,11 @@ function createAttackWave()
 }
 
 
-function launchAttack()
-{
-    createAttackWave () ;
+function launchAttack() {
+    createAttackWave();
     var wave = 5000;
-    for(let i = 0; i < 25; i++)
-    {   
-        setTimeout(createAttackWave , wave);
+    for (let i = 0; i < 25; i++) {
+        setTimeout(createAttackWave, wave);
         wave += 5000;
     }
 }
@@ -87,12 +83,20 @@ function KeyUpListen(jumpObject) {
 }
 
 // Eren Lose 
-var erenLose = Eren.loseGame.bind(Eren)
-setTimeout(erenLose, 2000)
+// var erenLose = Eren.loseGame.bind(Eren)
+// setTimeout(erenLose, 2000)
 
 $('body').one('mouseover', function () {
-    console.log('hi');
     var audio = document.createElement('audio');
     audio.setAttribute('src', 'audio/attack.mp3');
     audio.play();
+})
+
+// Window blur
+$(window).on('blur', function () {
+    console.log("Blur");
+});
+
+$('button').on('click', function (params) {
+    Eren.sethealth();
 })

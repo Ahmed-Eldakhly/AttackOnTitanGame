@@ -47,11 +47,13 @@ img {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 5;
+    z-index: 6;
     transition: all 5s;
     text-align: center;
     font-size: 58px;
     color: white;
+    top: 0;
+    left: 0;
 }
 
 .lose-title {
@@ -76,3 +78,36 @@ img {
 }
 
 /* End Character Section */
+
+
+/* Start Health Section */
+
+#health {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 270px;
+    padding-top: 5px;
+    z-index: 5;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    background-color: rgb(171, 144, 124, 0.5);
+    border-radius: 20px;
+  }
+  
+  #healthName {
+    display: inline;
+    padding-left: 5px;
+    font-family: "Berkshire Swash", cursive;
+  }
+  
+  #healthBar {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    background-color: rgb(21, 95, 21);
+    color: rgb(21, 95, 21);
+    border-radius: 20px;
+  }
+
+/* End Health Section */

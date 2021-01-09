@@ -20,7 +20,7 @@ class Characters {
         this.characterLosePhotos = losePhotos;
         this.characterElementHTML = HTML_Element;
         this.position_x = 10;
-        this.position_y = 440;  //hossam edit to fix attack
+        this.position_y = 490;  //hossam edit to fix attack
         this.characterElementHTML.style.top = this.position_y + "px";
         this.characterElementHTML.style.left = this.position_x + "px";
         this.jumpPosition = 0;
@@ -168,6 +168,30 @@ class Characters {
 
         }
 
+    }
+
+    sethealth() {
+        var cal = 0;
+        cal = $('#healthBar').width();
+        if (cal <= 160 && cal > 80) {
+            $('#healthBar').css('background', 'rgb(196, 123, 14)');
+            $('#healthBar').css('color', 'rgb(196, 123, 14)');
+        }
+        else if (cal <= 80) {
+            $('#healthBar').css('background', 'rgb(153, 38, 38)');
+            $('#healthBar').css('color', 'rgb(153, 38, 38)');
+        }
+        if (cal > 40) {
+            cal = cal - (0.2 * 200);
+            $('#healthBar').css('width', cal + 'px');
+            return true;
+        }
+        else {
+            $('#healthBar').css('width', '0px');
+            $('#healthBar').text('');
+            this.loseGame();
+            return false;
+        }
     }
 
 }
