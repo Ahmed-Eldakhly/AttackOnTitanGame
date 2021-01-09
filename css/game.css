@@ -27,8 +27,7 @@ img {
 
 /* Start Enemy Section */
 .enemy {
-  height: 300px;
-  top: 400px; /*hossam edit to fix attack*/
+    height: 300px;
 }
 /* End Enemy Section */
 
@@ -37,8 +36,6 @@ img {
 {
     height: 120px;
     width: 120px;
-    left: 250px;
-    top: 580px;
     z-index: 4;
 }
 

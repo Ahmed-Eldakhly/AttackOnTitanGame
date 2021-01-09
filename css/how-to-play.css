@@ -1,8 +1,8 @@
 body
 {
     background-image: url("../image/Background/how.jpg");
-    background-repeat: no-repeat;
     background-size: cover;
+    background-repeat: no-repeat;
     font-family: "Berkshire Swash";
     overflow: hidden;
 }
