@@ -158,7 +158,6 @@ class Characters {
                 if (LoseCureentImage == photos.length - 1) {
                     characterElement.style.width = "150px";
                     characterElement.style.height = "80px";
-                    console.log(characterElement.style.top, (positionY - 20));
                     characterElement.style.top = (positionY + 40) + "px";
                 }
                 characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
