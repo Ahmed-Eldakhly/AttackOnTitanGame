@@ -2,26 +2,27 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-family: "Berkshire Swash";
 }
 
 img {
-    position: absolute;
-} 
+  position: absolute;
+}
 
 #skyImage {
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .floor {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-    height: 20%;
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  height: 20%;
+  width: 100%;
 }
 
 /* Start Enemy Section */
@@ -35,12 +36,75 @@ img {
 {
     height: 120px;
     width: 120px;
-    /*left: 250px;
-    top: 580px;*/
-    z-index: 10;
+    z-index: 4;
 }
+
+.lose-div {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    transition: all 5s;
+    text-align: center;
+    font-size: 58px;
+    color: white;
+    top: 0;
+    left: 0;
+}
+
+.lose-title {
+    margin-top: 200px;
+}
+
+.retry {
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid  rgba(38, 97, 206, 0.8);
+    background-color: rgba(38, 97, 206, 0.4);
+}
+
+.lose-image {
+    position: absolute;
+    left: 0;
+    top: 30%;
+}
+
 /* End Character Section */
 
 
- 
+/* Start Health Section */
+
+#health {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 270px;
+    padding-top: 5px;
+    z-index: 5;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    background-color: rgb(171, 144, 124, 0.5);
+    border-radius: 20px;
+  }
   
+  #healthName {
+    display: inline;
+    padding-left: 5px;
+    font-family: "Berkshire Swash", cursive;
+  }
+  
+  #healthBar {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    background-color: rgb(21, 95, 21);
+    color: rgb(21, 95, 21);
+    border-radius: 20px;
+  }
+
+/* End Health Section */

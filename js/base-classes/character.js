@@ -1,5 +1,6 @@
 var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
 var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
+var ErenLosePhotosArray = ["1.png", "1.png", "2.png", "3.png", "4.png"];
 var jumpIntervalID;
 var MoveImageCureent = 0;
 var moveIntervalID;
@@ -9,13 +10,14 @@ var jumpState = 0;
 
 
 class Characters {
-    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, HTML_Element) {
+    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, HTML_Element) {
         this.characterID = ID;
         this.characterName = Name;
         this.characterSpeed = speed;
         this.characterLevel = level;
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
+        this.characterLosePhotos = losePhotos;
         this.characterElementHTML = HTML_Element;
         this.position_x = parseInt(3 * $(window).innerWidth() / 100);
         this.position_y = parseInt(20 * $(window).innerHeight() / 100);
@@ -118,8 +120,9 @@ class Characters {
         this.characterElementHTML.style.left = (this.position_x) + "px";
         MoveImageCureent++;
 
-
-        levelElementsMovement()
+        //Element move with character
+        Building.buildingsMovement();
+        Background.backgroundsMovement();
 
     }
 
@@ -128,6 +131,71 @@ class Characters {
         this.characterElementHTML.src = "image/characters move/forward-move/1.png";
         clearInterval(moveIntervalID);
         moveIntervalID = undefined;
+    }
+
+
+    /* lose game only */
+    loseGame() {
+        this.stopMove();
+        document.removeEventListener("keydown", KeyListen);
+        document.removeEventListener("keyup", KeyUpListen);
+        var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        var audio = document.createElement('audio');
+        audio.setAttribute('src', 'audio/game-over.mp3');
+        audio.play();
+
+        var LoseCureentImage = 0;
+        var photos = this.characterLosePhotos;
+        var positionX = this.position_x;
+        var positionY = this.position_y;
+        var characterElement = this.characterElementHTML;
+
+        var lose = setInterval(characterlose, 300);
+
+        function characterlose() {
+            if (LoseCureentImage >= photos.length) {
+                clearInterval(lose);
+                $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
+                $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
+                characterElement.style.display = "none";
+            } else {
+                if (LoseCureentImage == photos.length - 1) {
+                    characterElement.style.width = "150px";
+                    characterElement.style.height = "80px";
+                    characterElement.style.top = (positionY + 40) + "px";
+                }
+                characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
+                characterElement.style.left = positionX + "px";
+                positionX += 15;
+                LoseCureentImage++;
+            }
+
+        }
+
+    }
+
+    sethealth() {
+        var cal = 0;
+        cal = $('#healthBar').width();
+        if (cal <= 160 && cal > 80) {
+            $('#healthBar').css('background', 'rgb(196, 123, 14)');
+            $('#healthBar').css('color', 'rgb(196, 123, 14)');
+        }
+        else if (cal <= 80) {
+            $('#healthBar').css('background', 'rgb(153, 38, 38)');
+            $('#healthBar').css('color', 'rgb(153, 38, 38)');
+        }
+        if (cal > 40) {
+            cal = cal - (0.2 * 200);
+            $('#healthBar').css('width', cal + 'px');
+            return true;
+        }
+        else {
+            $('#healthBar').css('width', '0px');
+            $('#healthBar').text('');
+            this.loseGame();
+            return false;
+        }
     }
 
 }
