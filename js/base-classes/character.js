@@ -1,6 +1,6 @@
 var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
 var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
-var ErenLosePhotosArray = ["1.png", "1.png", "2.png", "2.png", "3.png", "3.png", "4.png"];
+var ErenLosePhotosArray = ["1.png", "1.png", "2.png", "3.png", "4.png"];
 var jumpIntervalID;
 var MoveImageCureent = 0;
 var moveIntervalID;
@@ -135,20 +135,18 @@ class Characters {
         this.stopMove();
         document.removeEventListener("keydown", KeyListen);
         document.removeEventListener("keyup", KeyUpListen);
-        var background1 = new Background("titan.png", 800, 400, "400px", "453px");
+        var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
         var audio = document.createElement('audio');
         audio.setAttribute('src', 'audio/game-over.mp3');
         audio.play();
 
         var LoseCureentImage = 0;
         var photos = this.characterLosePhotos;
-        var position = this.position_x;
+        var positionX = this.position_x;
+        var positionY = this.position_y;
         var characterElement = this.characterElementHTML;
-        characterElement.style.width = '60px';
-        characterElement.style.height = '60px';
-        characterElement.style.top = (this.position_y + 80) + "px";
 
-        var lose = setInterval(characterlose, 200);
+        var lose = setInterval(characterlose, 300);
 
         function characterlose() {
             if (LoseCureentImage >= photos.length) {
@@ -156,9 +154,15 @@ class Characters {
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
                 $('.lose-div').append("<a href='game.html' class='retry'>Retry</a>")
             } else {
+                if (LoseCureentImage == photos.length - 1) {
+                    characterElement.style.width = "150px";
+                    characterElement.style.height = "80px";
+                    console.log(characterElement.style.top, (positionY - 20));
+                    characterElement.style.top = (positionY + 40) + "px";
+                }
                 characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
-                characterElement.style.left = position + "px";
-                position += 10;
+                characterElement.style.left = positionX + "px";
+                positionX += 15;
                 LoseCureentImage++;
             }
 
