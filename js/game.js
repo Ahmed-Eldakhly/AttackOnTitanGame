@@ -1,3 +1,9 @@
+//var for timer
+var timerval;
+var minutes;
+var seconds
+/////////////
+
 
 var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
@@ -82,4 +88,27 @@ function levelElementsMovement() {
 for (let i = 0; i < 4; i++) {
     var floor = new Building("floor.png", 500, 150, floorPosetionX, "0px");
     floorPosetionX += 520;
+}
+//timer
+
+window.onload = function () {
+    clearInterval(timerval);
+    timerval = setInterval(function () {
+        var timer = $('.js-timeout').html();
+        timer = timer.split(':');
+        minutes = timer[0];
+        seconds = timer[1];
+        seconds -= 1;
+        if (minutes < 0) return;
+        else if (seconds < 0) {//&& minutes != 0) {
+            minutes = 0;
+            seconds = 59;
+        }
+        //  else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+
+        $('.js-timeout').html(minutes + ':' + seconds);
+
+        if (minutes == 0 && seconds == 0) clearInterval(interval);
+
+    }, 1000);
 }
