@@ -64,11 +64,14 @@ class Characters {
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                EREN_STATE = STAND;
                 if (this.position_x >= 800) {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
+                    EREN_STATE = GO_BACK;
+                }
+                else {
+                    EREN_STATE = STAND;
                 }
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
@@ -115,11 +118,15 @@ class Characters {
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
                 jumpState = 0;
-                EREN_STATE = STAND;
+
                 if (this.position_x >= 800) {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
+                    EREN_STATE = GO_BACK;
+                }
+                else {
+                    EREN_STATE = STAND;
                 }
 
                 /* if (this.position_x >= 800) {
@@ -155,10 +162,11 @@ class Characters {
             MoveImageCureent = 0;
         }
         if (this.position_x > 800) {
-            this.position_x -= 10;
+            this.position_x -= 15;
             this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
             this.characterElementHTML.style.left = (this.position_x) + "px";
             MoveImageCureent++;
+            EREN_STATE = GO_BACK;
         }
 
         else {
@@ -166,6 +174,7 @@ class Characters {
             backIntervalID = undefined;
             this.characterElementHTML.src = "image/characters move/forward-move/1.png";
             this.characterElementHTML.style.left = (this.position_x) + "px";
+            EREN_STATE = STAND;
         }
 
         //Element move with character
@@ -313,5 +322,6 @@ var JUMP_FROM_MOVE_FORWARD = 5;
 var JUMPING = 6;
 var LOSE = 7;
 var WIN = 8;
+var GO_BACK = 9;
 
 var EREN_STATE = STAND;
