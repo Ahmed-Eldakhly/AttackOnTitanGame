@@ -3,7 +3,7 @@ var timerval;
 var minutes;
 var seconds
 /////////////
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
@@ -111,8 +111,9 @@ onkeypress = function (KeyObject) {
 // Window blur
 $(window).on('blur', function () {
     if (EREN_STATE != LOSE && EREN_STATE != WIN) {
-        Eren.loseGame();
         EREN_STATE = LOSE;
+        Eren.endGame();
+
     }
 });
 
