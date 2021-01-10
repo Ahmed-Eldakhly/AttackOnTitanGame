@@ -17,7 +17,7 @@ var jumpState = 0;
 
 
 class Characters {
-    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos,winPhotos, HTML_Element) {
+    constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, winPhotos, HTML_Element) {
         this.characterID = ID;
         this.characterName = Name;
         this.characterSpeed = speed;
@@ -248,10 +248,6 @@ class Characters {
         }
     }
 
-}
-
-
-
     winGame() {
         this.stopMove();
         document.removeEventListener("keydown", KeyListen);
@@ -291,8 +287,12 @@ class Characters {
         }
 
     }
-
 }
+
+
+
+
+
 var STAND = 0;
 var MOVE_FORWARD_FROM_STAND = 1;
 var MOVE_FOREARD_FROM_JUMP = 2;
