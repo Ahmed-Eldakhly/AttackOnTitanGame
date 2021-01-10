@@ -186,7 +186,8 @@ class Characters {
 
     /* lose game only */
     loseGame() {
-        this.stopMove();
+        //this.stopMove();
+        clearInterval(timerval);
         document.removeEventListener("keydown", KeyListen);
         document.removeEventListener("keyup", KeyUpListen);
         var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
@@ -207,7 +208,9 @@ class Characters {
                 clearInterval(lose);
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
                 $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
-                characterElement.style.display = "none";
+                //characterElement.style.display = "none";
+                characterElement.remove();
+                console.log(characterElement);
             } else {
                 if (LoseCureentImage == photos.length - 1) {
                     characterElement.style.width = "150px";
@@ -219,9 +222,8 @@ class Characters {
                 positionX += 15;
                 LoseCureentImage++;
             }
-
         }
-
+        EREN_STATE = LOSE;
     }
 
     sethealth() {
@@ -236,20 +238,27 @@ class Characters {
             $('#healthBar').css('color', 'rgb(153, 38, 38)');
         }
         if (cal > 40) {
-            cal = cal - (0.2 * 200);
-            $('#healthBar').css('width', cal + 'px');
-            return true;
+            if (EREN_STATE != WIN) {
+                console.log("the state is " + EREN_STATE);
+                cal = cal - (0.2 * 200);
+                $('#healthBar').css('width', cal + 'px');
+                return true;
+            }
         }
         else {
+            console.log("the state is " + EREN_STATE);
             $('#healthBar').css('width', '0px');
             $('#healthBar').text('');
-            this.loseGame();
+            if (EREN_STATE != LOSE && EREN_STATE != WIN) {
+                Eren.loseGame();
+                EREN_STATE = LOSE;
+            }
             return false;
         }
     }
 
     winGame() {
-        this.stopMove();
+        //this.stopMove();
         document.removeEventListener("keydown", KeyListen);
         document.removeEventListener("keyup", KeyUpListen);
         //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
@@ -270,22 +279,26 @@ class Characters {
                 clearInterval(win);
                 $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
                 $('.win-div').append("<img src='image/win-logo.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
-                characterElement.style.display = "none";
+                // characterElement.style.display = "none";
+                characterElement.remove();
+                characterElement.style.visibility = "hidden";
+                console.log(characterElement);
+                console.log(this);
+                $("#defenderPhotos").css("bottom", "-20px");
             } else {
-                if (WinCureentImage == photos.length - 1) {
-                    characterElement.style.width = "150px";
-                    characterElement.style.height = "80px";
-                    console.log(characterElement.style.top, (positionY - 20));
-                    characterElement.style.top = (positionY + 40) + "px";
-                }
+                /* if (WinCureentImage == photos.length - 1) {
+                     characterElement.style.width = "150px";
+                     characterElement.style.height = "80px";
+                     characterElement.style.bottom = (positionY - 40) + "px";
+                 }*/
                 characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
                 characterElement.style.left = positionX + "px";
                 positionX += 30;
                 WinCureentImage++;
             }
-
         }
 
+        EREN_STATE = WIN;
     }
 }
 
@@ -300,5 +313,7 @@ var MOVING = 3;
 var JUMP_FROM_STAND = 4;
 var JUMP_FROM_MOVE_FORWARD = 5;
 var JUMPING = 6;
+var LOSE = 7;
+var WIN = 8;
 
 var EREN_STATE = STAND;

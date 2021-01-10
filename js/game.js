@@ -3,9 +3,8 @@ var timerval;
 var minutes;
 var seconds
 /////////////
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray,ErenWinPhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
-var blurFlag = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
@@ -113,9 +112,9 @@ onkeypress = function (KeyObject) {
 
 // Window blur
 $(window).on('blur', function () {
-    if (!blurFlag) {
+    if (EREN_STATE != LOSE && EREN_STATE != WIN) {
         Eren.loseGame();
-        blurFlag = 1;
+        EREN_STATE = LOSE;
     }
 });
 
@@ -166,19 +165,20 @@ function countdown() {
         seconds = timer[1];
         seconds -= 1;
         if (minutes < 0) return;
-        else if (seconds < 0 && minutes <= 1) {
+        else if (seconds < 0 && minutes == 0) {
             minutes = 0;
-            seconds = 59;
+            //seconds = 59;
         }
 
         else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
-        if (minutes == 0 && seconds == 0) {
+        if (minutes == 0 && seconds == 0 && EREN_STATE != LOSE) {
             clearInterval(timerval);
             var erenWin = Eren.winGame.bind(Eren)
             setTimeout(erenWin, 2000)
+            EREN_STATE = WIN;
         }
     }, 1000);
 }
