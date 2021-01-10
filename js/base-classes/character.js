@@ -65,7 +65,7 @@ class Characters {
                 this.jumpPosition = 0;
                 jumpState = 0;
                 if (this.position_x >= 800) {
-                    var callBackJump = Eren.backwardMove.bind(Eren)
+                    var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
                     EREN_STATE = GO_BACK;
@@ -120,7 +120,7 @@ class Characters {
                 jumpState = 0;
 
                 if (this.position_x >= 800) {
-                    var callBackJump = Eren.backwardMove.bind(Eren)
+                    var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
                     EREN_STATE = GO_BACK;
@@ -237,7 +237,7 @@ class Characters {
             if (LoseCureentImage >= photos.length) {
                 clearInterval(lose);
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-                $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
+                $('.lose-div').append(`<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
                 characterElement.remove();
             } else {
                 if (LoseCureentImage == photos.length - 1) {
@@ -299,7 +299,7 @@ class Characters {
             if (WinCureentImage >= photos.length) {
                 clearInterval(win);
                 $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-                $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
+                $('.win-div').append(`<img src='image/characters/eren-win.png' class='win-image'><a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
                 characterElement.remove();
                 $("#defenderPhotos").css("bottom", "-20px");
             } else {

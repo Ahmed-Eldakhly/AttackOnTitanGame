@@ -1,54 +1,48 @@
 //var for timer
 var timerval;
 var minutes;
-var seconds
-/////////////
-var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
-var createdBackground = 0;
-/****** Hossam Multible enemy edit ******/
-var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
-var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
-var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
-var enemies = [enemy1, enemy2, enemy3];
-/****** Hossam Multible enemy edit ******/
-
-//Game Background
-var background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
-var background2 = new Background("game-back2.jpg", 1536, 760, "-1590px", "4px");
-
-// Game Roof 
-var roofPosetionX = 0;
-
-// Build roof
-for (let i = 0; i < 4; i++) {
-    var roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
-    roofPosetionX += 520;
-}
-
-// Launch enemy attack
-Enemy.launchAttack(enemies);
+var seconds;
+var levelId = 1, characterId = 1;
+var queryString = new Array();
+$(function () {
+    if (queryString.length == 0) {
+        if (window.location.search.split('?').length > 1) {
+            var params = window.location.search.split('?')[1].split('&');
+            for (var i = 0; i < params.length; i++) {
+                var key = params[i].split('=')[0];
+                var value = decodeURIComponent(params[i].split('=')[1]);
+                queryString[key] = value;
+            }
+        }
+    }
+    if (queryString["level"] != null && queryString["character"] != null) {
+        levelId = parseInt(queryString["level"]);
+        characterId = parseInt(queryString["character"]);
+        gameCreation(levelId, characterId)
+    }
+});
 
 
 document.addEventListener("keydown", KeyListen);
-function KeyListen(jumpObject) {
-    if (jumpObject.keyCode == 38) {
+function KeyListen(KeyObject) {
+    if (KeyObject.keyCode == 38) {
         if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
-            Eren.stopMove();
-            var callBackJump = Eren.jumpWithMove_function.bind(Eren)
+            mainCharacter.stopMove();
+            var callBackJump = mainCharacter.jumpWithMove_function.bind(mainCharacter)
             if (jumpIntervalID == undefined)
                 jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
         }
         else if (EREN_STATE == STAND) {
-            var callBackJump = Eren.jumpOnly_function.bind(Eren)
+            var callBackJump = mainCharacter.jumpOnly_function.bind(mainCharacter)
             if (jumpIntervalID == undefined)
                 jumpIntervalID = setInterval(callBackJump, 70);
             EREN_STATE = JUMPING;
         }
     }
-    else if (jumpObject.keyCode == 39) {
+    else if (KeyObject.keyCode == 39) {
         if (EREN_STATE == STAND) {
-            var callBackMove = Eren.forwardMove.bind(Eren)
+            var callBackMove = mainCharacter.forwardMove.bind(mainCharacter)
             if (moveIntervalID == undefined)
                 moveIntervalID = setInterval(callBackMove, 70)
             EREN_STATE = MOVING;
@@ -57,71 +51,23 @@ function KeyListen(jumpObject) {
 }
 
 document.addEventListener("keyup", KeyUpListen);
-function KeyUpListen(jumpObject) {
-    if (jumpObject.keyCode == 39) {
-        Eren.stopMove();
+function KeyUpListen(KeyObject) {
+    if (KeyObject.keyCode == 39) {
+        mainCharacter.stopMove();
         EREN_STATE = STAND;
     }
 }
 
 onkeypress = function (KeyObject) {
-    if (KeyObject.keyCode == 97)
+    if (KeyObject.key == 97)
         console.log("attack");
 
-    if (KeyObject.keyCode == 115)
-        Eren.characterSpeed = 60;
+    if (KeyObject.key == 115)
+        mainCharacter.characterSpeed = 60;
     else
-        Eren.characterSpeed = 20;
+        mainCharacter.characterSpeed = 20;
 
 }
-
-
-// Eren Lose 
-// var erenLose = Eren.loseGame.bind(Eren)
-// setTimeout(erenLose, 2000)
-
-// $('body').one('mouseover', function () {
-//     var audio = document.createElement('audio');
-//     audio.setAttribute('src', 'audio/attack.mp3');
-//     audio.play();
-// })
-
-
-/*onkeydown = onkeyup = function (jumpObject) {
-    if (jumpObject.type == "keydown") {
-        if (jumpObject.keyCode == 38) {
-            if (EREN_STATE == MOVING || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
-                Eren.stopMove();
-                var callBackJump = Eren.jumpWithMove_function.bind(Eren)
-                if (jumpIntervalID == undefined)
-                    jumpIntervalID = setInterval(callBackJump, 70);
-                EREN_STATE = JUMPING;
-            }
-            else if (EREN_STATE == STAND) {
-                var callBackJump = Eren.jumpOnly_function.bind(Eren)
-                if (jumpIntervalID == undefined)
-                    jumpIntervalID = setInterval(callBackJump, 70);
-                EREN_STATE = JUMPING;
-            }
-        }
-        else if (jumpObject.keyCode == 39) {
-            if (EREN_STATE == STAND || EREN_STATE == MOVE_FOREARD_FROM_JUMP) {
-                var callBackMove = Eren.forwardMove.bind(Eren)
-                if (moveIntervalID == undefined)
-                    moveIntervalID = setInterval(callBackMove, 70)
-                EREN_STATE = MOVING;
-            }
-        }
-    }
-    else {
-        if (jumpObject.keyCode == 39) {
-            Eren.stopMove();
-            EREN_STATE = STAND;
-        }
-    }
-
-}*/
-
 
 function countdown() {
     clearInterval(timerval);
@@ -143,10 +89,7 @@ function countdown() {
         if (minutes == 0 && seconds == 0 && EREN_STATE != LOSE) {
             clearInterval(timerval);
             EREN_STATE = WIN;
-            Eren.endGame();
-            //Eren.winGame();
-            //var erenWin = Eren.winGame.bind(Eren)
-            //setTimeout(erenWin, 2000)
+            mainCharacter.endGame();
         }
     }, 1000);
 }

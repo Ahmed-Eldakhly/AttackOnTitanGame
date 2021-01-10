@@ -93,6 +93,8 @@ img {
 
 }
 
+.divTimer p { margin-top: 15px;}
+
 .win-div {
     background-color: rgba(136, 138, 156, 0.48);
     position: absolute;
