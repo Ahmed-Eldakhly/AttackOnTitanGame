@@ -380,7 +380,7 @@ class Characters {
                 if (WinCureentImage >= photos.length) {
                     clearInterval(win);
                     $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-                    $('.win-div').append("<img src='image/win-logo.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
+                    $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
                     characterElement.remove();
                     $("#defenderPhotos").css("bottom", "-20px");
                 } else {
