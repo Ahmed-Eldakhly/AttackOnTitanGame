@@ -282,27 +282,32 @@ class Characters {
 
     //     var win = setInterval(characterWin, 300);
 
-    //     function characterWin() {
-    //         if (WinCureentImage >= photos.length) {
-    //             clearInterval(win);
-    //             $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-    //             $('.win-div').append("<img src='image/win-logo.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
-    //             console.log(document.getElementById("defenderPhotos"));
-    //             characterElement.remove();
-    //             console.log(document.getElementById("defenderPhotos"));
-    //             $("#defenderPhotos").css("bottom", "-20px");
-    //         } else {
-    //             /* if (WinCureentImage == photos.length - 1) {
-    //                  characterElement.style.width = "150px";
-    //                  characterElement.style.height = "80px";
-    //                  characterElement.style.bottom = (positionY - 40) + "px";
-    //              }*/
-    //             characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
-    //             characterElement.style.left = positionX + "px";
-    //             positionX += 30;
-    //             WinCureentImage++;
-    //         }
+    // var win = setInterval(characterWin, 300);
+
+    // function characterWin() {
+    //     if (WinCureentImage >= photos.length) {
+    //         clearInterval(win);
+    //         $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
+    //         $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
+    //         // characterElement.style.display = "none";
+    //         characterElement.remove();
+    //         characterElement.style.visibility = "hidden";
+    //         console.log(characterElement);
+    //         console.log(this);
+    //         $("#defenderPhotos").css("bottom", "-20px");
+    //     } else {
+    //         /* if (WinCureentImage == photos.length - 1) {
+    //              characterElement.style.width = "150px";
+    //              characterElement.style.height = "80px";
+    //              characterElement.style.bottom = (positionY - 40) + "px";
+    //          }*/
+    //         characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
+    //         characterElement.style.left = positionX + "px";
+    //         positionX += 30;
+    //         WinCureentImage++;
+
     //     }
+    // }
     //     EREN_STATE = WIN;
     // }
 
@@ -327,7 +332,6 @@ class Characters {
         var positionX = this.position_x;
         var positionY = this.position_y;
         var characterElement = this.characterElementHTML;
-
         if (EREN_STATE == LOSE) {
             /* show titan. */
             var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
@@ -361,6 +365,7 @@ class Characters {
                 }
             }
         }
+
         else if (EREN_STATE == WIN) {
             //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
             var audio = document.createElement('audio');
@@ -392,8 +397,12 @@ class Characters {
             }
         }
     }
-
 }
+
+
+
+
+
 var STAND = 0;
 var MOVE_FORWARD_FROM_STAND = 1;
 var MOVE_FOREARD_FROM_JUMP = 2;
