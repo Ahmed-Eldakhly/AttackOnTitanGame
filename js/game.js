@@ -32,14 +32,12 @@ function createAttackWave() {
     var y = enemy3.move.bind(enemy3)
     setTimeout(x, 2000);
     setTimeout(y, 3000);
-    console.log("hossam");
 }
 
 
 function launchAttack() {
     createAttackWave();
     var wave = 5000;
-    console.log("hossam");
     for (let i = 0; i < 25; i++) {
         setTimeout(createAttackWave, wave);
         wave += 5000;
@@ -169,16 +167,17 @@ function countdown() {
             minutes = 0;
             //seconds = 59;
         }
-
         else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
         if (minutes == 0 && seconds == 0 && EREN_STATE != LOSE) {
             clearInterval(timerval);
-            var erenWin = Eren.winGame.bind(Eren)
-            setTimeout(erenWin, 2000)
             EREN_STATE = WIN;
+            Eren.endGame();
+            //Eren.winGame();
+            //var erenWin = Eren.winGame.bind(Eren)
+            //setTimeout(erenWin, 2000)
         }
     }, 1000);
 }

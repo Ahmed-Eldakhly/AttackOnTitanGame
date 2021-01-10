@@ -44,7 +44,8 @@ class Enemy {
                 }
             }
             //console.log((parseInt(character[idd].style.left)))
-            if (parseInt(character[idd].style.left) <= parseInt(Eren.characterElementHTML.style.left) && parseInt(character[idd].style.left) + 40 >= parseInt(Eren.characterElementHTML.style.left)) {
+            if ((parseInt(character[idd].style.left) <= parseInt(Eren.characterElementHTML.style.left)
+                && parseInt(character[idd].style.left) + 40 >= parseInt(Eren.characterElementHTML.style.left))) {
                 if (parseInt(Eren.characterElementHTML.style.bottom) < (parseInt(character[idd].style.bottom) + 300)) {
                     Eren.sethealth()
                 }
