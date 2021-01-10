@@ -55,12 +55,14 @@ function startGame(event) {
         characters[0].style.background = "rgba(0,0,0,0.8)";
         characters[0].style.color = "white";
         characters[0].style.transition = " 0.5s ease-out";
+        characterFlage = 1;
     }
 
     if (levelFlage == -1) {
         levels[0].style.background = "rgba(0,0,0,0.8)";
         levels[0].style.color = "white";
         levels[0].style.transition = " 0.5s ease-out";
+        levelFlage = 1;
     }
 
     characterID = characterFlage + 1;

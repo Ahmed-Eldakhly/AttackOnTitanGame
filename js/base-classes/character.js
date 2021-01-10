@@ -182,57 +182,70 @@ class Characters {
         moveIntervalID = undefined;
     }
 
-
+    endGame() {
+        clearAttack();
+        /* stop moving. */
+        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
+        clearInterval(moveIntervalID);
+        clearInterval(backIntervalID);
+        clearInterval(jumpIntervalID);
+        backIntervalID = undefined;
+        moveIntervalID = undefined;
+        jumpIntervalID = undefined;
+        /* stop timer. */
+        clearInterval(timerval);
+        /* stop key up and down events. */
+        document.removeEventListener("keydown", KeyListen);
+        document.removeEventListener("keyup", KeyUpListen);
+        this.position_y = parseInt(20 * $(window).innerHeight() / 100);
+        this.characterElementHTML.style.bottom = this.position_y + "px";
+        /***/
+        var positionX = this.position_x;
+        var positionY = this.position_y;
+        var characterElement = this.characterElementHTML;
+        if (EREN_STATE == LOSE) {
+            this.loseGame(positionX, positionY, characterElement)
+        } else if (EREN_STATE == WIN) {
+            this.winGame(positionX, positionY, characterElement)
+        }
+    }
 
     // /* lose game only */
-    // loseGame() {
-    //     /* stop moving. */
-    //     this.stopMove();
-    //     /* stop timer. */
-    //     clearInterval(timerval);
-    //     /* put Eren state as lose. */
-    //     EREN_STATE = LOSE;
-    //     /* stop key up and down events. */
-    //     document.removeEventListener("keydown", KeyListen);
-    //     document.removeEventListener("keyup", KeyUpListen);
-    //     /* show titan. */
-    //     var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
-    //     /* add lose sound */
-    //     var audio = document.createElement('audio');
-    //     audio.setAttribute('src', 'audio/game-over.mp3');
-    //     audio.play();
+    loseGame(positionX, positionY, characterElement) {
+        /* show titan. */
+        var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        /* add lose sound */
+        var audio = document.createElement('audio');
+        audio.setAttribute('src', 'audio/game-over.mp3');
+        audio.play();
 
-    //     /* make event to move character in lose state. */
-    //     var LoseCureentImage = 0;
-    //     var photos = this.characterLosePhotos;
-    //     var positionX = this.position_x;
-    //     var positionY = this.position_y;
-    //     var characterElement = this.characterElementHTML;
-    //     /* create lose interval to change lose images. */
-    //     var lose = setInterval(characterlose, 300);
+        /* make event to move character in lose state. */
+        var LoseCureentImage = 0;
+        var photos = this.characterLosePhotos;
+        /* create lose interval to change lose images. */
+        var lose = setInterval(characterlose, 300);
 
-    //     function characterlose() {
-    //         if (LoseCureentImage >= photos.length) {
-    //             clearInterval(lose);
-    //             $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-    //             $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
-    //             console.log(document.getElementById("defenderPhotos"));
-    //             characterElement.remove();
-    //             console.log(document.getElementById("defenderPhotos"));
-    //         } else {
-    //             if (LoseCureentImage == photos.length - 1) {
-    //                 characterElement.style.width = "150px";
-    //                 characterElement.style.height = "80px";
-    //                 characterElement.style.bottom = (positionY - 40) + "px";
-    //             }
-    //             characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
-    //             characterElement.style.left = positionX + "px";
-    //             positionX += 15;
-    //             LoseCureentImage++;
-    //         }
-    //     }
-    //     EREN_STATE = LOSE;
-    // }
+        function characterlose() {
+            if (LoseCureentImage >= photos.length) {
+                clearInterval(lose);
+                $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
+                $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
+                characterElement.remove();
+            } else {
+                if (LoseCureentImage == photos.length - 1) {
+                    characterElement.style.width = "150px";
+                    characterElement.style.height = "80px";
+                    characterElement.style.bottom = (positionY - 40) + "px";
+                }
+                characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
+                characterElement.style.left = positionX + "px";
+                positionX += 15;
+                LoseCureentImage++;
+            }
+        }
+
+
+    }
 
     sethealth() {
         var cal = 0;
@@ -265,143 +278,32 @@ class Characters {
         }
     }
 
-    // winGame() {
-    //     //this.stopMove();
-    //     document.removeEventListener("keydown", KeyListen);
-    //     document.removeEventListener("keyup", KeyUpListen);
-    //     //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
-    //     var audio = document.createElement('audio');
-    //     audio.setAttribute('src', 'attack-on-titans.mpeg');
-    //     audio.play();
+    winGame(positionX, positionY, characterElement) {
+        var audio = document.createElement('audio');
+        audio.setAttribute('src', 'attack-on-titans.mpeg');
+        audio.play();
 
-    //     var WinCureentImage = 0;
-    //     var photos = this.characterWinPhotos;
-    //     var positionX = this.position_x;
-    //     var positionY = this.position_y;
-    //     var characterElement = this.characterElementHTML;
+        var WinCureentImage = 0;
+        var photos = this.characterWinPhotos;
+        var win = setInterval(characterWin, 300);
 
-    //     var win = setInterval(characterWin, 300);
-
-    // var win = setInterval(characterWin, 300);
-
-    // function characterWin() {
-    //     if (WinCureentImage >= photos.length) {
-    //         clearInterval(win);
-    //         $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-    //         $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
-    //         // characterElement.style.display = "none";
-    //         characterElement.remove();
-    //         characterElement.style.visibility = "hidden";
-    //         console.log(characterElement);
-    //         console.log(this);
-    //         $("#defenderPhotos").css("bottom", "-20px");
-    //     } else {
-    //         /* if (WinCureentImage == photos.length - 1) {
-    //              characterElement.style.width = "150px";
-    //              characterElement.style.height = "80px";
-    //              characterElement.style.bottom = (positionY - 40) + "px";
-    //          }*/
-    //         characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
-    //         characterElement.style.left = positionX + "px";
-    //         positionX += 30;
-    //         WinCureentImage++;
-
-    //     }
-    // }
-    //     EREN_STATE = WIN;
-    // }
-
-
-    endGame() {
-        /* stop moving. */
-        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
-        clearInterval(moveIntervalID);
-        clearInterval(backIntervalID);
-        clearInterval(jumpIntervalID);
-        backIntervalID = undefined;
-        moveIntervalID = undefined;
-        jumpIntervalID = undefined;
-        /* stop timer. */
-        clearInterval(timerval);
-        /* stop key up and down events. */
-        document.removeEventListener("keydown", KeyListen);
-        document.removeEventListener("keyup", KeyUpListen);
-        this.position_y = parseInt(20 * $(window).innerHeight() / 100);
-        this.characterElementHTML.style.bottom = this.position_y + "px";
-        /***/
-        var positionX = this.position_x;
-        var positionY = this.position_y;
-        var characterElement = this.characterElementHTML;
-        if (EREN_STATE == LOSE) {
-            /* show titan. */
-            var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
-            /* add lose sound */
-            var audio = document.createElement('audio');
-            audio.setAttribute('src', 'audio/game-over.mp3');
-            audio.play();
-
-            /* make event to move character in lose state. */
-            var LoseCureentImage = 0;
-            var photos = this.characterLosePhotos;
-            /* create lose interval to change lose images. */
-            var lose = setInterval(characterlose, 300);
-
-            function characterlose() {
-                if (LoseCureentImage >= photos.length) {
-                    clearInterval(lose);
-                    $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-                    $('.lose-div').append("<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html' class='retry'>Retry</a>");
-                    characterElement.remove();
-                } else {
-                    if (LoseCureentImage == photos.length - 1) {
-                        characterElement.style.width = "150px";
-                        characterElement.style.height = "80px";
-                        characterElement.style.bottom = (positionY - 40) + "px";
-                    }
-                    characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
-                    characterElement.style.left = positionX + "px";
-                    positionX += 15;
-                    LoseCureentImage++;
-                }
+        function characterWin() {
+            if (WinCureentImage >= photos.length) {
+                clearInterval(win);
+                $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
+                $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
+                characterElement.remove();
+                $("#defenderPhotos").css("bottom", "-20px");
+            } else {
+                characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
+                characterElement.style.left = positionX + "px";
+                positionX += 30;
+                WinCureentImage++;
             }
         }
 
-        else if (EREN_STATE == WIN) {
-            //var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
-            var audio = document.createElement('audio');
-            audio.setAttribute('src', 'attack-on-titans.mpeg');
-            audio.play();
-
-            var WinCureentImage = 0;
-            var photos = this.characterWinPhotos;
-            var win = setInterval(characterWin, 300);
-
-            function characterWin() {
-                if (WinCureentImage >= photos.length) {
-                    clearInterval(win);
-                    $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-                    $('.win-div').append("<img src='image/characters/eren-win.png' class='win-image'><a href='game.html' class='again'>Play Again?</a>");
-                    characterElement.remove();
-                    $("#defenderPhotos").css("bottom", "-20px");
-                } else {
-                    /* if (WinCureentImage == photos.length - 1) {
-                         characterElement.style.width = "150px";
-                         characterElement.style.height = "80px";
-                         characterElement.style.bottom = (positionY - 40) + "px";
-                     }*/
-                    characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
-                    characterElement.style.left = positionX + "px";
-                    positionX += 30;
-                    WinCureentImage++;
-                }
-            }
-        }
     }
 }
-
-
-
-
 
 var STAND = 0;
 var MOVE_FORWARD_FROM_STAND = 1;
@@ -414,8 +316,3 @@ var LOSE = 7;
 var WIN = 8;
 
 var EREN_STATE = STAND;
-
-
-
-
-

@@ -6,6 +6,7 @@ var seconds
 var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
+var createEnemy = [];
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
 var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
@@ -39,10 +40,17 @@ function launchAttack() {
     createAttackWave();
     var wave = 5000;
     for (let i = 0; i < 25; i++) {
-        setTimeout(createAttackWave, wave);
+        createEnemy[i] = setTimeout(createAttackWave, wave);
         wave += 5000;
     }
 }
+
+function clearAttack() {
+    for (let i = 0; i < 25; i++) {
+        clearTimeout(createEnemy[i]);
+    }
+}
+
 
 launchAttack();
 
@@ -107,16 +115,6 @@ onkeypress = function (KeyObject) {
 //     audio.setAttribute('src', 'audio/attack.mp3');
 //     audio.play();
 // })
-
-// Window blur
-$(window).on('blur', function () {
-    if (EREN_STATE != LOSE && EREN_STATE != WIN) {
-        EREN_STATE = LOSE;
-        Eren.endGame();
-
-    }
-});
-
 
 
 /*onkeydown = onkeyup = function (jumpObject) {
