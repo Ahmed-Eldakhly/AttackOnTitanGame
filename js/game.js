@@ -5,7 +5,7 @@ var seconds
 /////////////
 
 
-var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, document.getElementById("defenderPhotos"));
+var Eren = new Characters(characterID, "Eren jeager", 60, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
@@ -56,13 +56,13 @@ function KeyListen(jumpObject) {
     }
 }
 
-$(document).keyup(function (jumpObject) {
-    console.log(jumpObject.keyCode);
+document.addEventListener("keyup", KeyUpListen);
+function KeyUpListen(jumpObject) {
     if (jumpObject.keyCode == 39) {
         Eren.stopMove();
         EREN_STATE = STAND;
     }
-});
+}
 
 function levelElementsMovement() {
     $(".build-img").each((i) => {
@@ -91,7 +91,9 @@ for (let i = 0; i < 4; i++) {
 }
 //timer
 
-window.onload = function () {
+//window.onload = function () {
+
+function countdown() {
     clearInterval(timerval);
     timerval = setInterval(function () {
         var timer = $('.js-timeout').html();
@@ -100,15 +102,20 @@ window.onload = function () {
         seconds = timer[1];
         seconds -= 1;
         if (minutes < 0) return;
-        else if (seconds < 0) {//&& minutes != 0) {
+        else if (seconds < 0 && minutes == 0) {
             minutes = 0;
-            seconds = 59;
+            //seconds = 59;
         }
-        //  else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+
+        else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
-        if (minutes == 0 && seconds == 0) clearInterval(interval);
-
+        if (minutes == 0 && seconds == 0) {
+            clearInterval(timerval);
+            var erenWin = Eren.winGame.bind(Eren)
+            setTimeout(erenWin, 2000)
+        }
     }, 1000);
 }
+countdown();
