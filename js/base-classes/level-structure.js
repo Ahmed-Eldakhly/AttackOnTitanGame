@@ -1,13 +1,13 @@
 var idCounter = 0;
 class LevelStructure {
     id = 0;
-    constructor(images, width, height, positionx, positiony) {
+    constructor(images, width, height, positionX, positionY) {
         this.images = images;
         this.width = width;
         this.height = height;
         this.id = ++idCounter;
-        this.positionx = positionx;
-        this.positiony = positiony;
+        this.positionX = positionX;
+        this.positionY = positionY;
         this.forward = 0;
     }
 

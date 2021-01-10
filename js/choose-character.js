@@ -1,6 +1,11 @@
 var characterFlage = -1;
 var levelFlage = -1;
 
+// Start Action
+var startBtn = $('#start');
+var characterTitle = document.getElementById('title');
+var levelTitle = document.getElementById('level-title');
+
 // Change Charecters
 var characters = document.getElementsByClassName('character');
 
@@ -40,11 +45,6 @@ function chooseLevel(e, i) {
     levels[i].style.transition = " 0.5s ease-out";
     levelFlage = i;
 }
-
-// Start Action
-var startBtn = $('#start');
-var characterTitle = document.getElementById('title');
-var levelTitle = document.getElementById('level-title');
 
 startBtn.on('click', startGame);
 

@@ -1,12 +1,12 @@
 class Floor extends LevelStructure {
 
-    constructor(images, width, height, positionx, positiony) {
-        super(images, width, height, positionx, positiony);
+    constructor(images, width, height, positionX, positionY) {
+        super(images, width, height, positionX, positionY);
         $("#game").append("<img id='build" + this.id + "' class='floor-img'></img>");
         $("#floor" + this.id).attr('src', "image/floor/" + images);
         $("#floor" + this.id).css({
-            "left": positionx,
-            "bottom": positiony,
+            "left": positionX,
+            "bottom": positionY,
             "width": width,
             "height": height,
             "z-index": 3

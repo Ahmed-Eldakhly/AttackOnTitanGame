@@ -1,15 +1,24 @@
-var ErenJumpPhotosArray = ["mov2", "mov3", "mov4", "mov5", "mov6", "mov7", "mov9", "mov10", "mov1"];
-var ErenMovePhotosArray = ["2.png", "3.png", "4.png", "5.png", "6.png"];
-var ErenWinPhotosArray = ["mov3", "mov4", "mov5", "mov6", "mov7", "mov1"];
-var ErenLosePhotosArray = ["1.png", "1.png", "2.png", "3.png", "4.png"];
-
 var jumpIntervalID;
 var backIntervalID;
-var MoveImageCureent = 0;
+var moveImageCureent = 0;
 var moveIntervalID;
 
 /*var jumpKeyListenerID;*/
 var jumpState = 0;
+
+var STAND = 0;
+var MOVE_FORWARD_FROM_STAND = 1;
+var MOVE_FOREARD_FROM_JUMP = 2;
+var MOVING = 3;
+var JUMP_FROM_STAND = 4;
+var JUMP_FROM_MOVE_FORWARD = 5;
+var GO_BACK = 6;
+var JUMPING = 7;
+var LOSE = 8;
+var WIN = 9;
+
+var MAIN_CHARACTER_STATE = STAND;
+
 
 class Characters {
     constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, winPhotos, HTML_Element) {
@@ -68,10 +77,10 @@ class Characters {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
-                    EREN_STATE = GO_BACK;
+                    MAIN_CHARACTER_STATE = GO_BACK;
                 }
                 else {
-                    EREN_STATE = STAND;
+                    MAIN_CHARACTER_STATE = STAND;
                 }
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
@@ -123,16 +132,11 @@ class Characters {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
                         backIntervalID = setInterval(callBackJump, 40);
-                    EREN_STATE = GO_BACK;
+                    MAIN_CHARACTER_STATE = GO_BACK;
                 }
                 else {
-                    EREN_STATE = STAND;
+                    MAIN_CHARACTER_STATE = STAND;
                 }
-
-                /* if (this.position_x >= 800) {
-                     this.position_x = 800;
-                     this.characterElementHTML.style.left = (this.position_x) + "px";
-                 }*/
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
 
@@ -143,30 +147,31 @@ class Characters {
 
     /* movement only */
     forwardMove() {
-        if (MoveImageCureent == this.characterMovementPhotos.length) {
-            MoveImageCureent = 0;
+        if (moveImageCureent == this.characterMovementPhotos.length) {
+            moveImageCureent = 0;
         }
         if (this.position_x < 800)
             this.position_x += this.characterSpeed;
-        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
+        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[moveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
-        MoveImageCureent++;
+        moveImageCureent++;
 
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
 
     }
+
     backwardMove() {
-        if (MoveImageCureent == this.characterMovementPhotos.length) {
-            MoveImageCureent = 0;
+        if (moveImageCureent == this.characterMovementPhotos.length) {
+            moveImageCureent = 0;
         }
         if (this.position_x > 800) {
             this.position_x -= 15;
-            this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[MoveImageCureent];
+            this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[moveImageCureent];
             this.characterElementHTML.style.left = (this.position_x) + "px";
-            MoveImageCureent++;
-            EREN_STATE = GO_BACK;
+            moveImageCureent++;
+            MAIN_CHARACTER_STATE = GO_BACK;
         }
 
         else {
@@ -174,7 +179,7 @@ class Characters {
             backIntervalID = undefined;
             this.characterElementHTML.src = "image/characters move/forward-move/1.png";
             this.characterElementHTML.style.left = (this.position_x) + "px";
-            EREN_STATE = STAND;
+            MAIN_CHARACTER_STATE = STAND;
         }
 
         //Element move with character
@@ -201,19 +206,19 @@ class Characters {
         moveIntervalID = undefined;
         jumpIntervalID = undefined;
         /* stop timer. */
-        clearInterval(timerval);
+        clearInterval(timerValue);
         /* stop key up and down events. */
-        document.removeEventListener("keydown", KeyListen);
-        document.removeEventListener("keyup", KeyUpListen);
+        document.removeEventListener("keydown", keyListen);
+        document.removeEventListener("keyup", keyUpListen);
         this.position_y = parseInt(20 * $(window).innerHeight() / 100);
         this.characterElementHTML.style.bottom = this.position_y + "px";
         /***/
         var positionX = this.position_x;
         var positionY = this.position_y;
         var characterElement = this.characterElementHTML;
-        if (EREN_STATE == LOSE) {
+        if (MAIN_CHARACTER_STATE == LOSE) {
             this.loseGame(positionX, positionY, characterElement)
-        } else if (EREN_STATE == WIN) {
+        } else if (MAIN_CHARACTER_STATE == WIN) {
             this.winGame(positionX, positionY, characterElement)
         }
     }
@@ -251,8 +256,6 @@ class Characters {
                 LoseCureentImage++;
             }
         }
-
-
     }
 
     sethealth() {
@@ -268,7 +271,7 @@ class Characters {
         }
 
         if (cal > 40) {
-            if (EREN_STATE != WIN) {
+            if (MAIN_CHARACTER_STATE != WIN) {
                 cal = cal - (0.2 * 200);
                 $('#healthBar').css('width', cal + 'px');
                 return true;
@@ -277,8 +280,8 @@ class Characters {
         else {
             $('#healthBar').css('width', '0px');
             $('#healthBar').text('');
-            if (EREN_STATE != LOSE && EREN_STATE != WIN) {
-                EREN_STATE = LOSE;
+            if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
+                MAIN_CHARACTER_STATE = LOSE;
                 //Eren.loseGame();
                 this.endGame();
             }
@@ -309,19 +312,6 @@ class Characters {
                 WinCureentImage++;
             }
         }
-
     }
+
 }
-
-var STAND = 0;
-var MOVE_FORWARD_FROM_STAND = 1;
-var MOVE_FOREARD_FROM_JUMP = 2;
-var MOVING = 3;
-var JUMP_FROM_STAND = 4;
-var JUMP_FROM_MOVE_FORWARD = 5;
-var JUMPING = 6;
-var LOSE = 7;
-var WIN = 8;
-var GO_BACK = 9;
-
-var EREN_STATE = STAND;
