@@ -6,10 +6,10 @@ var seconds
 var Eren = new Characters(characterID, "Eren jeager", 20, 1, ErenJumpPhotosArray, ErenMovePhotosArray, ErenLosePhotosArray, ErenWinPhotosArray, document.getElementById("defenderPhotos"));
 var createdBackground = 0;
 /****** Hossam Multible enemy edit ******/
-var createEnemy = [];
 var enemy1 = new Enemy(enemyPhotosArray, 120, 0);
 var enemy2 = new Enemy(enemyPhotosArray, 120, 1);
 var enemy3 = new Enemy(enemyPhotosArray, 120, 2);
+var enemies = [enemy1, enemy2, enemy3];
 /****** Hossam Multible enemy edit ******/
 
 //Game Background
@@ -25,39 +25,9 @@ for (let i = 0; i < 4; i++) {
     roofPosetionX += 520;
 }
 
-/****** Hossam Multible enemy edit ******/
+// Launch enemy attack
+Enemy.launchAttack(enemies);
 
-function createAttackWave() {
-    enemy1.move();
-    var x = enemy2.move.bind(enemy2)
-    var y = enemy3.move.bind(enemy3)
-    setTimeout(x, 2000);
-    setTimeout(y, 3000);
-}
-
-
-function launchAttack() {
-    createAttackWave();
-    var wave = 5000;
-    for (let i = 0; i < 25; i++) {
-        createEnemy[i] = setTimeout(createAttackWave, wave);
-        wave += 5000;
-    }
-}
-
-function clearAttack() {
-    for (let i = 0; i < 25; i++) {
-        clearTimeout(createEnemy[i]);
-    }
-}
-
-
-launchAttack();
-
-
-
-
-/****** Hossam Multible enemy edit ******/
 
 document.addEventListener("keydown", KeyListen);
 function KeyListen(jumpObject) {

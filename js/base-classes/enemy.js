@@ -2,6 +2,7 @@ var enemyPhotosArray = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7
 var baseTop = 0;
 var baseRight = 0;
 var character = [];
+var createEnemy = [];
 
 class Enemy {
     //static id = 0;
@@ -57,6 +58,35 @@ class Enemy {
             }
         }
     }
+
+    static createAttackWave(enemies) {
+        enemies[0].move();
+        var timer = 2000;
+        for (let i = 1; i < enemies.length; i++) {
+            var x = enemies[i].move.bind(enemies[i]);
+            setTimeout(x, timer);
+            timer += 1000;
+        }
+
+    }
+
+    static launchAttack(enemies) {
+        Enemy.createAttackWave(enemies);
+        var wave = 5000;
+        for (let i = 0; i < 25; i++) {
+            createEnemy[i] = setTimeout(function () {
+                Enemy.createAttackWave(enemies);
+            }, wave);
+            wave += 5000;
+        }
+    }
+
+    static clearAttack() {
+        for (let i = 0; i < 25; i++) {
+            clearTimeout(createEnemy[i]);
+        }
+    }
+
 };
 
 //var gameOverVoice = document.getElementById("gameOver");

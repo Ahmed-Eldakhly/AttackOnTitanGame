@@ -11,7 +11,6 @@ var moveIntervalID;
 /*var jumpKeyListenerID;*/
 var jumpState = 0;
 
-
 class Characters {
     constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, winPhotos, HTML_Element) {
         this.characterID = ID;
@@ -183,7 +182,7 @@ class Characters {
     }
 
     endGame() {
-        clearAttack();
+        Enemy.clearAttack();
         /* stop moving. */
         this.characterElementHTML.src = "image/characters move/forward-move/1.png";
         clearInterval(moveIntervalID);
