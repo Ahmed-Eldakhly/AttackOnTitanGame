@@ -45,10 +45,10 @@ class Enemy {
                 }
             }
             //console.log((parseInt(character[idd].style.left)))
-            if ((parseInt(character[idd].style.left) <= parseInt(Eren.characterElementHTML.style.left)
-                && parseInt(character[idd].style.left) + 40 >= parseInt(Eren.characterElementHTML.style.left))) {
-                if (parseInt(Eren.characterElementHTML.style.bottom) < (parseInt(character[idd].style.bottom) + 300)) {
-                    Eren.sethealth()
+            if ((parseInt(character[idd].style.left) <= parseInt(mainCharacter.characterElementHTML.style.left)
+                && parseInt(character[idd].style.left) + 40 >= parseInt(mainCharacter.characterElementHTML.style.left))) {
+                if (parseInt(mainCharacter.characterElementHTML.style.bottom) < (parseInt(character[idd].style.bottom) + 300)) {
+                    mainCharacter.sethealth()
                 }
                 else { //gameOverVoice.pause(); }
                 }
@@ -67,7 +67,6 @@ class Enemy {
             setTimeout(x, timer);
             timer += 1000;
         }
-
     }
 
     static launchAttack(enemies) {
