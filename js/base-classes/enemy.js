@@ -3,13 +3,21 @@ var baseRight = 0;
 var character = [];
 var createEnemy = [];
 var collisionEnemy = [];
+
+
+var attackFlag = false;        //hossam edit
+var attackingOne = -1;         //hossam edit
+
 var index = 0;
 
+
 class Enemy {
-    constructor(images, speed, id) {
+    constructor(level,attackMovement,images, speed, id) { //hossam edit
         this.images = images;
         this.speed = speed;
         this.id = id
+        this.attackMovement = attackMovement;  //hossam edit
+        this.level = level;                     //hosssam edit
     }
 
     moveEnemy() {
@@ -30,19 +38,38 @@ class Enemy {
         collisionEnemy[enemyId] = 0;
         var enemyImages = this.images;
         var curruntEnemy = 0;
+        var attackMove = 0;    //hossam edit
+        var attackImages = this.attackMovement //hossam edit
+        var senesingAttack = this.level;
+        collisionEnemy[enemyId] = 0;
         function generateEnemies() {
-            if (positionX <= -160) {
+            if (positionX <= -160) {    //hosssam edit from -160 to -560
                 clearInterval(enemyGenerator);
                 positionX = window.outerWidth;
                 character[enemyId].remove();
             }
             else {
-                character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
-                character[enemyId].style.left = positionX + "px";
-                positionX -= 45;
-                curruntEnemy = curruntEnemy + 1;
-                if (curruntEnemy >= enemyImages.length) {
-                    curruntEnemy = 0;
+                if(attackFlag == false  || enemyId != attackingOne)
+                {
+                    character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                    character[enemyId].style.left = positionX + "px";
+                    positionX -= 45;                        curruntEnemy = curruntEnemy + 1;
+                    if (curruntEnemy >= enemyImages.length) {
+                        curruntEnemy = 0;
+                    }
+                }
+                else if(attackFlag == true)  //hossam edit
+                {
+                    if(enemyId == attackingOne)   //hossam edit
+                    {
+                        character[attackingOne].src = "image/characters/attack-"+attackImages[attackMove]; //hossam edit
+                        attackMove += 1;
+                        if(attackMove >= attackImages.length) //hossam edit
+                        {
+                            attackMove = 0;
+                            attackFlag = false; //hossam edit
+                        }
+                    }  
                 }
             }
             var enemyLeft = parseInt(character[enemyId].style.left);
@@ -54,6 +81,11 @@ class Enemy {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
+
+                        attackFlag = true;
+                        attackingOne = enemyId
+
+
                     }
                 }
                 else { //gameOverVoice.pause(); }
