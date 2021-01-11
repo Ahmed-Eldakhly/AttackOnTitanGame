@@ -37,7 +37,7 @@ video
     width: 32.5%; 
     height: 38.9%;
     border-radius: 15%/25%;
-    box-shadow: 0px 7px 7px;
+    /*box-shadow: 0px 7px 7px;*/
 }
 #NextButton , #ExitButton
 {
