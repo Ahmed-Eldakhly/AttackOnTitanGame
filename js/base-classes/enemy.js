@@ -4,8 +4,12 @@ var character = [];
 var createEnemy = [];
 var collisionEnemy = [];
 
+
 var attackFlag = false;        //hossam edit
 var attackingOne = -1;         //hossam edit
+
+var index = 0;
+
 
 class Enemy {
     constructor(level,attackMovement,images, speed, id) { //hossam edit
@@ -31,6 +35,7 @@ class Enemy {
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var enemyGenerator = setInterval(generateEnemies, this.speed);
         var enemyId = this.id;
+        collisionEnemy[enemyId] = 0;
         var enemyImages = this.images;
         var curruntEnemy = 0;
         var attackMove = 0;    //hossam edit
@@ -76,8 +81,11 @@ class Enemy {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
+
                         attackFlag = true;
                         attackingOne = enemyId
+
+
                     }
                 }
                 else { //gameOverVoice.pause(); }

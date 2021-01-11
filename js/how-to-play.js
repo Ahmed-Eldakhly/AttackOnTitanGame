@@ -1,3 +1,12 @@
+/* get the user browser dimensions. */
+document.getElementById("htmlID").style.height = window.outerHeight;
+document.getElementById("htmlID").style.width = window.outerWidth;
+/* make the window response at any size. */
+window.addEventListener("resize", function () {
+    /* get the user browser dimensions. */
+    document.getElementById("htmlID").style.height = window.outerHeight;
+    document.getElementById("htmlID").style.width = window.outerWidth;
+});
 /* varible to sync between instructions to show it using animation attribute. */
 var currentInstructionElement = 0;
 /* get the next button to check if the user pressed on it or not. */
