@@ -2,17 +2,18 @@ var baseTop = 0;
 var baseRight = 0;
 var character = [];
 var createEnemy = [];
-var collisionEnemy = 0;
+var collisionEnemy = [];
 
 var attackFlag = false;        //hossam edit
 var attackingOne = -1;         //hossam edit
 
 class Enemy {
-    constructor(attackMovement,images, speed, id) { //hossam edit
+    constructor(level,attackMovement,images, speed, id) { //hossam edit
         this.images = images;
         this.speed = speed;
         this.id = id
         this.attackMovement = attackMovement;  //hossam edit
+        this.level = level;                     //hosssam edit
     }
 
     moveEnemy() {
@@ -34,6 +35,8 @@ class Enemy {
         var curruntEnemy = 0;
         var attackMove = 0;    //hossam edit
         var attackImages = this.attackMovement //hossam edit
+        var senesingAttack = this.level;
+        collisionEnemy[enemyId] = 0;
         function generateEnemies() {
             if (positionX <= -160) {    //hosssam edit from -160 to -560
                 clearInterval(enemyGenerator);
@@ -45,13 +48,12 @@ class Enemy {
                 {
                     character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
-                    positionX -= 45;
-                    curruntEnemy = curruntEnemy + 1;
+                    positionX -= 45;                        curruntEnemy = curruntEnemy + 1;
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
                 }
-                else if(attackFlag == true) //hossam edit
+                else if(attackFlag == true)  //hossam edit
                 {
                     if(enemyId == attackingOne)   //hossam edit
                     {
@@ -62,38 +64,28 @@ class Enemy {
                             attackMove = 0;
                             attackFlag = false; //hossam edit
                         }
-                    }
-                    
+                    }  
                 }
-                
             }
             var enemyLeft = parseInt(character[enemyId].style.left);
             var characterLeft = parseInt(mainCharacter.characterElementHTML.style.left);
             var enemyBottom = parseInt(character[enemyId].style.bottom);
             var characterBottom = parseInt(mainCharacter.characterElementHTML.style.bottom);
-            //console.log((parseInt(character[enemyId].style.left)))
-            if ((enemyLeft - 50 <= characterLeft) && (enemyLeft >= characterLeft)) {
+            if ((enemyLeft - 45 <= characterLeft) && (enemyLeft + 45 >= characterLeft)) {
                 if (characterBottom < (enemyBottom + 300)) {
-                    console.log("enemyLeft:", enemyLeft, "characterLeft: ", characterLeft);
-                    console.log("enemyBottom:", enemyBottom, "characterBottm", characterBottom);
-                    if (collisionEnemy == 0) {
-                        console.log("aaaaaaaaaaaaaaaa");
+                    if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
-                        collisionEnemy = 1;
-                        attackFlag = true;  //hossam edit
-                        attackingOne = enemyId;
+                        collisionEnemy[enemyId] = 1;
+                        attackFlag = true;
+                        attackingOne = enemyId
                     }
                 }
                 else { //gameOverVoice.pause(); }
-                    collisionEnemy = 0;
                 }
             }
             else {
                 // gameOverVoice.pause();
             }
-            console.log(parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left));
-            if (parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left))
-                collisionEnemy = 0;
         }
     }
 

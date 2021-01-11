@@ -23,10 +23,10 @@ function gameCreation(level, character) {
         switch (character) {
             case 1:
                 mainCharacter = new Characters(character, "Eren jeager", 20, 1, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
-                enemy1 = new Enemy(enemyAttack,enemyPhotosArray, 120, 0);  //hossam edit
-                enemy2 = new Enemy(enemyAttack,enemyPhotosArray, 120, 1);  //hossam edit
-                enemy3 = new Enemy(enemyAttack,enemyPhotosArray, 120, 2);  //hossam edit
-                enemies = [enemy1, enemy2, enemy3];
+                enemy1 = new Enemy(levelId,enemyAttack,enemyPhotosArray, 120, 0);  //hossam edit
+                enemy2 = new Enemy(levelId,enemyAttack,enemyPhotosArray, 120, 1);  //hossam edit
+                //enemy3 = new Enemy(levelId,enemyAttack,enemyPhotosArray, 120, 2);  //hossam edit
+                enemies = [enemy1, enemy2, /*enemy3*/];
                 background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
                 background2 = new Background("game-back2.jpg", 1536, 760, "-1536px", "4px");
                 // Build roof
