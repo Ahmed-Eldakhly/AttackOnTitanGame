@@ -2,7 +2,8 @@ var baseTop = 0;
 var baseRight = 0;
 var character = [];
 var createEnemy = [];
-var collisionEnemy = 0;
+var collisionEnemy = [];
+var index = 0;
 
 class Enemy {
     constructor(images, speed, id) {
@@ -26,6 +27,7 @@ class Enemy {
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var enemyGenerator = setInterval(generateEnemies, this.speed);
         var enemyId = this.id;
+        collisionEnemy[enemyId] = 0;
         var enemyImages = this.images;
         var curruntEnemy = 0;
         function generateEnemies() {
@@ -47,27 +49,19 @@ class Enemy {
             var characterLeft = parseInt(mainCharacter.characterElementHTML.style.left);
             var enemyBottom = parseInt(character[enemyId].style.bottom);
             var characterBottom = parseInt(mainCharacter.characterElementHTML.style.bottom);
-            //console.log((parseInt(character[enemyId].style.left)))
-            if ((enemyLeft - 50 <= characterLeft) && (enemyLeft >= characterLeft)) {
+            if ((enemyLeft - 45 <= characterLeft) && (enemyLeft + 45 >= characterLeft)) {
                 if (characterBottom < (enemyBottom + 300)) {
-                    console.log("enemyLeft:", enemyLeft, "characterLeft: ", characterLeft);
-                    console.log("enemyBottom:", enemyBottom, "characterBottm", characterBottom);
-                    if (collisionEnemy == 0) {
-                        console.log("aaaaaaaaaaaaaaaa");
+                    if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
-                        collisionEnemy = 1;
+                        collisionEnemy[enemyId] = 1;
                     }
                 }
                 else { //gameOverVoice.pause(); }
-                    collisionEnemy = 0;
                 }
             }
             else {
                 // gameOverVoice.pause();
             }
-            console.log(parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left));
-            if (parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left))
-                collisionEnemy = 0;
         }
     }
 
