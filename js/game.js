@@ -71,6 +71,14 @@ onkeypress = function (keyObject) {
 
 }
 
+$(window).on('blur', function (params) {
+    if (MAIN_CHARACTER_STATE != LOSE) {
+        Enemy.clearAttack();
+        MAIN_CHARACTER_STATE = LOSE;
+        mainCharacter.endGame();
+    }
+});
+
 function countdown() {
     clearInterval(timerValue);
     timerValue = setInterval(function () {
