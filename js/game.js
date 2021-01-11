@@ -72,7 +72,7 @@ onkeypress = function (keyObject) {
 }
 
 $(window).on('blur', function (params) {
-    if (MAIN_CHARACTER_STATE != LOSE) {
+    if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
         Enemy.clearAttack();
         MAIN_CHARACTER_STATE = LOSE;
         mainCharacter.endGame();
