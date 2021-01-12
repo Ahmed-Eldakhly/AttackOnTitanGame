@@ -1,6 +1,6 @@
 var jumpIntervalID;
 var backIntervalID;
-var moveImageCureent = 0;
+var moveImageCureent = 1;
 var moveIntervalID;
 
 /*var jumpKeyListenerID;*/
@@ -148,11 +148,11 @@ class Characters {
     /* movement only */
     forwardMove() {
         if (moveImageCureent == this.characterMovementPhotos.length) {
-            moveImageCureent = 0;
+            moveImageCureent = 1;
         }
         if (this.position_x < 800)
             this.position_x += this.characterSpeed;
-        this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[moveImageCureent];
+        this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[moveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         moveImageCureent++;
 
@@ -163,12 +163,12 @@ class Characters {
     }
 
     backwardMove() {
-        if (moveImageCureent == this.characterMovementPhotos.length) {
-            moveImageCureent = 0;
+        if (moveImageCureent >= this.characterMovementPhotos.length) {
+            moveImageCureent = 1;
         }
         if (this.position_x > 800) {
             this.position_x -= 15;
-            this.characterElementHTML.src = "image/characters move/forward-move/" + this.characterMovementPhotos[moveImageCureent];
+            this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[moveImageCureent];
             this.characterElementHTML.style.left = (this.position_x) + "px";
             moveImageCureent++;
             MAIN_CHARACTER_STATE = GO_BACK;
@@ -177,7 +177,7 @@ class Characters {
         else {
             clearInterval(backIntervalID);
             backIntervalID = undefined;
-            this.characterElementHTML.src = "image/characters move/forward-move/1.png";
+            this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[0];
             this.characterElementHTML.style.left = (this.position_x) + "px";
             MAIN_CHARACTER_STATE = STAND;
         }
@@ -190,7 +190,7 @@ class Characters {
 
     /* stop movement only */
     stopMove() {
-        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
+        this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[0];
         clearInterval(moveIntervalID);
         moveIntervalID = undefined;
     }
@@ -198,7 +198,7 @@ class Characters {
     endGame() {
         Enemy.clearAttack();
         /* stop moving. */
-        this.characterElementHTML.src = "image/characters move/forward-move/1.png";
+        this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[0];
         clearInterval(moveIntervalID);
         clearInterval(backIntervalID);
         clearInterval(jumpIntervalID);
@@ -233,7 +233,7 @@ class Characters {
         audio.play();
 
         /* make event to move character in lose state. */
-        var LoseCureentImage = 0;
+        var LoseCureentImage = 1;
         var photos = this.characterLosePhotos;
         /* create lose interval to change lose images. */
         var lose = setInterval(characterlose, 300);
@@ -242,7 +242,7 @@ class Characters {
             if (LoseCureentImage >= photos.length) {
                 clearInterval(lose);
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-                $('.lose-div').append(`<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
+                $('.lose-div').append(`<img src='image/characters/${photos[0]}.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
                 characterElement.remove();
             } else {
                 if (LoseCureentImage == photos.length - 1) {
@@ -250,7 +250,7 @@ class Characters {
                     characterElement.style.height = "80px";
                     characterElement.style.bottom = (positionY - 40) + "px";
                 }
-                characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
+                characterElement.src = "image/characters move/" + photos[LoseCureentImage];
                 characterElement.style.left = positionX + "px";
                 positionX += 15;
                 LoseCureentImage++;
@@ -294,7 +294,7 @@ class Characters {
         audio.setAttribute('src', 'attack-on-titans.mpeg');
         audio.play();
 
-        var WinCureentImage = 0;
+        var WinCureentImage = 1;
         var photos = this.characterWinPhotos;
         var win = setInterval(characterWin, 300);
 
@@ -302,7 +302,7 @@ class Characters {
             if (WinCureentImage >= photos.length) {
                 clearInterval(win);
                 $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-                $('.win-div').append(`<img src='image/characters/eren-win.png' class='win-image'><a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
+                $('.win-div').append(`<img src='image/characters/${photos[0]}.png' class='win-image'><a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
                 characterElement.remove();
                 $("#defenderPhotos").css("bottom", "-20px");
             } else {
