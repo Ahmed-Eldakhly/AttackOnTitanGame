@@ -46,12 +46,11 @@ class Enemy {
                 character[enemyId].remove();
             }
             else {
-                if (senesingAttack === 2 && attackFlag == true && enemyId == attackingOne)  //hossam edit
+                if (senesingAttack > 1 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
-                    console.log('it is me');
                     character[attackingOne].src = "image/characters/attack-" + attackImages[attackMove];
                     attackMove += 1;
-                    console.log(attackMove);
+                    character[attackingOne].style.left = (positionX -= 30) + "px"
                     if (attackMove >= attackImages.length) //hossam edit
                     {
                         attackMove = 0;
@@ -59,12 +58,10 @@ class Enemy {
                     }
                 }
                 else if (senesingAttack >= 1 && attackFlag == false || enemyId != attackingOne) {
-                    console.log('hello');
                     character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
-                    positionX -= 45;
+                    positionX -= 50;
                     curruntEnemy = curruntEnemy + 1;
-                    console.log(curruntEnemy);
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
@@ -79,7 +76,7 @@ class Enemy {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
-                        if (senesingAttack === 2) {
+                        if (senesingAttack > 1) {
                             attackFlag = true;
                             attackingOne = enemyId
                         }
