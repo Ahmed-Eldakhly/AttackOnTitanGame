@@ -26,7 +26,7 @@ class Enemy {
         var body = document.getElementsByTagName("body")[0];
 
         character[this.id].classList.add("enemy");
-        character[this.id].src = "image/characters/enemy-" + this.images[0];
+        character[this.id].src = "image/characters/" + this.images[0];
 
 
         body.appendChild(character[this.id]);
@@ -52,10 +52,10 @@ class Enemy {
                 character[enemyId].remove();
             }
             else {
-                if( senesingAttack === 2 && attackFlag == true && enemyId == attackingOne)  //hossam edit
+                if( senesingAttack === 1 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
                     console.log('it is me');
-                    character[attackingOne].src = "image/characters/attack-"+attackImages[attackMove]; 
+                    character[attackingOne].src = "image/characters/"+attackImages[attackMove]; 
                     attackMove += 1;
                     console.log(attackMove);
                     if(attackMove >= attackImages.length) //hossam edit
@@ -67,7 +67,7 @@ class Enemy {
                 else if(senesingAttack >= 1 && attackFlag == false  || enemyId != attackingOne)
                 {
                     console.log('hello');
-                    character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                    character[enemyId].src = "image/characters/" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
                     positionX -= 45;                        
                     curruntEnemy = curruntEnemy + 1;
@@ -86,7 +86,7 @@ class Enemy {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
-                        if(senesingAttack === 2)
+                        if(senesingAttack === 1)
                         {
                             attackFlag = true;
                             attackingOne = enemyId
