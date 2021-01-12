@@ -1,12 +1,12 @@
 class Building extends LevelStructure {
 
-    constructor(images, width, height, positionx, positiony) {
-        super(images, width, height, positionx, positiony);
+    constructor(images, width, height, positionX, positionY) {
+        super(images, width, height, positionX, positionY);
         $("#game").append("<img id='build" + this.id + "' class='build-img'></img>");
         $("#build" + this.id).attr('src', "image/buildings/" + images);
         $("#build" + this.id).css({
-            "left": positionx,
-            "bottom": positiony,
+            "left": positionX,
+            "bottom": positionY,
             "width": width,
             "height": height,
             "z-index": 3

@@ -93,6 +93,8 @@ img {
 
 }
 
+.divTimer p { margin-top: 15px;}
+
 .win-div {
     background-color: rgba(136, 138, 156, 0.48);
     position: absolute;
@@ -118,8 +120,8 @@ img {
     height: 30px;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid  rgba(38, 97, 206, 0.8);
-    background-color: rgba(38, 97, 206, 0.4);
+    border: 1px solid  rgba(38, 97, 206, 1);
+    background-color: rgba(38, 97, 206, 0.8);
 }
 .win-image {
     position: absolute;

@@ -1,17 +1,17 @@
-var enemyPhotosArray = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png"];
 var baseTop = 0;
 var baseRight = 0;
 var character = [];
+var createEnemy = [];
+var collisionEnemy = 0;
 
 class Enemy {
-    //static id = 0;
     constructor(images, speed, id) {
         this.images = images;
         this.speed = speed;
         this.id = id
     }
 
-    move() {
+    moveEnemy() {
         character[this.id] = document.createElement("img");
         var body = document.getElementsByTagName("body")[0];
 
@@ -21,43 +21,83 @@ class Enemy {
 
         body.appendChild(character[this.id]);
 
-        var pos = window.outerWidth;
-        character[this.id].style.left = pos + "px";
+        var positionX = window.outerWidth;
+        character[this.id].style.left = positionX + "px";
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
-        var id = setInterval(frame, this.speed);
-        var idd = this.id;
-        var img = this.images;
-        var i = 0;
-        function frame() {
-            if (pos <= -160) {
-                clearInterval(id);
-                pos = window.outerWidth;
-                character[idd].remove();
+        var enemyGenerator = setInterval(generateEnemies, this.speed);
+        var enemyId = this.id;
+        var enemyImages = this.images;
+        var curruntEnemy = 0;
+        function generateEnemies() {
+            if (positionX <= -160) {
+                clearInterval(enemyGenerator);
+                positionX = window.outerWidth;
+                character[enemyId].remove();
             }
             else {
-                character[idd].src = "image/characters/enemy-" + img[i];
-                character[idd].style.left = pos + "px";
-                pos -= 45;
-                i = i + 1;
-                if (i >= img.length) {
-                    i = 0;
+                character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                character[enemyId].style.left = positionX + "px";
+                positionX -= 45;
+                curruntEnemy = curruntEnemy + 1;
+                if (curruntEnemy >= enemyImages.length) {
+                    curruntEnemy = 0;
                 }
             }
-            //console.log((parseInt(character[idd].style.left)))
-            if ((parseInt(character[idd].style.left) <= parseInt(Eren.characterElementHTML.style.left)
-                && parseInt(character[idd].style.left) + 40 >= parseInt(Eren.characterElementHTML.style.left))) {
-                if (parseInt(Eren.characterElementHTML.style.bottom) < (parseInt(character[idd].style.bottom) + 300)) {
-                    Eren.sethealth()
+            var enemyLeft = parseInt(character[enemyId].style.left);
+            var characterLeft = parseInt(mainCharacter.characterElementHTML.style.left);
+            var enemyBottom = parseInt(character[enemyId].style.bottom);
+            var characterBottom = parseInt(mainCharacter.characterElementHTML.style.bottom);
+            //console.log((parseInt(character[enemyId].style.left)))
+            if ((enemyLeft - 50 <= characterLeft) && (enemyLeft >= characterLeft)) {
+                if (characterBottom < (enemyBottom + 300)) {
+                    console.log("enemyLeft:", enemyLeft, "characterLeft: ", characterLeft);
+                    console.log("enemyBottom:", enemyBottom, "characterBottm", characterBottom);
+                    if (collisionEnemy == 0) {
+                        console.log("aaaaaaaaaaaaaaaa");
+                        mainCharacter.sethealth()
+                        collisionEnemy = 1;
+                    }
                 }
                 else { //gameOverVoice.pause(); }
+                    collisionEnemy = 0;
                 }
             }
             else {
                 // gameOverVoice.pause();
             }
+            console.log(parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left));
+            if (parseInt(character[enemyId].style.left) + 250 < parseInt(mainCharacter.characterElementHTML.style.left))
+                collisionEnemy = 0;
         }
     }
-};
 
+    static createAttackWave(enemies) {
+        enemies[0].moveEnemy();
+        var timer = 2000;
+        for (let i = 1; i < enemies.length; i++) {
+            var x = enemies[i].moveEnemy.bind(enemies[i]);
+            setTimeout(x, timer);
+            timer += 1000;
+        }
+    }
+
+    static launchAttack(enemies) {
+        Enemy.createAttackWave(enemies);
+        var wave = 5000;
+        for (let i = 0; i < 25; i++) {
+            createEnemy[i] = setTimeout(function () {
+                Enemy.createAttackWave(enemies);
+            }, wave);
+            wave += 5000;
+        }
+    }
+
+    static clearAttack() {
+        for (let i = 0; i < 25; i++) {
+            clearTimeout(createEnemy[i]);
+        }
+    }
+
+};
 //var gameOverVoice = document.getElementById("gameOver");
 

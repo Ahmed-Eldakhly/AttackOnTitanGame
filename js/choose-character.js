@@ -1,6 +1,10 @@
 var characterFlage = -1;
 var levelFlage = -1;
-var characterID = 0;
+
+// Start Action
+var startBtn = $('#start');
+var characterTitle = document.getElementById('title');
+var levelTitle = document.getElementById('level-title');
 
 // Change Charecters
 var characters = document.getElementsByClassName('character');
@@ -42,27 +46,31 @@ function chooseLevel(e, i) {
     levelFlage = i;
 }
 
-// Start Action
-var startBtn = $('#start');
-var characterTitle = document.getElementById('title');
-var levelTitle = document.getElementById('level-title');
-
 startBtn.on('click', startGame);
 
 function startGame(event) {
-    //event.preventDefault();
+    event.preventDefault();
     if (characterFlage == -1) {
         characters[0].style.background = "rgba(0,0,0,0.8)";
         characters[0].style.color = "white";
         characters[0].style.transition = " 0.5s ease-out";
+        characterFlage = 0;
     }
 
     if (levelFlage == -1) {
         levels[0].style.background = "rgba(0,0,0,0.8)";
         levels[0].style.color = "white";
         levels[0].style.transition = " 0.5s ease-out";
+        levelFlage = 0;
     }
 
-    characterID = characterFlage + 1;
+    characterFlage += 1;
+    levelFlage += 1;
+
+    setTimeout(function () {
+        var url = "game.html?level=" + levelFlage + "&character=" + characterFlage;
+        window.location.href = url;
+    }, 500);
+
 }
 
