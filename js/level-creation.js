@@ -4,6 +4,9 @@ var enemy1, enemy2, enemy3;
 var enemies = [];
 var enemyPhotosArray = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png"];
 
+var enemyAttack = ["1.png", "2.png", "3.png", "4.png", "5.png"];       //hossam edit
+
+
 //Game Background
 var background1, background2;
 
@@ -34,7 +37,6 @@ function gameCreation(level, character) {
                 var erenWinPhotosArray = ["eren-win", "eren/mov3", "eren/mov4", "eren/mov5", "eren/mov6", "eren/mov7", "eren/mov1"];
                 var erenLosePhotosArray = ["eren-lose", "eren/lose1.png", "eren/lose1.png", "eren/lose2.png", "eren/lose3.png", "eren/lose3.png"];
                 mainCharacter = new Characters(character, "Eren jeager", 20, level, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
-
                 break;
             case 2:
                 $("#defenderPhotos").attr('src', 'image/characters move/mikasa/1.png');
