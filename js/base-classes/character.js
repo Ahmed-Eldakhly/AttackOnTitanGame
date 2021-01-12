@@ -231,6 +231,9 @@ class Characters {
         } else if (this.characterLevel == 2) {
             var backgroundTitan = new Background("titan-level2.png", 700, 500, "400px", "150px");
         }
+        else {
+            var backgroundTitan = new Background("titan2.png", 800, 500, (window.outerWidth - 800) + "px", "150px");
+        }
 
         /* add lose sound */
         var audio = document.createElement('audio');
@@ -242,7 +245,6 @@ class Characters {
         var photos = this.characterLosePhotos;
         /* create lose interval to change lose images. */
         var lose = setInterval(characterlose, 300);
-
         function characterlose() {
             if (LoseCureentImage >= photos.length) {
                 clearInterval(lose);

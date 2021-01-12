@@ -21,7 +21,7 @@ class Enemy {
         var body = document.getElementsByTagName("body")[0];
 
         character[this.id].classList.add("enemy");
-        character[this.id].src = "image/characters/enemy-" + this.images[0];
+        character[this.id].src = "image/characters/" + this.images[0];
 
 
         body.appendChild(character[this.id]);
@@ -48,7 +48,7 @@ class Enemy {
             else {
                 if (senesingAttack > 1 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
-                    character[attackingOne].src = "image/characters/attack-" + attackImages[attackMove];
+                    character[attackingOne].src = "image/characters/" + attackImages[attackMove];
                     attackMove += 1;
                     character[attackingOne].style.left = (positionX -= 30) + "px"
                     if (attackMove >= attackImages.length) //hossam edit
@@ -58,13 +58,15 @@ class Enemy {
                     }
                 }
                 else if (senesingAttack >= 1 && attackFlag == false || enemyId != attackingOne) {
-                    character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                    character[enemyId].src = "image/characters/" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
                     positionX -= 50;
                     curruntEnemy = curruntEnemy + 1;
+
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
+
                 }
             }
             var enemyLeft = parseInt(character[enemyId].style.left);
@@ -80,6 +82,7 @@ class Enemy {
                             attackFlag = true;
                             attackingOne = enemyId
                         }
+
                     }
                 }
                 else { //gameOverVoice.pause(); }
