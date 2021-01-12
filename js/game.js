@@ -60,11 +60,12 @@ function keyUpListen(keyObject) {
     }
 }
 
-onkeypress = function (keyObject) {
-    if (keyObject.key == 97)
+document.addEventListener("keypress", keyPressListen);
+function keyPressListen(keyObject) {
+    if (keyObject.keyCode == 97)
         console.log("attack");
 
-    if (keyObject.key == 115)
+    if (keyObject.keyCode == 115)
         mainCharacter.characterSpeed = 60;
     else
         mainCharacter.characterSpeed = 20;
