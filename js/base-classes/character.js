@@ -226,7 +226,12 @@ class Characters {
     // /* lose game only */
     loseGame(positionX, positionY, characterElement) {
         /* show titan. */
-        var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        if (this.characterLevel == 1) {
+            var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        } else if (this.characterLevel == 2) {
+            var backgroundTitan = new Background("titan-level2.png", 700, 500, "400px", "150px");
+        }
+
         /* add lose sound */
         var audio = document.createElement('audio');
         audio.setAttribute('src', 'audio/game-over.mp3');
