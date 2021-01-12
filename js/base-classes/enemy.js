@@ -3,20 +3,15 @@ var baseRight = 0;
 var character = [];
 var createEnemy = [];
 var collisionEnemy = [];
-
-
-
-
 var index = 0;
 
-
 class Enemy {
-    constructor(level,attackMovement,images, speed, id) { //hossam edit
+    constructor(level, attackMovement, images, speed, id) { //hossam edit
         this.images = images;
         this.speed = speed;
         this.id = id
         this.attackMovement = attackMovement;  //hossam edit
-        this.level = parseInt(level) ;                     //hosssam edit
+        this.level = parseInt(level);                     //hosssam edit
     }
 
     moveEnemy() {
@@ -44,34 +39,32 @@ class Enemy {
         var senesingAttack = this.level;
         collisionEnemy[enemyId] = 0;
 
-        function generateEnemies() 
-        {
+        function generateEnemies() {
             if (positionX <= -160) {    //hosssam edit from -160 to -560
                 clearInterval(enemyGenerator);
                 positionX = window.outerWidth;
                 character[enemyId].remove();
             }
             else {
-                if( senesingAttack === 2 && attackFlag == true && enemyId == attackingOne)  //hossam edit
+                if (senesingAttack === 2 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
                     console.log('it is me');
-                    character[attackingOne].src = "image/characters/attack-"+attackImages[attackMove]; 
+                    character[attackingOne].src = "image/characters/attack-" + attackImages[attackMove];
                     attackMove += 1;
                     console.log(attackMove);
-                    if(attackMove >= attackImages.length) //hossam edit
+                    if (attackMove >= attackImages.length) //hossam edit
                     {
                         attackMove = 0;
                         attackFlag = false; //hossam edit
-                    }  
+                    }
                 }
-                else if(senesingAttack >= 1 && attackFlag == false  || enemyId != attackingOne)
-                {
+                else if (senesingAttack >= 1 && attackFlag == false || enemyId != attackingOne) {
                     console.log('hello');
                     character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
-                    positionX -= 45;                        
+                    positionX -= 45;
                     curruntEnemy = curruntEnemy + 1;
-                    console.log(curruntEnemy );
+                    console.log(curruntEnemy);
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
@@ -86,12 +79,10 @@ class Enemy {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
-                        if(senesingAttack === 2)
-                        {
+                        if (senesingAttack === 2) {
                             attackFlag = true;
                             attackingOne = enemyId
                         }
-                        
                     }
                 }
                 else { //gameOverVoice.pause(); }

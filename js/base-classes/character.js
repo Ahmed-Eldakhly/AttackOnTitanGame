@@ -147,7 +147,7 @@ class Characters {
 
     /* movement only */
     forwardMove() {
-        if (moveImageCureent == this.characterMovementPhotos.length) {
+        if (moveImageCureent >= this.characterMovementPhotos.length) {
             moveImageCureent = 1;
         }
         if (this.position_x < 800)

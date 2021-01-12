@@ -16,18 +16,18 @@ var roofPosetionX = -10, roof;
 function gameCreation(level, character) {
 
     if (level == 1) {
-        enemy1 = new Enemy(enemyPhotosArray, 120, 0);
-        enemy2 = new Enemy(enemyPhotosArray, 120, 1);
-        enemy3 = new Enemy(enemyPhotosArray, 120, 2);
+        enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
+        enemy2 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
+        enemy3 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 2);
         enemies = [enemy1, enemy2, enemy3];
         background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
         background2 = new Background("game-back2.jpg", 1536, 760, "-1536px", "4px");
-        // Build roof
+        //Build roof
         for (let i = 0; i < 4; i++) {
             roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
             roofPosetionX += 510;
         }
-        // Launch enemy attack
+        //Launch enemy attack
         Enemy.launchAttack(enemies);
         switch (character) {
             case 1:
@@ -56,22 +56,27 @@ function gameCreation(level, character) {
                 break;
         }
     } else if (level == 2) {
+        enemy1 = new Enemy(2, enemyAttack, enemyPhotosArray, 120, 3);  //hossam edit
+        enemy2 = new Enemy(2, enemyAttack, enemyPhotosArray, 120, 4);  //hossam edit
+        //enemy3 = new Enemy(,enemyAttack,enemyPhotosArray, 120, 2);  //hossam edit
+        enemies = [enemy1, enemy2/*, enemy3*/];
+        background1 = new Background("background1-level2.jpg", 1536, 760, "0px", "0px");
+        background2 = new Background("background2-level2.jpg", 1536, 760, "-1536px", "0px");
+        // Build roof
+        for (let i = 0; i < 6; i++) {
+            roof = new Building("roof-Level2.png", 360, 150, roofPosetionX, "0px");
+            roofPosetionX += 330;
+        }
+        // Launch enemy attack
+        Enemy.launchAttack(enemies);
         switch (character) {
             case 1:
+                $("#defenderPhotos").attr('src', 'image/characters move/eren/1.png');
+                var erenJumpPhotosArray = ["eren/mov2", "eren/mov3", "eren/mov4", "eren/mov5", "eren/mov6", "eren/mov7", "eren/mov9", "eren/mov10", "eren/mov1"];
+                var erenMovePhotosArray = ["eren/1.png", "eren/2.png", "eren/3.png", "eren/4.png", "eren/5.png", "eren/6.png"];
+                var erenWinPhotosArray = ["eren-win", "eren/mov3", "eren/mov4", "eren/mov5", "eren/mov6", "eren/mov7", "eren/mov1"];
+                var erenLosePhotosArray = ["eren-lose", "eren/lose1.png", "eren/lose1.png", "eren/lose2.png", "eren/lose3.png", "eren/lose3.png"];
                 mainCharacter = new Characters(character, "Eren jeager", 20, 1, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
-                enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
-                enemy2 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
-                //enemy3 = new Enemy(,enemyAttack,enemyPhotosArray, 120, 2);  //hossam edit
-                enemies = [enemy1, enemy2/*, enemy3*/];
-                background1 = new Background("background1-level2.jpg", 1536, 760, "0px", "0px");
-                background2 = new Background("background2-level2.jpg", 1536, 760, "-1536px", "0px");
-                // Build roof
-                for (let i = 0; i < 6; i++) {
-                    roof = new Building("roof-Level2.png", 360, 140, roofPosetionX, "0px");
-                    roofPosetionX += 330;
-                }
-                // Launch enemy attack
-                Enemy.launchAttack(enemies);
                 break;
             case 2:
 
