@@ -52,6 +52,7 @@ class Enemy {
                 character[enemyId].remove();
             }
             else {
+
                 if( senesingAttack === 1 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
                     console.log('it is me');
@@ -75,6 +76,7 @@ class Enemy {
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
+
                 }
             }
             var enemyLeft = parseInt(character[enemyId].style.left);
