@@ -56,7 +56,30 @@ function gameCreation(level, character) {
                 break;
         }
     } else if (level == 2) {
+        switch (character) {
+            case 1:
+                mainCharacter = new Characters(character, "Eren jeager", 20, 1, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
+                enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
+                enemy2 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
+                //enemy3 = new Enemy(,enemyAttack,enemyPhotosArray, 120, 2);  //hossam edit
+                enemies = [enemy1, enemy2/*, enemy3*/];
+                background1 = new Background("background1-level2.jpg", 1536, 760, "0px", "0px");
+                background2 = new Background("background2-level2.jpg", 1536, 760, "-1536px", "0px");
+                // Build roof
+                for (let i = 0; i < 6; i++) {
+                    roof = new Building("roof-Level2.png", 360, 140, roofPosetionX, "0px");
+                    roofPosetionX += 330;
+                }
+                // Launch enemy attack
+                Enemy.launchAttack(enemies);
+                break;
+            case 2:
 
+                break;
+            case 3:
+
+                break;
+        }
     } else if (level == 3) {
 
     }
