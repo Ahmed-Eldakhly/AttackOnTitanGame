@@ -26,12 +26,6 @@ img {
   width: 100%;
 }
 
-/* Start Enemy Section */
-.enemy {
-  height: 300px;
-}
-/* End Enemy Section */
-
 /* Start Character Section */
 #defenderPhotos {
   height: 120px;
@@ -69,31 +63,47 @@ img {
 }
 
 .lose-image {
-    position: absolute;
-    left: 0;
-    top: 30%;
-    width: 40%;
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 40%;
 }
 
 /* End Character Section */
-.divTimer {
-  background: rgb(171, 144, 124, 0.5);
-  color: black;
-  border-radius: 24px;
-  width: 200px;
-  height: 40px;
-  padding-left: 30px;
+.divTimer, .speaker {
+  background: rgba(33, 34, 34, 0.9);
+  color: white;
   position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 18px;
-  font-weight: bolder;
-  padding-bottom: 15px;
   z-index: 5;
 }
 
+.divTimer {
+  top: 35px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: bolder;
+  padding-bottom: 15px;
+  border-radius: 24px;
+  width: 180px;
+  height: 40px;
+  padding-left: 40px;
+}
+
 .divTimer p {
-  margin-top: 15px;
+  margin: 12px auto 5px;
+}
+
+.speaker{
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  top: 38px;
+  right: 250px;
+  padding-left: 0;
+}
+
+.speaker img {
+  margin: 7px;
 }
 
 .win-div {
@@ -111,40 +121,48 @@ img {
 }
 
 .win-title {
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
-.again {
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    height: 30px;
-    padding: 10px;
-    z-index: 2;
-    border-radius: 10px;
-    border: 1px solid  rgba(38, 97, 206, 1);
-    background-color: rgba(38, 97, 206, 0.8);
+.win-div a{
+  text-decoration: none;
+  color: white;
+  width: 30%;
+  padding: 10px;
+  z-index: 2;
+  border-radius: 10px;
+  display: block;
+  margin: 20px auto;
+}
+
+.again {  
+  border: 1px solid  rgb(49, 49, 49,0.6);
+  background-color: rgba(102, 104, 109, 0.8);
+}
+
+.choose-character {  
+  border: 1px solid  rgba(38, 97, 206, 1);
+  background-color: rgba(38, 97, 206, 0.8);
 }
 
 .win-image {
     position: absolute;
     left: 0;
     top: 8%;
-    width: 40%;
+    width: 35%;
 }
 
 /* Start Health Section */
 
 #health {
   position: relative;
-  top: 10px;
-  left: 10px;
-  width: 270px;
-  padding-top: 5px;
+  top: 35px; /*hossam edit*/
+  left: 20px; /*hossam edit*/
+  width: 370px; /*from 270 to 370*/ /*hossam edit*/
+  padding: 10px 5px 10px;
   z-index: 5;
-  padding-bottom: 5px;
-  padding-left: 2px;
-  background-color: rgb(171, 144, 124, 0.5);
+  background-color: rgba(33, 34, 34, 0.9);
+  color: white;
   border-radius: 20px;
 }
 
@@ -152,11 +170,12 @@ img {
   display: inline;
   padding-left: 5px;
   font-family: "Berkshire Swash", cursive;
+  margin-top: 100px;
 }
 
 #healthBar {
   position: relative;
-  width: 200px;
+  width: 300px; /*from 200 to 300*/ /*hossam edit*/
   display: inline-block;
   background-color: rgb(21, 95, 21);
   color: rgb(21, 95, 21);
