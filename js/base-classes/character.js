@@ -197,6 +197,7 @@ class Characters {
 
     endGame() {
         Enemy.clearAttack();
+        backgroundAudio.pause();
         /* stop moving. */
         this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[0];
         clearInterval(moveIntervalID);
@@ -269,16 +270,16 @@ class Characters {
     sethealth() {
         var cal = 0;
         cal = $('#healthBar').width();
-        if (cal <=  (0.8*300) && cal > (0.4*300)) {    //hossam edit
+        if (cal <= (0.8 * 300) && cal > (0.4 * 300)) {    //hossam edit
             $('#healthBar').css('background', 'rgb(196, 123, 14)');
             $('#healthBar').css('color', 'rgb(196, 123, 14)');
         }
-        else if (cal <= (0.4*300)) {  //hossam edit
+        else if (cal <= (0.4 * 300)) {  //hossam edit
             $('#healthBar').css('background', 'rgb(153, 38, 38)');
             $('#healthBar').css('color', 'rgb(153, 38, 38)');
         }
 
-        if (cal > (0.2*300)) {  //hossam edit
+        if (cal > (0.2 * 300)) {  //hossam edit
             if (MAIN_CHARACTER_STATE != WIN) {
                 cal = cal - (0.2 * 300);  //hossam edit
                 $('#healthBar').css('width', cal + 'px');

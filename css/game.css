@@ -26,12 +26,6 @@ img {
   width: 100%;
 }
 
-/* Start Enemy Section */
-.enemy {
-  height: 300px;
-}
-/* End Enemy Section */
-
 /* Start Character Section */
 #defenderPhotos {
   height: 120px;
@@ -76,24 +70,40 @@ img {
 }
 
 /* End Character Section */
-.divTimer {
+.divTimer, .speaker {
   background: rgba(33, 34, 34, 0.9);
   color: white;
-  border-radius: 24px;
-  width: 180px;
-  height: 40px;
-  padding-left: 40px;
   position: absolute;
+  z-index: 5;
+}
+
+.divTimer {
   top: 35px;
   right: 20px;
   font-size: 26px;
   font-weight: bolder;
   padding-bottom: 15px;
-  z-index: 5;
+  border-radius: 24px;
+  width: 180px;
+  height: 40px;
+  padding-left: 40px;
 }
 
 .divTimer p {
   margin: 12px auto 5px;
+}
+
+.speaker{
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  top: 38px;
+  right: 250px;
+  padding-left: 0;
+}
+
+.speaker img {
+  margin: 7px;
 }
 
 .win-div {
@@ -125,7 +135,6 @@ img {
   margin: 20px auto;
 }
 
-
 .again {  
   border: 1px solid  rgb(49, 49, 49,0.6);
   background-color: rgba(102, 104, 109, 0.8);
@@ -147,14 +156,13 @@ img {
 
 #health {
   position: relative;
-  top: 20px; /*hossam edit*/
+  top: 35px; /*hossam edit*/
   left: 20px; /*hossam edit*/
   width: 370px; /*from 270 to 370*/ /*hossam edit*/
-  padding-top: 5px;
+  padding: 10px 5px 10px;
   z-index: 5;
-  padding-bottom: 5px;
-  padding-left: 2px;
-  background-color: rgb(171, 144, 124, 0.5);
+  background-color: rgba(33, 34, 34, 0.9);
+  color: white;
   border-radius: 20px;
 }
 
