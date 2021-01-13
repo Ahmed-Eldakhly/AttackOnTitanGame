@@ -37,7 +37,7 @@ class Enemy {
                 character[enemyId].remove();
             }
             else {
-                character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                character[enemyId].src = "image/characters/" + enemyImages[curruntEnemy];
                 character[enemyId].style.left = positionX + "px";
                 positionX -= 45;
                 curruntEnemy = curruntEnemy + 1;
