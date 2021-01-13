@@ -14,6 +14,7 @@ class Floor extends LevelStructure {
     }
 
     static floorMovement() {
+        var max = 0;
         $(".floor-img").each((i) => {
             var position = parseInt($(".floor-img")[i].style.left);
             if (position < - parseInt($(".floor-img").css('width'))) {
