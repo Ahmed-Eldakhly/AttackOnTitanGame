@@ -16,7 +16,7 @@ class Background extends LevelStructure {
     static backgroundsMovement() {
         $(".background-img").each((i) => {
             var position = parseInt($(".background-img")[i].style.left);
-            if (position < - (window.outerWidth - 36)) {
+            if (position < - (window.outerWidth - 60)) {
                 position = window.outerWidth;
             }
 

@@ -226,7 +226,7 @@ class Characters {
     // /* lose game only */
     loseGame(positionX, positionY, characterElement) {
         /* show titan. */
-        var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
+        var backgroundTitan = new Background("titan2.png", 800, 500, "530px", "150px");
         /* add lose sound */
         var audio = document.createElement('audio');
         audio.setAttribute('src', 'audio/game-over.mp3');
@@ -238,24 +238,24 @@ class Characters {
         /* create lose interval to change lose images. */
         var lose = setInterval(characterlose, 300);
 
-        function characterlose() {
-            if (LoseCureentImage >= photos.length) {
-                clearInterval(lose);
-                $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
-                $('.lose-div').append(`<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
-                characterElement.remove();
-            } else {
-                if (LoseCureentImage == photos.length - 1) {
-                    characterElement.style.width = "150px";
-                    characterElement.style.height = "80px";
-                    characterElement.style.bottom = (positionY - 40) + "px";
-                }
-                characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
-                characterElement.style.left = positionX + "px";
-                positionX += 15;
-                LoseCureentImage++;
-            }
-        }
+        // function characterlose() {
+        //     if (LoseCureentImage >= photos.length) {
+        //         clearInterval(lose);
+        //         $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
+        //         $('.lose-div').append(`<img src='image/characters move/lose/armored-titan.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
+        //         characterElement.remove();
+        //     } else {
+        //         if (LoseCureentImage == photos.length - 1) {
+        //             characterElement.style.width = "150px";
+        //             characterElement.style.height = "80px";
+        //             characterElement.style.bottom = (positionY - 40) + "px";
+        //         }
+        //         characterElement.src = "image/characters move/lose/" + photos[LoseCureentImage];
+        //         characterElement.style.left = positionX + "px";
+        //         positionX += 15;
+        //         LoseCureentImage++;
+        //     }
+        // }
     }
 
     sethealth() {
