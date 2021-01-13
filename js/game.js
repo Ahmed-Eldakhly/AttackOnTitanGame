@@ -104,4 +104,4 @@ function countdown() {
         }
     }, 1000);
 }
-countdown();
+//countdown();

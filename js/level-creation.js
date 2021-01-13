@@ -61,15 +61,15 @@ function gameCreation(level, character) {
                 enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
                 enemy2 = new Enemy(1, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
                 enemies = [enemy1, enemy2];
-                background1 = new Background("sunset.jpg", 1536, 760, "0px", "0px");
-                background2 = new Background("sunset2.jpg", 1536, 760, "-1536px", "4px");
+                background1 = new Background("sunset.jpg", window.outerWidth, 760, "0px", "0px");
+                background2 = new Background("sunset2.jpg", window.outerWidth, 760, -window.outerWidth + "px", "4px");
                 // Build roof
                 for (let i = 0; i < 4; i++) {
-                    roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
-                    roofPosetionX += 520;
+                    roof = new Building("roof.png", (window.outerWidth / 3) - 40, 150, roofPosetionX, "0px");
+                    roofPosetionX += (window.outerWidth / 3) - 20;
                 }
                 // Launch enemy attack
-                Enemy.launchAttack(enemies);
+                // Enemy.launchAttack(enemies);
                 break;
             case 2:
 
