@@ -236,8 +236,9 @@ class Characters {
         }
 
         /* add lose sound */
+        audioTimer.pause();
         var audio = document.createElement('audio');
-        audio.setAttribute('src', 'audio/game-over.mp3');
+        audio.setAttribute('src', 'audio/lose.mp3');
         audio.play();
 
         /* make event to move character in lose state. */
@@ -298,7 +299,7 @@ class Characters {
 
     winGame(positionX, positionY, characterElement) {
         var audio = document.createElement('audio');
-        audio.setAttribute('src', 'attack-on-titans.mpeg');
+        audio.setAttribute('src', 'audio/win.mp3');
         audio.play();
 
         var WinCureentImage = 1;
@@ -309,7 +310,9 @@ class Characters {
             if (WinCureentImage >= photos.length) {
                 clearInterval(win);
                 $('body').append("<div class='win-div'><h1 class='win-title'>You WIN</h1></div>");
-                $('.win-div').append(`<img src='image/characters/${photos[0]}.png' class='win-image'><a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
+                $('.win-div').append(`<img src='image/characters/${photos[0]}.png' class='win-image'>
+                <a href='choose-character.html' class='choose-character'>Choose Character</a>
+                <a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
                 characterElement.remove();
                 $("#defenderPhotos").css("bottom", "-20px");
             } else {

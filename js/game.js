@@ -2,6 +2,7 @@
 var timerValue;
 var minutes;
 var seconds;
+var audioTimer = document.createElement('audio');
 
 var levelId = 1, characterId = 1;
 var queryString = new Array();
@@ -73,16 +74,17 @@ function keyPressListen(keyObject) {
 
 }
 
-// $(window).on('blur', function (params) {
-//     if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
-//         Enemy.clearAttack();
-//         MAIN_CHARACTER_STATE = LOSE;
-//         mainCharacter.endGame();
-//     }
-// });
+$(window).on('blur', function (params) {
+    if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
+        Enemy.clearAttack();
+        MAIN_CHARACTER_STATE = LOSE;
+        mainCharacter.endGame();
+    }
+});
 
 function countdown() {
     clearInterval(timerValue);
+    var alertFlag = false;
     timerValue = setInterval(function () {
         var timer = $('.js-timeout').html();
         timer = timer.split(':');
@@ -97,6 +99,13 @@ function countdown() {
         else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
         $('.js-timeout').html(minutes + ':' + seconds);
+
+        if (minutes == 0 && seconds <= 3 && MAIN_CHARACTER_STATE != LOSE) {
+            /* add timer sound */
+            audioTimer.setAttribute('src', 'audio/timer.mp3');
+            audioTimer.play();
+            alertFlag = true;
+        }
 
         if (minutes == 0 && seconds == 0 && MAIN_CHARACTER_STATE != LOSE) {
             clearInterval(timerValue);
