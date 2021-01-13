@@ -69,9 +69,10 @@ img {
 }
 
 .lose-image {
-  position: absolute;
-  left: 0;
-  top: 30%;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    width: 40%;
 }
 
 /* End Character Section */
@@ -114,19 +115,22 @@ img {
 }
 
 .again {
-  text-decoration: none;
-  color: white;
-  width: 100px;
-  height: 30px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(38, 97, 206, 1);
-  background-color: rgba(38, 97, 206, 0.8);
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+    z-index: 2;
+    border-radius: 10px;
+    border: 1px solid  rgba(38, 97, 206, 1);
+    background-color: rgba(38, 97, 206, 0.8);
 }
+
 .win-image {
-  position: absolute;
-  left: 0;
-  top: 8%;
+    position: absolute;
+    left: 0;
+    top: 8%;
+    width: 40%;
 }
 
 /* Start Health Section */
