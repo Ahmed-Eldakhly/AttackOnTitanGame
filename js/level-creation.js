@@ -50,12 +50,12 @@ function gameCreation(level, character) {
         enemy2 = new Enemy("Eren", 1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
         enemy3 = new Enemy("Eren", 1, enemyAttack, enemyPhotosArray, 120, 2);
         enemies = [enemy1, enemy2, enemy3];
-        background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
-        background2 = new Background("game-back2.jpg", 1536, 760, "-1536px", "4px");
+        background1 = new Background("game-back1.jpg", window.outerWidth, 760, "0px", "0px"); // dakhly edit
+        background2 = new Background("game-back2edit.jpg", window.outerWidth, 760, (- window.outerWidth) + "px", "0px"); //dakhly edit
         //Build roof
         for (let i = 0; i < 4; i++) {
-            roof = new Building("roof.png", 500, buildingHight, roofPosetionX, "0px");
-            roofPosetionX += 510;
+            roof = new Building("roof.png", parseInt(window.outerWidth / 3) - 20, buildingHight, roofPosetionX, "0px");
+            roofPosetionX += parseInt(window.outerWidth / 3);
         }
         //Launch enemy attack
         Enemy.launchAttack(enemies);
@@ -78,13 +78,13 @@ function gameCreation(level, character) {
         enemy2 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 4);  //hossam edit
         enemy3 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 2);  //hossam edit
         enemies = [enemy1, enemy2, enemy3];
-        background1 = new Background("background1-level2.jpg", 1536, 760, "0px", "0px");
-        background2 = new Background("background2-level2.jpg", 1536, 760, "-1536px", "0px");
-
+        background1 = new Background("background1-level2.jpg", window.outerWidth, 760, "0px", "0px"); //dakhly edit
+        background2 = new Background("background2-level2.jpg", window.outerWidth, 760, (- window.outerWidth) + "px", "0px");  //dakhly edit
+        $("#skyImage").attr("src", "image/background/background1-level2.jpg")// dakhly edit
         // Build roof
         for (let i = 0; i < 6; i++) {
-            roof = new Building("roof-Level2.png", 360, buildingHight, roofPosetionX, "0px");
-            roofPosetionX += 330;
+            roof = new Building("roof-Level2.png", parseInt(window.outerWidth / 3), buildingHight, roofPosetionX, "0px");
+            roofPosetionX += parseInt(window.outerWidth / 3) - 50;
         }
         // Launch enemy attack
         Enemy.launchAttack(enemies);
@@ -103,16 +103,16 @@ function gameCreation(level, character) {
                 break;
         }
     } else if (level == 3) {
-
+        $("#skyImage").attr("src", "image/background/sunset.jpg")// dakhly edit
         enemy1 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
         enemy2 = new Enemy("Reiner",level, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
         enemies = [enemy1, enemy2];
-        background1 = new Background("sunset.jpg", 1536, 760, "0px", "0px");
-        background2 = new Background("sunset2.jpg", 1536, 760, "-1536px", "4px");
+        background1 = new Background("sunset.jpg", window.outerWidth, 760, "0px", "0px"); // dakhly edit
+        background2 = new Background("sunset2.jpg", window.outerWidth, 760, (- window.outerWidth) + "px", "0px"); //dakhly edit
         // Build roof
-        for (let i = 0; i < 4; i++) {
-            roof = new Building("roof.png", 500, 150, roofPosetionX, "0px");
-            roofPosetionX += 520;
+        for (let i = 0; i < 6; i++) {
+            roof = new Building("housesTest.png", parseInt(window.outerWidth / 5), buildingHight, roofPosetionX, "0px");
+            roofPosetionX += parseInt(window.outerWidth / 5);
         }
         // Launch enemy attack
         Enemy.launchAttack(enemies);
@@ -132,4 +132,3 @@ function gameCreation(level, character) {
         }
     }
 }
-
