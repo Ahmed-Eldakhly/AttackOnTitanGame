@@ -269,18 +269,18 @@ class Characters {
     sethealth() {
         var cal = 0;
         cal = $('#healthBar').width();
-        if (cal <= 160 && cal > 80) {
+        if (cal <=  (0.8*300) && cal > (0.4*300)) {    //hossam edit
             $('#healthBar').css('background', 'rgb(196, 123, 14)');
             $('#healthBar').css('color', 'rgb(196, 123, 14)');
         }
-        else if (cal <= 80) {
+        else if (cal <= (0.4*300)) {  //hossam edit
             $('#healthBar').css('background', 'rgb(153, 38, 38)');
             $('#healthBar').css('color', 'rgb(153, 38, 38)');
         }
 
-        if (cal > 40) {
+        if (cal > (0.2*300)) {  //hossam edit
             if (MAIN_CHARACTER_STATE != WIN) {
-                cal = cal - (0.2 * 200);
+                cal = cal - (0.2 * 300);  //hossam edit
                 $('#healthBar').css('width', cal + 'px');
                 return true;
             }

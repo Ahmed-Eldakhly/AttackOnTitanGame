@@ -6,12 +6,13 @@ var collisionEnemy = [];
 var index = 0;
 
 class Enemy {
-    constructor(level, attackMovement, images, speed, id) { //hossam edit
+    constructor(titanName,level, attackMovement, images, speed, id) { //hossam edit
         this.images = images;
         this.speed = speed;
         this.id = id
         this.attackMovement = attackMovement;  //hossam edit
         this.level = parseInt(level);                     //hosssam edit
+        this.titanName = titanName;
     }
 
     moveEnemy() {
@@ -27,7 +28,17 @@ class Enemy {
         body.appendChild(character[this.id]);
 
         var positionX = window.outerWidth;
+        //var positionY = window.outerHeight
         character[this.id].style.left = positionX + "px";
+        if(this.titanName == "Eren")
+        {
+            character[this.id].style.height = "300px";
+        }
+        else if(this.titanName == "Reiner")
+        {
+            character[this.id].style.height = "270px";
+        }
+        
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var enemyGenerator = setInterval(generateEnemies, this.speed);
         var enemyId = this.id;
