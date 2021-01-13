@@ -1,4 +1,3 @@
-
 html{
       margin:0;
       height:100%;
@@ -17,7 +16,6 @@ body {
   background-position: center;
   background-attachment: fixed;
 
- 
 }
 
 #icon {
@@ -66,5 +64,9 @@ ul{
   padding: 0;
   margin: 0;
   list-style: none;
-   
+}
+
+/* Speaker */
+.speaker{
+  right: 60px;
 }

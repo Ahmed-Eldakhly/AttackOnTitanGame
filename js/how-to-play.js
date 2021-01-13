@@ -7,6 +7,10 @@ window.addEventListener("resize", function () {
     document.getElementById("htmlID").style.height = window.outerHeight;
     document.getElementById("htmlID").style.width = window.outerWidth;
 });
+
+//Audio 
+backgroundAudio.setAttribute('src', 'audio/how-to-play.mp3');
+
 /* varible to sync between instructions to show it using animation attribute. */
 var currentInstructionElement = 0;
 /* get the next button to check if the user pressed on it or not. */

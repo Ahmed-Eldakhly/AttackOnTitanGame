@@ -127,3 +127,9 @@ video
 {
     display: none;
 }
+
+/* Speaker */
+.speaker{
+    right: 180px;
+    top: 60px;
+  }
