@@ -236,8 +236,9 @@ class Characters {
         }
 
         /* add lose sound */
+        audioTimer.pause();
         var audio = document.createElement('audio');
-        audio.setAttribute('src', 'audio/game-over.mp3');
+        audio.setAttribute('src', 'audio/lose.mp3');
         audio.play();
 
         /* make event to move character in lose state. */
@@ -298,7 +299,7 @@ class Characters {
 
     winGame(positionX, positionY, characterElement) {
         var audio = document.createElement('audio');
-        audio.setAttribute('src', 'attack-on-titans.mpeg');
+        audio.setAttribute('src', 'audio/win.mp3');
         audio.play();
 
         var WinCureentImage = 1;
