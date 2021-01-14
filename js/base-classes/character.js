@@ -186,6 +186,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
+        Injection.injectionMovement();
 
     }
 
@@ -297,6 +298,25 @@ class Characters {
             }
             return false;
         }
+    }
+
+    increasehealth() {
+        var cal = parseInt($('#healthBar').width());
+        console.log(cal);
+        if (cal < 300) {
+            cal = cal + 0.2 * 300;
+            console.log(cal);
+            $('#healthBar').width(cal + "px");
+        }
+        if (cal >= (0.8 * 300)) {
+            $('#healthBar').css('background', 'rgb(21, 95, 21)');
+            $('#healthBar').css('color', 'rgb(21, 95, 21)');
+        }
+        else {
+            $('#healthBar').css('background', 'rgb(196, 123, 14)');
+            $('#healthBar').css('color', 'rgb(196, 123, 14)');
+        }
+
     }
 
     winGame(positionX, positionY, characterElement) {

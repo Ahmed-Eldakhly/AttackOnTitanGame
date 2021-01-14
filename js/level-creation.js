@@ -43,7 +43,7 @@ var background1, background2;
 var roofPosetionX = -10, roof;
 
 // increase health
-var injectionObj = new Injection("Super_Mushroom.png", 50, 50, "-50px", parseInt(20 * $(window).innerHeight() / 100) + "px")
+var injectionObj = new Injection("injection.png", 50, 50, "-50px", parseInt(20 * $(window).innerHeight() / 100) + "px")
 
 function gameCreation(level, character) {
     var buildingHight = parseInt(20 * $(window).innerHeight() / 100);

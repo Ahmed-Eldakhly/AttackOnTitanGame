@@ -52,6 +52,19 @@ function keyListen(keyObject) {
                 moveIntervalID = setInterval(callBackMove, 70)
             MAIN_CHARACTER_STATE = MOVING;
         }
+        // for injection
+        var injectionLeft = parseInt(document.getElementById("injection").style.left);
+        var injectionRight = parseInt(document.getElementById("injection").style.left) + parseInt(document.getElementById("injection").width);
+        var characterLeft = parseInt(document.getElementById("defenderPhotos").style.left);
+        var characterRight = parseInt(document.getElementById("defenderPhotos").style.left) + parseInt(document.getElementById("defenderPhotos").width);
+        if ((injectionLeft <= characterRight && injectionLeft >= characterLeft) || (injectionRight <= characterRight && injectionRight >= characterLeft)) {
+            if (injectionIconCollision == 0) {
+                Injection.injectionDisappear();
+                mainCharacter.increasehealth();
+                injectionIconCollision = 1;
+            }
+
+        }
     }
 }
 

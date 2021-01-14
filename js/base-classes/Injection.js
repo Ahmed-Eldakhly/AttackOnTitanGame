@@ -1,3 +1,4 @@
+var injectionIconCollision = 0;
 class Injection extends LevelStructure {
 
     constructor(images, width, height, positionX, positionY) {
@@ -16,15 +17,15 @@ class Injection extends LevelStructure {
     }
 
     static injectionMovement() {
-        console.log(document.getElementById("injection").style);
         var position = parseInt(document.getElementById("injection").style.left);
-        if (position >= 0)
+        if (position + document.getElementById("injection").width >= 0)
             document.getElementById("injection").style.left = position - 20 + "px";
 
     }
     static injectionMovementStart() {
         document.getElementById("injection").style.left = window.outerWidth + "px";
         document.getElementById("injection").style.display = "block";
+        injectionIconCollision = 0;
     }
     static injectionDisappear() {
         document.getElementById("injection").style.display = "none";
