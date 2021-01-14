@@ -113,6 +113,9 @@ function countdown() {
             MAIN_CHARACTER_STATE = WIN;
             mainCharacter.endGame();
         }
+        if (seconds % 20 == 0) {
+            Injection.injectionMovementStart();
+        }
     }, 1000);
 }
 countdown();

@@ -44,6 +44,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
+        Injection.injectionMovement();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -94,6 +95,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
+        Injection.injectionMovement();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -158,8 +160,7 @@ class Characters {
 
         //Element move with character
         Building.buildingsMovement();
-        Background.backgroundsMovement();
-
+        Injection.injectionMovement();
     }
 
     backwardMove() {
