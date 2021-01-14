@@ -118,24 +118,8 @@ function gameCreation(level, character) {
         Enemy.launchAttack(enemies);
         switch (character) {
             case 1:
-<<<<<<< HEAD
-                mainCharacter = new Characters(character, "Eren jeager", 20, 3, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
-                enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
-                enemy2 = new Enemy(1, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
-                enemies = [enemy1, enemy2];
-                background1 = new Background("sunset.jpg", window.outerWidth, 760, "0px", "0px");
-                background2 = new Background("sunset2.jpg", window.outerWidth, 760, -window.outerWidth + "px", "4px");
-                // Build roof
-                for (let i = 0; i < 4; i++) {
-                    roof = new Building("roof.png", (window.outerWidth / 3) - 40, 150, roofPosetionX, "0px");
-                    roofPosetionX += (window.outerWidth / 3) - 20;
-                }
-                // Launch enemy attack
-                // Enemy.launchAttack(enemies);
-=======
                 $("#defenderPhotos").attr('src', 'image/characters move/eren/1.png');
                 mainCharacter = new Characters(character, "Eren jeager", 20, level, erenJumpPhotosArray, erenMovePhotosArray, erenLosePhotosArray, erenWinPhotosArray, document.getElementById("defenderPhotos"));
->>>>>>> 6a5cbc67de8090c47dc74cf28f1211958c2a3bd7
                 break;
             case 2:
                 $("#defenderPhotos").attr('src', 'image/characters move/mikasa/1.png');
