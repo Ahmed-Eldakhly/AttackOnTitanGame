@@ -81,6 +81,12 @@ class Enemy {
             var characterLeft = parseInt(mainCharacter.characterElementHTML.style.left);
             var enemyBottom = parseInt(character[enemyId].style.bottom);
             var characterBottom = parseInt(mainCharacter.characterElementHTML.style.bottom);
+            if ((enemyLeft - 200 <= characterLeft) && (enemyLeft + 10 >= characterLeft))  {
+                if (senesingAttack > 1) {
+                    attackFlag = true;
+                    attackingOne = enemyId
+                }
+            }
             if ((enemyLeft - 45 <= characterLeft) && (enemyLeft + 45 >= characterLeft)) {
                 if (characterBottom < (enemyBottom + 300)) {
                     if (collisionEnemy[enemyId] == 0) {
