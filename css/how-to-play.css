@@ -90,35 +90,42 @@ video
 #instruction2
 {
     /*width: 475px;*/
-    left: 16%;
+    left: 3.3%;
     top: 50%;
     animation-name: stopAnimation;
 }
 #instruction3
 {
     /*width: 300px;*/
-    left: 3.3%;
-    top:65%;
+    left: 28%;
+    top:50%;
     animation-name: stopAnimation;
 }
 #instruction4
 {
     /*width: 320px;*/
-    left: 29%;
+    left: 3.3%;
     top: 65%;
+    border-radius: 5%/50%;
     animation-name: stopAnimation;
 }
 #instruction5
 {
     /*width: 300px;*/
-    left: 16.3%;
+    left: 3.3%;
     top: 80%;
+    border-radius: 5%/50%;
     animation-name: stopAnimation;
 }
 @keyframes currentInstruction
 {
     from {font-size: 250%; width: max-content;}
     to {font-size: 350%; width: max-content;}
+}
+@keyframes currentInstruction2
+{
+    from {font-size: 250%; width: max-content;}
+    to {font-size: 300%; width: max-content;}
 }
 @keyframes stopAnimation
 {
