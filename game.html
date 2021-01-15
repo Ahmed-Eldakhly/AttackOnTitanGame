@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Berkshire Swash'>
+    <link rel="icon" href="image/small-logo-with-shadow.png" type="image/icon type">
+    <link rel="stylesheet" href="css/game.css">
+    <title>Attack On Titan</title>
+</head>
+
+<body>
+    <div id='health'>
+        <p id='healthName'>Health:</p>
+        <div id="healthBar">.</div>
+    </div>
+    <img src="image/background/game-back1.jpg" alt="sky" srcset="" id="skyImage">
+    <div id="game"></div>
+    <img id="defenderPhotos" src="image/characters move/eren/1.png" alt="flag">
+
+
+    <div class="divTimer">
+        <p>End in: <span class="js-timeout">0:56</span></p>
+    </div>
+
+    <div class="speaker">
+        <img src="image/no-sound.svg" id="sound" alt="speaker" width="35" height="35">
+    </div>
+
+    <!-- <img class="enemy"> -->
+    <script src="js/jquery/jquery-3.5.1.js"></script>
+    <script src="js/base-classes/enemy.js"></script>
+    <script src="js/base-classes/level-structure.js"></script>
+    <script src="js/base-classes/Injection.js"></script>
+    <script src="js/base-classes/stone.js"></script>
+    <script src="js/base-classes/background.js"></script>
+    <script src="js/base-classes/building.js"></script>
+    <script src="js/base-classes/character.js"></script>
+    <script src="js/level-creation.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
