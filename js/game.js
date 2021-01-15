@@ -69,9 +69,9 @@ function keyPressListen(keyObject) {
         console.log("attack");
 
     if (keyObject.keyCode == 115)
-        mainCharacter.characterSpeed = 60;
+        mainCharacter.characterSpeed = mainCharacter.highSpeed;
     else
-        mainCharacter.characterSpeed = 20;
+        mainCharacter.characterSpeed = mainCharacter.lowSpeed;
 
 }
 
@@ -113,7 +113,10 @@ function countdown() {
             MAIN_CHARACTER_STATE = WIN;
             mainCharacter.endGame();
         }
-        if (seconds % 20 == 0) {
+        if (seconds % 20 == 0 && levelId < 3) {
+            Injection.injectionMovementStart();
+        } else if (seconds % 10 == 0 && levelId == 3) {
+            console.log(levelId);
             Injection.injectionMovementStart();
         }
 

@@ -25,6 +25,8 @@ class Characters {
         this.characterID = ID;
         this.characterName = Name;
         this.characterSpeed = speed;
+        this.lowSpeed = speed;
+        this.highSpeed = speed * 1.5;
         this.characterLevel = level;
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;

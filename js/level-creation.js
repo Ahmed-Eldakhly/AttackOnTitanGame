@@ -109,12 +109,12 @@ function gameCreation(level, character) {
         }
     } else if (level == 3) {
         // decrease the health
-        stoneObj1 = new Stone("red-stone.png", 50, 50, parseInt(40 * window.innerWidth / 100) + "px", window.innerHeight + "px");
-        stoneObj2 = new Stone("brouwn-stone.png", 50, 50, parseInt(50 * window.innerWidth / 100) + "px", window.innerHeight + "px");
-        stoneObj3 = new Stone("red-stone.png", 50, 50, parseInt(70 * window.innerWidth / 100) + "px", window.innerHeight + "px");
-        stoneObj4 = new Stone("brouwn-stone.png", 50, 50, parseInt(80 * window.innerWidth / 100) + "px", window.innerHeight + "px");
+        stoneObj1 = new Stone("red-stone.png", 50, 50, parseInt(40 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        stoneObj2 = new Stone("brouwn-stone.png", 50, 50, parseInt(70 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        // stoneObj3 = new Stone("red-stone.png", 50, 50, parseInt(70 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        stoneObj4 = new Stone("brouwn-stone.png", 50, 50, parseInt(90 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
         $("#skyImage").attr("src", "image/background/sunset.jpg")// dakhly edit
-        enemy1 = new Enemy("Reiner", level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
+        enemy1 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
         enemy2 = new Enemy("Reiner", level, enemyAttackReiner2, enemyPhotosArrayReiner, 120, 1);  //hossam edit
         enemies = [enemy1, enemy2];
         background1 = new Background("sunset.jpg", window.outerWidth, 760, "0px", "0px"); // dakhly edit
