@@ -3,7 +3,7 @@ var timerValue;
 var minutes;
 var seconds;
 var audioTimer = document.createElement('audio');
-var backgroundAudio = document.createElement('audio');
+//var backgroundAudio = document.createElement('audio');
 
 var levelId = 1, characterId = 1;
 var queryString = new Array();
@@ -51,6 +51,19 @@ function keyListen(keyObject) {
             if (moveIntervalID == undefined)
                 moveIntervalID = setInterval(callBackMove, 70)
             MAIN_CHARACTER_STATE = MOVING;
+        }
+        // for injection
+        var injectionLeft = parseInt(document.getElementById("injection").style.left);
+        var injectionRight = parseInt(document.getElementById("injection").style.left) + parseInt(document.getElementById("injection").width);
+        var characterLeft = parseInt(document.getElementById("defenderPhotos").style.left);
+        var characterRight = parseInt(document.getElementById("defenderPhotos").style.left) + parseInt(document.getElementById("defenderPhotos").width);
+        if ((injectionLeft <= characterRight && injectionLeft >= characterLeft) || (injectionRight <= characterRight && injectionRight >= characterLeft)) {
+            if (injectionIconCollision == 0) {
+                Injection.injectionDisappear();
+                mainCharacter.increasehealth();
+                injectionIconCollision = 1;
+            }
+
         }
     }
 }
@@ -127,22 +140,25 @@ function countdown() {
 
     }, 1000);
 }
+
+//countdown();
+
 countdown();
 
 
 //Add Sound 
-var soundFlag = false;
-$('.speaker').on('click', function (params) {
-    /* add background sound */
-    backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
-    backgroundAudio.loop = true;
+// var soundFlag = false;
+// $('.speaker').on('click', function (params) {
+//     /* add background sound */
+//     backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
+//     backgroundAudio.loop = true;
 
-    if (!soundFlag) {
-        $('#sound').attr("src", "image/sound.svg");
-        backgroundAudio.play();
-    } else {
-        $('#sound').attr("src", "image/no-sound.svg");
-        backgroundAudio.pause();
-    }
-    soundFlag = !soundFlag;
-})
+//     if (!soundFlag) {
+//         $('#sound').attr("src", "image/sound.svg");
+//         backgroundAudio.play();
+//     } else {
+//         $('#sound').attr("src", "image/no-sound.svg");
+//         backgroundAudio.pause();
+//     }
+//     soundFlag = !soundFlag;
+// })

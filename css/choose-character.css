@@ -1,18 +1,9 @@
-
 /* Start General Section*/
-html{
-    margin: 0;
-    height: 100%;
-}
 
 body {
-    background: url('../image/background/characters.jpg') center no-repeat;
-    background-size: cover;
-    font-family: 'Berkshire Swash', cursive;
+    background-image: url('../image/background/characters.jpg');
     padding: 20px;
-    overflow: hidden;
 }
-
 a {
     text-decoration: none;
     color: #000;

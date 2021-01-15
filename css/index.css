@@ -1,9 +1,8 @@
 body {
   background-image: url("../image/Background/main.jpg");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  font-family: "Berkshire Swash", cursive;
+  
 }
+
 div {
   text-align: center;
   width: 40%;
