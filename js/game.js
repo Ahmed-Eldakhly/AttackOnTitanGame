@@ -116,6 +116,12 @@ function countdown() {
         if (seconds % 20 == 0) {
             Injection.injectionMovementStart();
         }
+
+        // Create stones
+        if (seconds % 10 == 0) {
+            Stone.stoneMovement();
+        }
+
     }, 1000);
 }
 countdown();

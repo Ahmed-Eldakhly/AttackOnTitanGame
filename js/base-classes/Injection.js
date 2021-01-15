@@ -16,7 +16,7 @@ class Injection extends LevelStructure {
     }
 
     static injectionMovement() {
-        console.log(document.getElementById("injection").style);
+        //console.log(document.getElementById("injection").style);
         var position = parseInt(document.getElementById("injection").style.left);
         if (position >= 0)
             document.getElementById("injection").style.left = position - 20 + "px";

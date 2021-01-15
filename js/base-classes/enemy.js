@@ -39,7 +39,6 @@ class Enemy {
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var enemyGenerator = setInterval(generateEnemies, this.speed);
         var enemyId = this.id;
-        collisionEnemy[enemyId] = 0;
         var enemyImages = this.images;
         var curruntEnemy = 0;
         var attackMove = 0;    //hossam edit

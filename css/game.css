@@ -187,3 +187,17 @@ img {
 #injection {
   z-index: 5;
 }
+
+/* Start Media Section */
+
+@media screen and (max-height: 700px) {
+  .win-div a {
+      width: 25%;
+  }
+
+  .win-image, .lose-image {
+    width: 30%;
+  }
+}
+
+/* End Media Section */

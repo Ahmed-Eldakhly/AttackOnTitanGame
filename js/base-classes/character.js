@@ -45,6 +45,7 @@ class Characters {
         Building.buildingsMovement();
         Background.backgroundsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -96,6 +97,7 @@ class Characters {
         Building.buildingsMovement();
         Background.backgroundsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -161,6 +163,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
     }
 
     backwardMove() {
@@ -186,6 +189,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
+        Stone.stoneMovementWithCharacter();
 
     }
 
