@@ -1,9 +1,9 @@
-body {
+/* body {
   padding: 0;
   margin: 0;
   overflow: hidden;
   font-family: "Berkshire Swash";
-}
+} */
 
 img {
   position: absolute;
@@ -67,16 +67,17 @@ img {
   top: 30%;
   width: 40%;
 }
+/*speaker edit*/
+.speaker{
+  right: 250px;
+}
 
-/* End Character Section */
+
 .divTimer {
   background: rgba(33, 34, 34, 0.9);
   color: white;
   position: absolute;
   z-index: 5;
-}
-
-.divTimer {
   top: 35px;
   right: 20px;
   font-size: 26px;

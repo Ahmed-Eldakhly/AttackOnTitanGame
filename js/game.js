@@ -3,6 +3,7 @@ var timerValue;
 var minutes;
 var seconds;
 var audioTimer = document.createElement('audio');
+//var backgroundAudio = document.createElement('audio');
 
 var levelId = 1, characterId = 1;
 var queryString = new Array();
@@ -114,4 +115,25 @@ function countdown() {
         }
     }, 1000);
 }
+
+//countdown();
+
 countdown();
+
+
+//Add Sound 
+// var soundFlag = false;
+// $('.speaker').on('click', function (params) {
+//     /* add background sound */
+//     backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
+//     backgroundAudio.loop = true;
+
+//     if (!soundFlag) {
+//         $('#sound').attr("src", "image/sound.svg");
+//         backgroundAudio.play();
+//     } else {
+//         $('#sound').attr("src", "image/no-sound.svg");
+//         backgroundAudio.pause();
+//     }
+//     soundFlag = !soundFlag;
+// })
