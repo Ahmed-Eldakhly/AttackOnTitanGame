@@ -170,3 +170,7 @@ img {
 }
 
 /* End Health Section */
+
+#injection {
+  z-index: 5;
+}
