@@ -1,18 +1,22 @@
 * {box-sizing: border-box}
 body { 
    font-family: 'Berkshire Swash' ,cursive;
-  background-color: black;
+   background-color: black;
    margin:0
   }
-.mySlides {display: none}
-img {vertical-align: middle;}
+/* .mySlides {display: none} */
+img {
+  /* vertical-align: middle; */
+width: 1000px;
+height: 300px;
+}
 
 /* Slideshow container */
 .slideshow-container {
-  width: 88%;
+  width: 90%;
   position: relative;
   margin: auto;
-  top:70px;
+  top:60px;
 }
 #tell{
   color: white;
