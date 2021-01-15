@@ -17,10 +17,6 @@ class Injection extends LevelStructure {
     }
 
     static injectionMovement() {
-<<<<<<< HEAD
-        //console.log(document.getElementById("injection").style);
-=======
->>>>>>> choose-character-btn-sound
         var position = parseInt(document.getElementById("injection").style.left);
         if (position + document.getElementById("injection").width >= 0)
             document.getElementById("injection").style.left = position - 20 + "px";

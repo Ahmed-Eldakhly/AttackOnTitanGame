@@ -191,12 +191,8 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
-<<<<<<< HEAD
         Stone.stoneMovementWithCharacter();
-=======
         Injection.injectionMovement();
->>>>>>> choose-character-btn-sound
-
     }
 
     /* stop movement only */
