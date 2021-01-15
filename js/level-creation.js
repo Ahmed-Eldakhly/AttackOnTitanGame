@@ -46,9 +46,9 @@ function gameCreation(level, character) {
     var buildingHight = parseInt(20 * $(window).innerHeight() / 100);;
 
     if (level == 1) {
-        enemy1 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
-        enemy2 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
-        enemy3 = new Enemy(1, enemyAttack, enemyPhotosArray, 120, 2);
+        enemy1 = new Enemy("Eren", 1, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
+        enemy2 = new Enemy("Eren", 1, enemyAttack, enemyPhotosArray, 120, 1);  //hossam edit
+        enemy3 = new Enemy("Eren", 1, enemyAttack, enemyPhotosArray, 120, 2);
         enemies = [enemy1, enemy2, enemy3];
         background1 = new Background("game-back1.jpg", 1536, 760, "0px", "0px");
         background2 = new Background("game-back2.jpg", 1536, 760, "-1536px", "4px");
@@ -74,9 +74,9 @@ function gameCreation(level, character) {
                 break;
         }
     } else if (level == 2) {
-        enemy1 = new Enemy(level, enemyAttack, enemyPhotosArray, 120, 3);  //hossam edit
-        enemy2 = new Enemy(level, enemyAttack, enemyPhotosArray, 120, 4);  //hossam edit
-        enemy3 = new Enemy(level, enemyAttack, enemyPhotosArray, 120, 2);  //hossam edit
+        enemy1 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 3);  //hossam edit
+        enemy2 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 4);  //hossam edit
+        enemy3 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 2);  //hossam edit
         enemies = [enemy1, enemy2, enemy3];
         background1 = new Background("background1-level2.jpg", 1536, 760, "0px", "0px");
         background2 = new Background("background2-level2.jpg", 1536, 760, "-1536px", "0px");
@@ -104,8 +104,8 @@ function gameCreation(level, character) {
         }
     } else if (level == 3) {
 
-        enemy1 = new Enemy(level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
-        enemy2 = new Enemy(level, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
+        enemy1 = new Enemy("Eren",level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
+        enemy2 = new Enemy("Reiner",level, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
         enemies = [enemy1, enemy2];
         background1 = new Background("sunset.jpg", 1536, 760, "0px", "0px");
         background2 = new Background("sunset2.jpg", 1536, 760, "-1536px", "4px");

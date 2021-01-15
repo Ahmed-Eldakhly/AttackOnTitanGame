@@ -2,6 +2,8 @@
 var timerValue;
 var minutes;
 var seconds;
+var audioTimer = document.createElement('audio');
+var backgroundAudio = document.createElement('audio');
 
 var levelId = 1, characterId = 1;
 var queryString = new Array();
@@ -73,16 +75,17 @@ function keyPressListen(keyObject) {
 
 }
 
-// $(window).on('blur', function (params) {
-//     if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
-//         Enemy.clearAttack();
-//         MAIN_CHARACTER_STATE = LOSE;
-//         mainCharacter.endGame();
-//     }
-// });
+$(window).on('blur', function (params) {
+    if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
+        Enemy.clearAttack();
+        MAIN_CHARACTER_STATE = LOSE;
+        mainCharacter.endGame();
+    }
+});
 
 function countdown() {
     clearInterval(timerValue);
+    var alertFlag = false;
     timerValue = setInterval(function () {
         var timer = $('.js-timeout').html();
         timer = timer.split(':');
@@ -98,6 +101,13 @@ function countdown() {
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
+        if (minutes == 0 && seconds <= 3 && MAIN_CHARACTER_STATE != LOSE) {
+            /* add timer sound */
+            backgroundAudio.pause();
+            audioTimer.setAttribute('src', 'audio/timer.mp3');
+            audioTimer.play();
+        }
+
         if (minutes == 0 && seconds == 0 && MAIN_CHARACTER_STATE != LOSE) {
             clearInterval(timerValue);
             MAIN_CHARACTER_STATE = WIN;
@@ -105,4 +115,25 @@ function countdown() {
         }
     }, 1000);
 }
+
 //countdown();
+
+countdown();
+
+
+//Add Sound 
+var soundFlag = false;
+$('.speaker').on('click', function (params) {
+    /* add background sound */
+    backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
+    backgroundAudio.loop = true;
+
+    if (!soundFlag) {
+        $('#sound').attr("src", "image/sound.svg");
+        backgroundAudio.play();
+    } else {
+        $('#sound').attr("src", "image/no-sound.svg");
+        backgroundAudio.pause();
+    }
+    soundFlag = !soundFlag;
+})
