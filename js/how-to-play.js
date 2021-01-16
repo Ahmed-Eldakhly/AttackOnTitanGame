@@ -7,6 +7,10 @@ window.addEventListener("resize", function () {
     document.getElementById("htmlID").style.height = window.outerHeight;
     document.getElementById("htmlID").style.width = window.outerWidth;
 });
+
+//Audio 
+backgroundAudio.setAttribute('src', 'audio/how-to-play.mp3');
+
 /* varible to sync between instructions to show it using animation attribute. */
 var currentInstructionElement = 0;
 /* get the next button to check if the user pressed on it or not. */
@@ -36,7 +40,8 @@ function animationMethod() {
     var ins4 = document.getElementById("instruction4");
     var ins5 = document.getElementById("instruction5");
     /* var to put the new istruction in animated mode. */
-    var animation = "currentInstruction";
+    var animation1 = "currentInstruction";
+    var animation2 = "currentInstruction2";
     /* var to stop last instruction from animated mode. */
     var Stop = "stopAnimation"
     /* check to know which should be in animated mode. */
@@ -44,7 +49,7 @@ function animationMethod() {
         /* stop the last instruction from animated mode. */
         ins1.style.animationName = Stop;
         /* put the new instruction in animated mode. */
-        ins2.style.animationName = animation;
+        ins2.style.animationName = animation1;
         /* make the new instruction appear in the page. */
         ins2.style.display = "block";
         /* increment the sync var to sync between instructions. */
@@ -52,19 +57,19 @@ function animationMethod() {
     }
     else if (currentInstructionElement === 1) {
         ins2.style.animationName = Stop;
-        ins3.style.animationName = animation;
+        ins3.style.animationName = animation1;
         ins3.style.display = "block";
         currentInstructionElement++;
     }
     else if (currentInstructionElement === 2) {
         ins3.style.animationName = Stop;
-        ins4.style.animationName = animation;
+        ins4.style.animationName = animation2;
         ins4.style.display = "block";
         currentInstructionElement++;
     }
     else if (currentInstructionElement === 3) {
         ins4.style.animationName = Stop;
-        ins5.style.animationName = animation;
+        ins5.style.animationName = animation2;
         ins5.style.display = "block";
         currentInstructionElement++;
     }

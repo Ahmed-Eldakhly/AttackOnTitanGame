@@ -16,11 +16,15 @@ class Background extends LevelStructure {
     static backgroundsMovement() {
         $(".background-img").each((i) => {
             var position = parseInt($(".background-img")[i].style.left);
-            if (position < - (window.outerWidth - 36)) {
-                position = window.outerWidth;
-            }
-
             $(".background-img")[i].style.left = position - 20 + "px";
+            if (position <= - (window.outerWidth) && i == 0) {
+                position = parseInt($(".background-img")[1].style.left) + (window.outerWidth);
+                $(".background-img")[i].style.left = position - 20 + "px";
+            }
+            else if (position <= - (window.outerWidth) && i == 1) {
+                position = parseInt($(".background-img")[0].style.left) + (window.outerWidth);
+                $(".background-img")[i].style.left = position + "px";
+            }
         })
     }
 }

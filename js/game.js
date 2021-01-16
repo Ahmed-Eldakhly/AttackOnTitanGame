@@ -2,6 +2,8 @@
 var timerValue;
 var minutes;
 var seconds;
+var audioTimer = document.createElement('audio');
+//var backgroundAudio = document.createElement('audio');
 
 var levelId = 1, characterId = 1;
 var queryString = new Array();
@@ -21,6 +23,7 @@ $(function () {
         levelId = parseInt(queryString["level"]);
         characterId = parseInt(queryString["character"]);
         gameCreation(levelId, characterId);
+
     }
 });
 
@@ -49,6 +52,19 @@ function keyListen(keyObject) {
                 moveIntervalID = setInterval(callBackMove, 70)
             MAIN_CHARACTER_STATE = MOVING;
         }
+        // for injection
+        var injectionLeft = parseInt(document.getElementById("injection").style.left);
+        var injectionRight = parseInt(document.getElementById("injection").style.left) + parseInt(document.getElementById("injection").width);
+        var characterLeft = parseInt(document.getElementById("defenderPhotos").style.left);
+        var characterRight = parseInt(document.getElementById("defenderPhotos").style.left) + parseInt(document.getElementById("defenderPhotos").width);
+        if ((injectionLeft <= characterRight && injectionLeft >= characterLeft) || (injectionRight <= characterRight && injectionRight >= characterLeft)) {
+            if (injectionIconCollision == 0) {
+                Injection.injectionDisappear();
+                mainCharacter.increasehealth();
+                injectionIconCollision = 1;
+            }
+
+        }
     }
 }
 
@@ -66,9 +82,9 @@ function keyPressListen(keyObject) {
         console.log("attack");
 
     if (keyObject.keyCode == 115)
-        mainCharacter.characterSpeed = 60;
+        mainCharacter.characterSpeed = mainCharacter.highSpeed;
     else
-        mainCharacter.characterSpeed = 20;
+        mainCharacter.characterSpeed = mainCharacter.lowSpeed;
 
 }
 
@@ -82,6 +98,7 @@ $(window).on('blur', function (params) {
 
 function countdown() {
     clearInterval(timerValue);
+    var alertFlag = false;
     timerValue = setInterval(function () {
         var timer = $('.js-timeout').html();
         timer = timer.split(':');
@@ -97,11 +114,51 @@ function countdown() {
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
+        if (minutes == 0 && seconds <= 3 && MAIN_CHARACTER_STATE != LOSE) {
+            /* add timer sound */
+            backgroundAudio.pause();
+            audioTimer.setAttribute('src', 'audio/timer.mp3');
+            audioTimer.play();
+        }
+
         if (minutes == 0 && seconds == 0 && MAIN_CHARACTER_STATE != LOSE) {
             clearInterval(timerValue);
             MAIN_CHARACTER_STATE = WIN;
             mainCharacter.endGame();
         }
+        if (seconds % 20 == 0 && levelId < 3) {
+            Injection.injectionMovementStart();
+        } else if (seconds % 10 == 0 && levelId == 3) {
+            console.log(levelId);
+            Injection.injectionMovementStart();
+        }
+
+        // Create stones
+        if (seconds % 10 == 0) {
+            Stone.stoneMovement();
+        }
+
     }, 1000);
 }
+
+//countdown();
+
 countdown();
+
+
+//Add Sound 
+// var soundFlag = false;
+// $('.speaker').on('click', function (params) {
+//     /* add background sound */
+//     backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
+//     backgroundAudio.loop = true;
+
+//     if (!soundFlag) {
+//         $('#sound').attr("src", "image/sound.svg");
+//         backgroundAudio.play();
+//     } else {
+//         $('#sound').attr("src", "image/no-sound.svg");
+//         backgroundAudio.pause();
+//     }
+//     soundFlag = !soundFlag;
+// })

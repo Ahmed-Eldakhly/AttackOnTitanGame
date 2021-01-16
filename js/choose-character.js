@@ -64,13 +64,18 @@ function startGame(event) {
         levelFlage = 0;
     }
 
+    /* add click sound */
+    var audio = document.createElement('audio');
+    audio.setAttribute('src', 'audio/start-click.mp3');
+    audio.play();
+
     characterFlage += 1;
     levelFlage += 1;
 
     setTimeout(function () {
         var url = "game.html?level=" + levelFlage + "&character=" + characterFlage;
         window.location.href = url;
-    }, 500);
+    }, 950);
 
 }
 

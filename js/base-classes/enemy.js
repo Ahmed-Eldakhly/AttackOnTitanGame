@@ -6,12 +6,13 @@ var collisionEnemy = [];
 var index = 0;
 
 class Enemy {
-    constructor(level, attackMovement, images, speed, id) { //hossam edit
+    constructor(titanName, level, attackMovement, images, speed, id) { //hossam edit
         this.images = images;
         this.speed = speed;
         this.id = id
         this.attackMovement = attackMovement;  //hossam edit
         this.level = parseInt(level);                     //hosssam edit
+        this.titanName = titanName;
     }
 
     moveEnemy() {
@@ -21,17 +22,23 @@ class Enemy {
         var body = document.getElementsByTagName("body")[0];
 
         character[this.id].classList.add("enemy");
-        character[this.id].src = "image/characters/enemy-" + this.images[0];
-
+        character[this.id].src = "image/characters/" + this.images[0];
 
         body.appendChild(character[this.id]);
 
         var positionX = window.outerWidth;
+        //var positionY = window.outerHeight
         character[this.id].style.left = positionX + "px";
+        if (this.titanName == "Eren") {
+            character[this.id].style.height = "300px";
+        }
+        else if (this.titanName == "Reiner") {
+            character[this.id].style.height = "270px";
+        }
+
         character[this.id].style.bottom = parseInt(2 * window.outerHeight / 100) + "px";
         var enemyGenerator = setInterval(generateEnemies, this.speed);
         var enemyId = this.id;
-        collisionEnemy[enemyId] = 0;
         var enemyImages = this.images;
         var curruntEnemy = 0;
         var attackMove = 0;    //hossam edit
@@ -48,7 +55,7 @@ class Enemy {
             else {
                 if (senesingAttack > 1 && attackFlag == true && enemyId == attackingOne)  //hossam edit
                 {
-                    character[attackingOne].src = "image/characters/attack-" + attackImages[attackMove];
+                    character[attackingOne].src = "image/characters/" + attackImages[attackMove];
                     attackMove += 1;
                     character[attackingOne].style.left = (positionX -= 30) + "px"
                     if (attackMove >= attackImages.length) //hossam edit
@@ -58,28 +65,37 @@ class Enemy {
                     }
                 }
                 else if (senesingAttack >= 1 && attackFlag == false || enemyId != attackingOne) {
-                    character[enemyId].src = "image/characters/enemy-" + enemyImages[curruntEnemy];
+                    character[enemyId].src = "image/characters/" + enemyImages[curruntEnemy];
                     character[enemyId].style.left = positionX + "px";
                     positionX -= 50;
                     curruntEnemy = curruntEnemy + 1;
+
                     if (curruntEnemy >= enemyImages.length) {
                         curruntEnemy = 0;
                     }
+
                 }
             }
             var enemyLeft = parseInt(character[enemyId].style.left);
             var characterLeft = parseInt(mainCharacter.characterElementHTML.style.left);
             var enemyBottom = parseInt(character[enemyId].style.bottom);
             var characterBottom = parseInt(mainCharacter.characterElementHTML.style.bottom);
-            if ((enemyLeft - 45 <= characterLeft) && (enemyLeft + 45 >= characterLeft)) {
+            if ((enemyLeft - 200 <= characterLeft) && (enemyLeft + 10 >= characterLeft)) {
+                if (senesingAttack > 1) {
+                    attackFlag = true;
+                    attackingOne = enemyId
+                }
+            }
+            if ((enemyLeft - 20 <= characterLeft) && (enemyLeft + 45 >= characterLeft)) {
                 if (characterBottom < (enemyBottom + 300)) {
                     if (collisionEnemy[enemyId] == 0) {
                         mainCharacter.sethealth()
                         collisionEnemy[enemyId] = 1;
-                        if (senesingAttack > 1) {
+                        /*if (senesingAttack > 1) {
                             attackFlag = true;
                             attackingOne = enemyId
-                        }
+                        }*/
+
                     }
                 }
                 else { //gameOverVoice.pause(); }
