@@ -14,8 +14,8 @@ var enemyPhotosArray = ["enemy-1.png", "enemy-2.png", "enemy-3.png", "enemy-4.pn
 var enemyAttack = ["attack-1.png", "attack-2.png", "attack-3.png", "attack-4.png", "attack-5.png"]; //hossam edit
 
 var enemyPhotosArrayReiner = ["r1.png", "r2.png", "r3.png", "r4.png", "r5.png", "r6.png", "r7.png"];
-var enemyAttackReiner = ["ra1.png", "ra2.png", "ra3.png", "ra4.png", "ra5.png"];   //hossam edit
-// var enemyAttackReiner = ["rb1.png", "rb2.png", "rb3.png", "rb4.png","rb5.png"];   //hossam edit
+//var enemyAttackReiner = ["ra1.png", "ra2.png", "ra3.png", "ra4.png", "ra5.png"];   //hossam edit
+var enemyAttackReiner2 = ["rb1.png", "rb2.png", "rb3.png", "rb4.png", "rb5.png"];   //hossam edit
 
 
 // Eren
@@ -44,6 +44,9 @@ var roofPosetionX = -10, roof;
 
 // increase health
 var injectionObj = new Injection("injection.png", 50, 50, "-50px", parseInt(20 * $(window).innerHeight() / 100) + "px")
+
+// decrease health using stones
+var stoneObj1, stoneObj2, stoneObj3, stoneObj4;
 
 function gameCreation(level, character) {
     var buildingHight = parseInt(20 * $(window).innerHeight() / 100);
@@ -105,9 +108,14 @@ function gameCreation(level, character) {
                 break;
         }
     } else if (level == 3) {
+        // decrease the health
+        stoneObj1 = new Stone("red-stone.png", 50, 50, parseInt(40 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        stoneObj2 = new Stone("brouwn-stone.png", 50, 50, parseInt(70 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        // stoneObj3 = new Stone("red-stone.png", 50, 50, parseInt(70 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
+        stoneObj4 = new Stone("brouwn-stone.png", 50, 50, parseInt(90 * window.innerWidth / 100) + "px", (window.innerHeight - 10) + "px");
         $("#skyImage").attr("src", "image/background/sunset.jpg")// dakhly edit
         enemy1 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, 120, 0);  //hossam edit
-        enemy2 = new Enemy("Reiner", level, enemyAttackReiner, enemyPhotosArrayReiner, 120, 1);  //hossam edit
+        enemy2 = new Enemy("Reiner", level, enemyAttackReiner2, enemyPhotosArrayReiner, 120, 1);  //hossam edit
         enemies = [enemy1, enemy2];
         background1 = new Background("sunset.jpg", window.outerWidth, 760, "0px", "0px"); // dakhly edit
         background2 = new Background("sunset2.jpg", window.outerWidth, 760, (- window.outerWidth) + "px", "0px"); //dakhly edit

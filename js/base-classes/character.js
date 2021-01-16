@@ -25,6 +25,8 @@ class Characters {
         this.characterID = ID;
         this.characterName = Name;
         this.characterSpeed = speed;
+        this.lowSpeed = speed;
+        this.highSpeed = speed * 1.5;
         this.characterLevel = level;
         this.characterJumpPhotos = jumpPhotos;
         this.characterMovementPhotos = movementPhotos;
@@ -45,6 +47,7 @@ class Characters {
         Building.buildingsMovement();
         Background.backgroundsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -96,6 +99,7 @@ class Characters {
         Building.buildingsMovement();
         Background.backgroundsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -161,6 +165,7 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Injection.injectionMovement();
+        Stone.stoneMovementWithCharacter();
     }
 
     backwardMove() {
@@ -186,8 +191,8 @@ class Characters {
         //Element move with character
         Building.buildingsMovement();
         Background.backgroundsMovement();
+        Stone.stoneMovementWithCharacter();
         Injection.injectionMovement();
-
     }
 
     /* stop movement only */

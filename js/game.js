@@ -59,7 +59,7 @@ function keyListen(keyObject) {
         var characterRight = parseInt(document.getElementById("defenderPhotos").style.left) + parseInt(document.getElementById("defenderPhotos").width);
         if ((injectionLeft <= characterRight && injectionLeft >= characterLeft) || (injectionRight <= characterRight && injectionRight >= characterLeft)) {
             if (injectionIconCollision == 0) {
-                Injection.injectionDisappear();
+                injection.injectionDisappear();
                 mainCharacter.increasehealth();
                 injectionIconCollision = 1;
             }
@@ -82,9 +82,9 @@ function keyPressListen(keyObject) {
         console.log("attack");
 
     if (keyObject.keyCode == 115)
-        mainCharacter.characterSpeed = 60;
+        mainCharacter.characterSpeed = mainCharacter.highSpeed;
     else
-        mainCharacter.characterSpeed = 20;
+        mainCharacter.characterSpeed = mainCharacter.lowSpeed;
 
 }
 
@@ -126,9 +126,18 @@ function countdown() {
             MAIN_CHARACTER_STATE = WIN;
             mainCharacter.endGame();
         }
-        if (seconds % 20 == 0) {
-            Injection.injectionMovementStart();
+        if (seconds % 20 == 0 && levelId < 3) {
+            injection.injectionMovementStart();
+        } else if (seconds % 10 == 0 && levelId == 3) {
+            console.log(levelId);
+            injection.injectionMovementStart();
         }
+
+        // Create stones
+        if (seconds % 10 == 0) {
+            Stone.stoneMovement();
+        }
+
     }, 1000);
 }
 
