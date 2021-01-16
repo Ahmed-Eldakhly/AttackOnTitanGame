@@ -1,7 +1,12 @@
+/* Common CSS files */
 
-/* Speaker */
+/*Start Body*/
+html{
+  margin:0;
+  height:100%;
+}
 
-body {
+body{
     padding: 0;
     margin: 0;
     background-size: cover;
@@ -9,13 +14,10 @@ body {
     font-family: "Berkshire Swash", cursive;
     overflow: hidden;
     background-color:black;
-
- }
-  html{
-    margin:0;
-    height:100%;
 }
-  
+/*End Body*/
+
+ /* Start Speaker Section */
 .speaker{
     background: rgba(33, 34, 34, 0.9);
     color: white;
@@ -32,11 +34,14 @@ body {
 .speaker img {
     margin: 7px;
 }
+/* End Speaker Section */
 
+/* Icon back */
   #icon {
     position: absolute;
     top: 20px;
     left: 20px;
     height:4px;
     width:4px;
-  }
+}
+/* Icon back */
