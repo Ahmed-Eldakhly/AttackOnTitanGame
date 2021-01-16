@@ -1,8 +1,9 @@
  /* {box-sizing: border-box} */
 body { 
-   font-family: 'Berkshire Swash' ,cursive;
-  background-color: black;
-   margin:0
+   font-family: 'Berkshire Swash' ;
+  background-color: rgba(12, 1, 1, 0.89);
+   margin:0;
+   overflow: hidden;
   }
 /* .mySlides {display: none} */
 img {
@@ -12,20 +13,32 @@ img {
 }
 
 .slideshow-container {
-  width: 80%;
+  width: 90%;
   position: relative;
   margin: auto;
-  top:70px;
-}
-#tell{
+  height:100% ;
+margin-top: 65px;
+margin-bottom: 50px;}
+#tell1 {
   color: white;
   position: absolute;
   text-align: center;
   width: 80%;
-  margin: auto;
+  margin-left: 150px;
   top:20px;
-  font-size: x-large;
-
+  font-size:xx-large;
+  /* background-color: black; */
+  
+}
+#tell2{
+  color: white;
+  position: absolute;
+  text-align: center;
+  width: 80%;
+  margin-left: 150px;
+  top:570px;
+  font-size:xx-large;
+  /* background-color: black; */
 }
 .prev, .next {
   cursor: pointer;
