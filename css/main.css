@@ -8,6 +8,8 @@ body {
     background-repeat: no-repeat;
     font-family: "Berkshire Swash", cursive;
     overflow: hidden;
+    background-color:black;
+
  }
   html{
     margin:0;
