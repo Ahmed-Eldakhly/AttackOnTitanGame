@@ -7,29 +7,30 @@ console.log(story.length);
 console.log(tell1.length);
 console.log(tell2.length);
 var i = 0;
+$(".prev").hide();
 $(".next").on('click', function (params) {
     if (i != story.length - 1) {
         i++;
-        //console.log("nxtif");
+        $(".prev").show();
+        $('#immg').attr("src", "image/background/story/" + story[i]);
+        $('#tell1').text(tell1[i]);
+        $('#tell2').text(tell2[i]);
+        $(".numbertext").text(i + 1 + "/18");
+        console.log(i);
+        if (i == story.length - 1) $(".next").hide();
     }
-    else i = 0;
-    $('#immg').attr("src", "image/background/story/" + story[i]);
-    $('#tell1').text(tell1[i]);
-    $('#tell2').text(tell2[i]);
-    $(".numbertext").text(i + 1 + "/18");
-    // console.log("nxt");
 
 });
 $(".prev").on('click', function (params) {
     console.log(i);
     if (i != 0) {
         i--;
-        //console.log("preif");
+        $(".next").show();
+        $('#immg').attr("src", "image/background/story/" + story[i]);
+        $('#tell1').text(tell1[i]);
+        $('#tell2').text(tell2[i]);
+        $(".numbertext").text(i + 1 + "/18");
+        if (i == 0) $(".prev").hide();
     }
-    else i = story.length - 1;
-    $('#immg').attr("src", "image/background/story/" + story[i]);
-    $('#tell1').text(tell1[i]);
-    $('#tell2').text(tell2[i]);
-    $(".numbertext").text(i + 1 + "/18");
-    //console.log("pre");
+
 });
