@@ -10,9 +10,10 @@
   width: 90%;
   position: relative;
   margin: auto;
-  height:90% ;
-margin-top: 65px;
-margin-bottom: 50px;}
+  margin-top: 65px;
+  margin-bottom: 50px;
+}
+
 #tell1 {
   color: white;
   position: absolute;
@@ -30,7 +31,7 @@ margin-bottom: 50px;}
   text-align: center;
   width: 70%;
   margin-left: 180px;
-  top:460px;
+  bottom:30px;
   font-size:xx-large;
   background-color: rgba(0, 0, 0, 0.281);
   border-radius:24px;
@@ -69,8 +70,6 @@ margin-bottom: 50px;}
   margin-left: 20px;
 }
 
-
-
 .active:hover {
   background-color: #717171;
 }
@@ -95,3 +94,13 @@ margin-bottom: 50px;}
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 } 
+
+/* Start Media Section */
+
+@media screen and (min-height: 700px) {
+  #immg {
+    height: 630px;
+  }
+}
+
+/* End Media Section */
