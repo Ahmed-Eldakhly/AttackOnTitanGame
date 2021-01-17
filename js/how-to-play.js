@@ -1,58 +1,55 @@
-/* get the user browser dimensions. */
+/* get the user browser dimensions*/
 document.getElementById("htmlID").style.height = window.outerHeight;
 document.getElementById("htmlID").style.width = window.outerWidth;
-/* make the window response at any size. */
+
+/* make the window response at any size*/
 window.addEventListener("resize", function () {
-    /* get the user browser dimensions. */
+    /* get the user browser NEW dimensions*/
     document.getElementById("htmlID").style.height = window.outerHeight;
     document.getElementById("htmlID").style.width = window.outerWidth;
 });
 
-//Audio 
+var currentInstructionElement = 0;
+var nextBtn = document.getElementById("nextButton");
+
+var ins1 = document.getElementById("instruction1");
+var ins2 = document.getElementById("instruction2");
+var ins3 = document.getElementById("instruction3");
+var ins4 = document.getElementById("instruction4");
+var ins5 = document.getElementById("instruction5");
+
+var animation1 = "currentInstruction";
+var animation2 = "currentInstruction2";
+
+var Stop = "stopAnimation";
+
+/*Set Audio*/
 backgroundAudio.setAttribute('src', 'audio/how-to-play.mp3');
 
-/* varible to sync between instructions to show it using animation attribute. */
-var currentInstructionElement = 0;
-/* get the next button to check if the user pressed on it or not. */
-var nextBtn = document.getElementById("NextButton");
-/* add Event listener on the next key to appear new instruction when the user presses on it. */
-nextBtn.addEventListener("click", currentIns)
-/* make interval event to show all instuction continousuly, if the user doesn't press on the next key. */
-setInterval(currentInsInterval, 4000);
-/* next listener function. */
+/* moving to the next instruction by click */
+nextBtn.addEventListener("click", currentIns);
 function currentIns(obj) {
-    /* stop the default response of the link tag of next button. */
     obj.preventDefault();
-    /* call the animation function to show instructions in animated way. */
-    animationMethod();
-}
-/* interval function */
-function currentInsInterval() {
-    /* call the animation function to show instructions in animated way. */
-    animationMethod();
+    animationMethod();  //call animation
 }
 
+/* moving to the next instruction continousuly*/
+setInterval(currentInsInterval, 4000);
+function currentInsInterval() {
+    animationMethod();  //call animation
+}
+
+/*Function to Show instruction in animated way*/
 function animationMethod() {
-    /* get the five instuction tags from html object to modifiy them bassed on the user or the time. */
-    var ins1 = document.getElementById("instruction1");
-    var ins2 = document.getElementById("instruction2");
-    var ins3 = document.getElementById("instruction3");
-    var ins4 = document.getElementById("instruction4");
-    var ins5 = document.getElementById("instruction5");
-    /* var to put the new istruction in animated mode. */
-    var animation1 = "currentInstruction";
-    var animation2 = "currentInstruction2";
-    /* var to stop last instruction from animated mode. */
-    var Stop = "stopAnimation"
-    /* check to know which should be in animated mode. */
+    /* check which instruction is playing*/
     if (currentInstructionElement === 0) {
-        /* stop the last instruction from animated mode. */
+        /* stop the current*/
         ins1.style.animationName = Stop;
-        /* put the new instruction in animated mode. */
+        /* run the next instruction*/
         ins2.style.animationName = animation1;
-        /* make the new instruction appear in the page. */
+        /* display the next */
         ins2.style.display = "block";
-        /* increment the sync var to sync between instructions. */
+        /* increment to sync between instructions*/
         currentInstructionElement++;
     }
     else if (currentInstructionElement === 1) {
@@ -74,7 +71,7 @@ function animationMethod() {
         currentInstructionElement++;
     }
     else {
-        /* make all instructions in freeze mode. */
+        /* Stop all instructions*/
         ins5.style.animationName = Stop;
     }
 }
