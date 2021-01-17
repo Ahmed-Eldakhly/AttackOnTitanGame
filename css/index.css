@@ -1,8 +1,9 @@
+/* Set page background. */
 body {
-  background-image: url("../image/background/main.jpg");
-  
+  background-image: url("../image/background/main.jpg"); 
 }
 
+/* General style configurations. */
 div {
   text-align: center;
   width: 40%;
@@ -32,11 +33,13 @@ div {
   text-align: center;
 }
 
+/* Animation part. */
 .text-animation {
   transform: translate(-50%, 0%);
   margin-left: 50%;
   width: 1000px;
 }
+
 .text-animation h1 {
   margin: 0;
   padding-bottom: 0;
@@ -50,6 +53,7 @@ div {
   font-family: arial;
   animation: bloodAnimate 35s linear infinite;
 }
+
 @keyframes bloodAnimate {
   0% {
     background-position: left 0px top 0px;

@@ -166,6 +166,8 @@ class Characters {
         Building.buildingsMovement();
         Injection.injectionMovement();
         Stone.stoneMovementWithCharacter();
+
+        Background.backgroundsMovement();
     }
 
     backwardMove() {
