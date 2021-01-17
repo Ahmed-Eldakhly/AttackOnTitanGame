@@ -1,13 +1,12 @@
-//var for timer
-var timerValue;
-var minutes;
-var seconds;
+// Timer variables
+var timerValue, minutes, seconds;
 var audioTimer = document.createElement('audio');
-//var backgroundAudio = document.createElement('audio');
 
+// Level variables
 var levelId = 1, characterId = 1;
 var queryString = new Array();
 
+// Get quary string from url
 $(function () {
     if (queryString.length == 0) {
         if (window.location.search.split('?').length > 1) {
@@ -22,14 +21,14 @@ $(function () {
     if (queryString["level"] != null && queryString["character"] != null) {
         levelId = parseInt(queryString["level"]);
         characterId = parseInt(queryString["character"]);
-        gameCreation(levelId, characterId);
-
     }
+    gameCreation(levelId, characterId);
 });
 
-
+// Listen to right to forward moving and top to jump sign 
 document.addEventListener("keydown", keyListen);
 function keyListen(keyObject) {
+    // jump
     if (keyObject.keyCode == 38) {
         if (MAIN_CHARACTER_STATE == MOVING || MAIN_CHARACTER_STATE == MOVE_FOREARD_FROM_JUMP) {
             mainCharacter.stopMove();
@@ -45,6 +44,7 @@ function keyListen(keyObject) {
             MAIN_CHARACTER_STATE = JUMPING;
         }
     }
+    // right 
     else if (keyObject.keyCode == 39) {
         if (MAIN_CHARACTER_STATE == STAND) {
             var callBackMove = mainCharacter.forwardMove.bind(mainCharacter)
@@ -52,11 +52,11 @@ function keyListen(keyObject) {
                 moveIntervalID = setInterval(callBackMove, 70)
             MAIN_CHARACTER_STATE = MOVING;
         }
-        // for injection
+        // for injection collision 
         var injectionLeft = parseInt(document.getElementById("injection").style.left);
-        var injectionRight = parseInt(document.getElementById("injection").style.left) + parseInt(document.getElementById("injection").width);
+        var injectionRight = injectionLeft + parseInt(document.getElementById("injection").width);
         var characterLeft = parseInt(document.getElementById("defenderPhotos").style.left);
-        var characterRight = parseInt(document.getElementById("defenderPhotos").style.left) + parseInt(document.getElementById("defenderPhotos").width);
+        var characterRight = characterLeft + parseInt(document.getElementById("defenderPhotos").width);
         if ((injectionLeft <= characterRight && injectionLeft >= characterLeft) || (injectionRight <= characterRight && injectionRight >= characterLeft)) {
             if (injectionIconCollision == 0) {
                 Injection.injectionDisappear();
@@ -68,6 +68,7 @@ function keyListen(keyObject) {
     }
 }
 
+// Listen keyup right sign to stop moving 
 document.addEventListener("keyup", keyUpListen);
 function keyUpListen(keyObject) {
     if (keyObject.keyCode == 39) {
@@ -76,11 +77,14 @@ function keyUpListen(keyObject) {
     }
 }
 
+// Listen to attaking and speeding
 document.addEventListener("keypress", keyPressListen);
 function keyPressListen(keyObject) {
+    // "a" key attacking 
     if (keyObject.keyCode == 97)
         console.log("attack");
 
+    // "s" key speed up 
     if (keyObject.keyCode == 115)
         mainCharacter.characterSpeed = mainCharacter.highSpeed;
     else
@@ -88,6 +92,7 @@ function keyPressListen(keyObject) {
 
 }
 
+// End game when window be blur 
 $(window).on('blur', function (params) {
     if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
         Enemy.clearAttack();
@@ -96,44 +101,48 @@ $(window).on('blur', function (params) {
     }
 });
 
+// The game counter 
 function countdown() {
     clearInterval(timerValue);
-    var alertFlag = false;
+
+    var timer = $('.js-timeout').html();
+    timer = timer.split(':');
+    minutes = timer[0];
+    seconds = timer[1];
+
     timerValue = setInterval(function () {
-        var timer = $('.js-timeout').html();
-        timer = timer.split(':');
-        minutes = timer[0];
-        seconds = timer[1];
         seconds -= 1;
         if (minutes < 0) return;
         else if (seconds < 0 && minutes == 0) {
             minutes = 0;
-            //seconds = 59;
         }
         else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
 
         $('.js-timeout').html(minutes + ':' + seconds);
 
+        // add timer sound when second = 3
         if (minutes == 0 && seconds <= 3 && MAIN_CHARACTER_STATE != LOSE) {
-            /* add timer sound */
             backgroundAudio.pause();
             audioTimer.setAttribute('src', 'audio/timer.mp3');
             audioTimer.play();
         }
 
+        // end game when seconds and minutes = 0
         if (minutes == 0 && seconds == 0 && MAIN_CHARACTER_STATE != LOSE) {
             clearInterval(timerValue);
             MAIN_CHARACTER_STATE = WIN;
             mainCharacter.endGame();
         }
+
+        // genetate injection in game every 20 second in level 1,2 
+        // and every 10 second in level 3
         if (seconds % 20 == 0 && levelId < 3) {
             Injection.injectionMovementStart();
         } else if (seconds % 10 == 0 && levelId == 3) {
-            console.log(levelId);
             Injection.injectionMovementStart();
         }
 
-        // Create stones
+        // genetate stones in level 3 every 10 second
         if (seconds % 10 == 0) {
             Stone.stoneMovement();
         }
@@ -141,24 +150,4 @@ function countdown() {
     }, 1000);
 }
 
-//countdown();
-
 countdown();
-
-
-//Add Sound 
-// var soundFlag = false;
-// $('.speaker').on('click', function (params) {
-//     /* add background sound */
-//     backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
-//     backgroundAudio.loop = true;
-
-//     if (!soundFlag) {
-//         $('#sound').attr("src", "image/sound.svg");
-//         backgroundAudio.play();
-//     } else {
-//         $('#sound').attr("src", "image/no-sound.svg");
-//         backgroundAudio.pause();
-//     }
-//     soundFlag = !soundFlag;
-// })

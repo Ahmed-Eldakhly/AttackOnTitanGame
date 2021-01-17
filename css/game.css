@@ -161,6 +161,8 @@ img {
 
 /* Injecton style configurations. */
 #injection {
+  display : block;
+  position: absolute;
   z-index: 5;
 }
 

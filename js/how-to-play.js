@@ -26,8 +26,16 @@ var Stop = "stopAnimation";
 /*Set Audio*/
 backgroundAudio.setAttribute('src', 'audio/how-to-play.mp3');
 
-/* moving to the next instruction by click */
-nextBtn.addEventListener("click", currentIns);
+/* varible to sync between instructions to show it using animation attribute. */
+var currentInstructionElement = 0;
+/* get the next button to check if the user pressed on it or not. */
+var nextBtn = document.getElementById("nextButton");
+/* add Event listener on the next key to appear new instruction when the user presses on it. */
+nextBtn.addEventListener("click", currentIns)
+/* make interval event to show all instuction continousuly, if the user doesn't press on the next key. */
+setInterval(currentInsInterval, 4000);
+
+/* next listener function. */
 function currentIns(obj) {
     obj.preventDefault();
     animationMethod();  //call animation

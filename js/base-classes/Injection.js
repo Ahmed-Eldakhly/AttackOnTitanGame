@@ -1,4 +1,6 @@
 var injectionIconCollision = 0;
+
+// This class made to increase character health
 class Injection extends LevelStructure {
 
     constructor(images, width, height, positionX, positionY) {
@@ -11,22 +13,24 @@ class Injection extends LevelStructure {
             "bottom": positionY,
             "width": width,
             "height": height,
-            "display": "block",
-            "position": "absolute"
         });
     }
 
+    // Move injection when character move
     static injectionMovement() {
         var position = parseInt(document.getElementById("injection").style.left);
         if (position + document.getElementById("injection").width >= 0)
             document.getElementById("injection").style.left = position - 20 + "px";
-
     }
+
+    // Start generate, display injection in level
     static injectionMovementStart() {
         document.getElementById("injection").style.left = window.outerWidth + "px";
         document.getElementById("injection").style.display = "block";
         injectionIconCollision = 0;
     }
+
+    // Make injection in level
     static injectionDisappear() {
         document.getElementById("injection").style.display = "none";
     }
