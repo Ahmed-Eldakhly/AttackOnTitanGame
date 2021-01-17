@@ -321,7 +321,6 @@ class Characters {
             $('#healthBar').css('background', 'rgb(196, 123, 14)');
             $('#healthBar').css('color', 'rgb(196, 123, 14)');
         }
-
     }
 
     winGame(positionX, positionY, characterElement) {

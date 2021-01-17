@@ -61,7 +61,7 @@ function keyListen(keyObject) {
             if (injectionIconCollision == 0) {
                 Injection.injectionDisappear();
                 mainCharacter.increasehealth();
-                InjectionIconCollision = 1;
+                injectionIconCollision = 1;
             }
 
         }
