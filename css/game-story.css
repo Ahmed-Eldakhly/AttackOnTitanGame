@@ -70,9 +70,9 @@
   margin-left: 20px;
 }
 
-.active:hover {
+/* .active:hover {
   background-color: #717171;
-}
+} */
 
 .fade {
   -webkit-animation-name: fade;
