@@ -1,12 +1,12 @@
+// Add sound track to all pages as dafult.
 var backgroundAudio = document.createElement('audio');
 backgroundAudio.setAttribute('src', 'audio/attack-small.mp3');
-//backgroundAudio.setAttribute('src', 'audio/Attack on Titan You See Big GIRL.mp3');
 
-
-//Add Sound 
+// Add Sound.
 var soundFlag = false;
-$('.speaker').on('click', function (params) {
-    /* add background sound */
+// Event listener to check if the user want to play the sound track or not.
+$('.speaker').on('click', function () {
+    // Give the audio element loop attribute to repeat itself.
     backgroundAudio.loop = true;
 
     if (!soundFlag) {

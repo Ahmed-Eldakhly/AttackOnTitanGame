@@ -1,24 +1,26 @@
+/*Variables for interval functins*/
 var jumpIntervalID;
 var backIntervalID;
-var moveImageCureent = 1;
 var moveIntervalID;
-
-/*var jumpKeyListenerID;*/
-var jumpState = 0;
-
-var STAND = 0;
-var MOVE_FORWARD_FROM_STAND = 1;
-var MOVE_FOREARD_FROM_JUMP = 2;
-var MOVING = 3;
-var JUMP_FROM_STAND = 4;
-var JUMP_FROM_MOVE_FORWARD = 5;
-var GO_BACK = 6;
-var JUMPING = 7;
-var LOSE = 8;
-var WIN = 9;
-
+/*constant values*/
+const STAND = 0;
+const MOVE_FORWARD_FROM_STAND = 1;
+const MOVE_FOREARD_FROM_JUMP = 2;
+const MOVING = 3;
+const JUMP_FROM_STAND = 4;
+const JUMP_FROM_MOVE_FORWARD = 5;
+const GO_BACK = 6;
+const JUMPING = 7;
+const LOSE = 8;
+const WIN = 9;
+/*flag for charcter state */
 var MAIN_CHARACTER_STATE = STAND;
-
+/*images counter */
+var moveImageCureent = 1;
+var LoseCureentImage = 1;
+var WinCureentImage = 1;
+/*health bar*/
+var health = $('#healthBar').width();
 
 class Characters {
     constructor(ID, Name, speed, level, jumpPhotos, movementPhotos, losePhotos, winPhotos, HTML_Element) {
@@ -43,11 +45,7 @@ class Characters {
     /* jump only */
     jumpOnly_function(obj) {
         this.jumpPosition++;
-        //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure(); //Elements move with character
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -76,7 +74,6 @@ class Characters {
             case 8:
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
-                jumpState = 0;
                 if (this.position_x >= 800) {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
                     if (backIntervalID == undefined)
@@ -95,11 +92,7 @@ class Characters {
     /* move and jump */
     jumpWithMove_function(obj) {
         this.jumpPosition++;
-        //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure(); //Elements move with character
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -132,7 +125,6 @@ class Characters {
                 this.characterElementHTML.style.bottom = (this.position_y) + "px";
                 this.characterElementHTML.src = "image/characters move/" + this.characterJumpPhotos[this.jumpPosition] + ".png";
                 this.jumpPosition = 0;
-                jumpState = 0;
 
                 if (this.position_x >= 800) {
                     var callBackJump = mainCharacter.backwardMove.bind(mainCharacter)
@@ -145,9 +137,7 @@ class Characters {
                 }
                 clearInterval(jumpIntervalID);
                 jumpIntervalID = undefined;
-
                 break;
-
         }
     }
 
@@ -158,16 +148,14 @@ class Characters {
         }
         if (this.position_x < 800)
             this.position_x += this.characterSpeed;
+
         this.characterElementHTML.src = "image/characters move/" + this.characterMovementPhotos[moveImageCureent];
         this.characterElementHTML.style.left = (this.position_x) + "px";
         moveImageCureent++;
-
-        //Element move with character
-        Building.buildingsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure();   //Elements move with character
     }
 
+    /*function to redesign where the character is standing*/
     backwardMove() {
         if (moveImageCureent >= this.characterMovementPhotos.length) {
             moveImageCureent = 1;
@@ -179,7 +167,6 @@ class Characters {
             moveImageCureent++;
             MAIN_CHARACTER_STATE = GO_BACK;
         }
-
         else {
             clearInterval(backIntervalID);
             backIntervalID = undefined;
@@ -187,12 +174,7 @@ class Characters {
             this.characterElementHTML.style.left = (this.position_x) + "px";
             MAIN_CHARACTER_STATE = STAND;
         }
-
-        //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Stone.stoneMovementWithCharacter();
-        Injection.injectionMovement();
+        moveEveryStructure();  //Elements move with character
     }
 
     /* stop movement only */
@@ -202,6 +184,7 @@ class Characters {
         moveIntervalID = undefined;
     }
 
+    /*end game whatever win or lose */
     endGame() {
         Enemy.clearAttack();
         backgroundAudio.pause();
@@ -213,30 +196,37 @@ class Characters {
         backIntervalID = undefined;
         moveIntervalID = undefined;
         jumpIntervalID = undefined;
+
         /* stop timer. */
         clearInterval(timerValue);
+
         /* stop key up and down events. */
         document.removeEventListener("keydown", keyListen);
         document.removeEventListener("keyup", keyUpListen);
+
+        /*reset charcter position*/
         this.position_y = parseInt(20 * $(window).innerHeight() / 100);
         this.characterElementHTML.style.bottom = this.position_y + "px";
-        /***/
         var positionX = this.position_x;
         var positionY = this.position_y;
         var characterElement = this.characterElementHTML;
+
+        /*check character state*/
         if (MAIN_CHARACTER_STATE == LOSE) {
-            this.loseGame(positionX, positionY, characterElement)
-        } else if (MAIN_CHARACTER_STATE == WIN) {
-            this.winGame(positionX, positionY, characterElement)
+            this.loseGame(positionX, positionY, characterElement)  //call loseGame function
+        }
+        else if (MAIN_CHARACTER_STATE == WIN) {
+            this.winGame(positionX, positionY, characterElement)  //call winGame function
         }
     }
 
-    // /* lose game only */
+    /* lose game only */
     loseGame(positionX, positionY, characterElement) {
-        /* show titan. */
+        /* show titan different images base on the level */
         if (this.characterLevel == 1) {
             var backgroundTitan = new Background("titan.png", 800, 400, "400px", "453px");
-        } else if (this.characterLevel == 2) {
+        }
+        else if (this.characterLevel == 2) {
             var backgroundTitan = new Background("titan-level2.png", 700, 500, "400px", "150px");
         }
         else {
@@ -244,13 +234,8 @@ class Characters {
         }
 
         /* add lose sound */
-        audioTimer.pause();
-        var audio = document.createElement('audio');
-        audio.setAttribute('src', 'audio/lose.mp3');
-        audio.play();
+        playAudio('audio/lose.mp3');
 
-        /* make event to move character in lose state. */
-        var LoseCureentImage = 1;
         var photos = this.characterLosePhotos;
         /* create lose interval to change lose images. */
         var lose = setInterval(characterlose, 300);
@@ -260,7 +245,8 @@ class Characters {
                 $('body').append("<div class='lose-div'><h1 class='lose-title'>Game Over</h1></div>");
                 $('.lose-div').append(`<img src='image/characters/${photos[0]}.png' class='lose-image'><a href='game.html?level=${levelId}&character=${characterId}' class='retry'>Retry</a>`);
                 characterElement.remove();
-            } else {
+            }
+            else {
                 if (LoseCureentImage == photos.length - 1) {
                     characterElement.style.width = "150px";
                     characterElement.style.height = "80px";
@@ -274,61 +260,10 @@ class Characters {
         }
     }
 
-    sethealth() {
-        var cal = 0;
-        cal = $('#healthBar').width();
-        if (cal <= (0.8 * 300) && cal > (0.4 * 300)) {    //hossam edit
-            $('#healthBar').css('background', 'rgb(196, 123, 14)');
-            $('#healthBar').css('color', 'rgb(196, 123, 14)');
-        }
-        else if (cal <= (0.4 * 300)) {  //hossam edit
-            $('#healthBar').css('background', 'rgb(153, 38, 38)');
-            $('#healthBar').css('color', 'rgb(153, 38, 38)');
-        }
-
-        if (cal > (0.2 * 300)) {  //hossam edit
-            if (MAIN_CHARACTER_STATE != WIN) {
-                cal = cal - (0.2 * 300);  //hossam edit
-                $('#healthBar').css('width', cal + 'px');
-                return true;
-            }
-        }
-        else {
-            $('#healthBar').css('width', '0px');
-            $('#healthBar').text('');
-            if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
-                MAIN_CHARACTER_STATE = LOSE;
-                //Eren.loseGame();
-                this.endGame();
-            }
-            return false;
-        }
-    }
-
-    increasehealth() {
-        var cal = parseInt($('#healthBar').width());
-        console.log(cal);
-        if (cal < 300) {
-            cal = cal + 0.2 * 300;
-            console.log(cal);
-            $('#healthBar').width(cal + "px");
-        }
-        if (cal >= (0.8 * 300)) {
-            $('#healthBar').css('background', 'rgb(21, 95, 21)');
-            $('#healthBar').css('color', 'rgb(21, 95, 21)');
-        }
-        else {
-            $('#healthBar').css('background', 'rgb(196, 123, 14)');
-            $('#healthBar').css('color', 'rgb(196, 123, 14)');
-        }
-    }
-
     winGame(positionX, positionY, characterElement) {
-        var audio = document.createElement('audio');
-        audio.setAttribute('src', 'audio/win.mp3');
-        audio.play();
+        /* add win sound */
+        playAudio('audio/win.mp3');
 
-        var WinCureentImage = 1;
         var photos = this.characterWinPhotos;
         var win = setInterval(characterWin, 300);
 
@@ -341,7 +276,8 @@ class Characters {
                 <a href='game.html?level=${levelId}&character=${characterId}' class='again'>Play Again?</a>`);
                 characterElement.remove();
                 $("#defenderPhotos").css("bottom", "-20px");
-            } else {
+            }
+            else {
                 characterElement.src = "image/characters move/" + photos[WinCureentImage] + ".png";
                 characterElement.style.left = positionX + "px";
                 positionX += 30;
@@ -350,4 +286,63 @@ class Characters {
         }
     }
 
+    /*function to change the health bar */
+    sethealth() {
+        if (health <= (0.8 * 300) && health > (0.4 * 300)) {
+            $('#healthBar').css('background', 'rgb(196, 123, 14)');
+            $('#healthBar').css('color', 'rgb(196, 123, 14)');
+        }
+        else if (health <= (0.4 * 300)) {
+            $('#healthBar').css('background', 'rgb(153, 38, 38)');
+            $('#healthBar').css('color', 'rgb(153, 38, 38)');
+        }
+
+        if (health > (0.2 * 300)) {
+            if (MAIN_CHARACTER_STATE != WIN) {
+                health = health - (0.2 * 300);
+                $('#healthBar').css('width', health + 'px');
+                return true;
+            }
+        }
+        else {
+            $('#healthBar').css('width', '0px');
+            $('#healthBar').text('');
+            if (MAIN_CHARACTER_STATE != LOSE && MAIN_CHARACTER_STATE != WIN) {
+                MAIN_CHARACTER_STATE = LOSE;
+                this.endGame();
+            }
+            return false;
+        }
+    }
+    /*function to increase health when the character take the injection */
+    increasehealth() {
+        if (health < 300) {
+            health = health + 0.2 * 300;
+            $('#healthBar').width(health + "px");
+        }
+
+        if (health >= (0.8 * 300)) {
+            $('#healthBar').css('background', 'rgb(21, 95, 21)');
+            $('#healthBar').css('color', 'rgb(21, 95, 21)');
+        }
+        else {
+            $('#healthBar').css('background', 'rgb(196, 123, 14)');
+            $('#healthBar').css('color', 'rgb(196, 123, 14)');
+        }
+    }
+}
+/*function to move every structure */
+function moveEveryStructure() {
+    Building.buildingsMovement();
+    Background.backgroundsMovement();
+    Stone.stoneMovementWithCharacter();
+    Injection.injectionMovement();
+}
+
+/*function to run any aduio */
+function playAudio(srcAudio) {
+    audioTimer.pause();
+    var audio = document.createElement('audio');
+    audio.setAttribute('src', srcAudio);
+    audio.play();
 }
