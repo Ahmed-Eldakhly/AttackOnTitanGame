@@ -3,14 +3,6 @@ img {
   position: absolute;
 }
 
-/* Background style configurations. */
-#skyImage {
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
 /* floor and building style configurations. */
 .floor {
   position: absolute;
@@ -182,3 +174,11 @@ img {
     width: 30%;
   }
 }
+
+.stone-img{
+  position: absolute;
+  display: none;
+  z-index: 4;
+}
+
+/* End Media Section */
