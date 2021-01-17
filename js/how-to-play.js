@@ -9,23 +9,18 @@ window.addEventListener("resize", function () {
     document.getElementById("htmlID").style.width = window.outerWidth;
 });
 
-/*var between instructions*/
 var currentInstructionElement = 0;
-/*//get button next*/
 var nextBtn = document.getElementById("NextButton");
 
-/*Get  instruction*/
 var ins1 = document.getElementById("instruction1");
 var ins2 = document.getElementById("instruction2");
 var ins3 = document.getElementById("instruction3");
 var ins4 = document.getElementById("instruction4");
 var ins5 = document.getElementById("instruction5");
 
-/* var to put the new istruction in animated mode*/
 var animation1 = "currentInstruction";
 var animation2 = "currentInstruction2";
 
-/* var to stop last instruction from animated mode*/
 var Stop = "stopAnimation";
 
 /*Set Audio*/
@@ -46,15 +41,15 @@ function currentInsInterval() {
 
 /*Function to Show instruction in animated way*/
 function animationMethod() {
-    /* check to know which should be in animated mode*/
+    /* check which instruction is playing*/
     if (currentInstructionElement === 0) {
-        /* stop the last instruction from animated mode*/
+        /* stop the current*/
         ins1.style.animationName = Stop;
-        /* put the new instruction in animated mode*/
+        /* run the next instruction*/
         ins2.style.animationName = animation1;
-        /* make the new instruction appear in the page*/
+        /* display the next */
         ins2.style.display = "block";
-        /* increment the sync var to sync between instructions*/
+        /* increment to sync between instructions*/
         currentInstructionElement++;
     }
     else if (currentInstructionElement === 1) {
@@ -76,7 +71,7 @@ function animationMethod() {
         currentInstructionElement++;
     }
     else {
-        /* make all instructions in freeze mode*/
+        /* Stop all instructions*/
         ins5.style.animationName = Stop;
     }
 }
