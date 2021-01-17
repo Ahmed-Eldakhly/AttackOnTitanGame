@@ -172,6 +172,8 @@ img {
 /* End Health Section */
 
 #injection {
+  display : block;
+  position: absolute;
   z-index: 5;
 }
 
