@@ -20,19 +20,20 @@ class Background extends LevelStructure {
     }
     /*a function to make the background move with the character*/
     static backgroundsMovement() {
-        $(".background-img").each((i) => {
+        $(".background-img").each((backgroundNumber) => {
             /*read position*/
-            var position = parseInt($(".background-img")[i].style.left);
+            var position = parseInt($(".background-img")[backgroundNumber].style.left);
             /*move position by 20 px*/
-            $(".background-img")[i].style.left = position - 20 + "px";
-            
-            if (position <= - (window.outerWidth) && i == 0) {
+            $(".background-img")[backgroundNumber].style.left = position - 20 + "px";
+            /* this if else condition is to make sure that there is 
+            no gabs between the presented images*/
+            if (position <= - (window.outerWidth) && backgroundNumber == 0) {
                 position = parseInt($(".background-img")[1].style.left) + (window.outerWidth);
-                $(".background-img")[i].style.left = position - 20 + "px";
+                $(".background-img")[backgroundNumber].style.left = position - 20 + "px";
             }
-            else if (position <= - (window.outerWidth) && i == 1) {
+            else if (position <= - (window.outerWidth) && backgroundNumber == 1) {
                 position = parseInt($(".background-img")[0].style.left) + (window.outerWidth);
-                $(".background-img")[i].style.left = position + "px";
+                $(".background-img")[backgroundNumber].style.left = position + "px";
             }
         })
     }

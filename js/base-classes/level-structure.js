@@ -12,7 +12,6 @@ class LevelStructure {
         this.id = ++idCounter;        /*id of the instance*/
         this.positionX = positionX;   /*x position of instance*/
         this.positionY = positionY;   /*y position of instance*/
-        this.forward = 0;
     }
 
 }
