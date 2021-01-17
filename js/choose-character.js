@@ -1,3 +1,5 @@
+
+
 var characterFlage = -1;
 var levelFlage = -1;
 

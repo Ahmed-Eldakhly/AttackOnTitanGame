@@ -1,5 +1,4 @@
-
-/* .mySlides {display: none} */
+/*image position*/
 #immg {
   vertical-align: middle;
   width: 100%;
@@ -20,23 +19,24 @@
   text-align: center;
   width: 70%;
   margin-left: 180px;
-  top:3px;
-  font-size:xx-large;
+  top: 3px;
+  font-size: xx-large;
   background-color: rgba(0, 0, 0, 0.281);
-  border-radius:24px;
+  border-radius: 24px;
 }
-#tell2{
+#tell2 {
   color: white;
   position: absolute;
   text-align: center;
   width: 70%;
   margin-left: 180px;
-  bottom:3px;
-  font-size:xx-large;
+  bottom: 3px;
+  font-size: xx-large;
   background-color: rgba(0, 0, 0, 0.281);
-  border-radius:24px;
+  border-radius: 24px;
 }
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -56,10 +56,10 @@
   border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(51, 51, 51, 0.8);
 }
-
 
 .numbertext {
   color: #f2f2f2;
@@ -82,18 +82,30 @@
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-} 
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
+}
 
 /* Start Media Section */
 
