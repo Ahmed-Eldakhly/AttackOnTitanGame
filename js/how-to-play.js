@@ -10,7 +10,7 @@ window.addEventListener("resize", function () {
 });
 
 var currentInstructionElement = 0;
-var nextBtn = document.getElementById("NextButton");
+var nextBtn = document.getElementById("nextButton");
 
 var ins1 = document.getElementById("instruction1");
 var ins2 = document.getElementById("instruction2");
