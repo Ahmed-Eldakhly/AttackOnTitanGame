@@ -17,7 +17,7 @@
 #
 
 # Deployment Link.
-[Attack on titans game](https://omarmohamedawad.github.io/test/)
+[Attack on titans game](https://omarmohamedawad.github.io/Attack-on-Titan/index.html)
 
 #
 
