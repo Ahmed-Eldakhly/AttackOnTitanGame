@@ -29,7 +29,7 @@ $(function () {
 document.addEventListener("keydown", keyListen);
 function keyListen(keyObject) {
     // jump
-    if (keyObject.keyCode == 38) {
+    if (keyObject.keyCode == 32) {
         if (MAIN_CHARACTER_STATE == MOVING || MAIN_CHARACTER_STATE == MOVE_FOREARD_FROM_JUMP) {
             mainCharacter.stopMove();
             var callBackJump = mainCharacter.jumpWithMove_function.bind(mainCharacter)
