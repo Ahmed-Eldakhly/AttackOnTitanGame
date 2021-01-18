@@ -41,8 +41,6 @@ function currentIns(obj) {
     animationMethod();  //call animation
 }
 
-/* moving to the next instruction continousuly*/
-setInterval(currentInsInterval, 4000);
 function currentInsInterval() {
     animationMethod();  //call animation
 }
