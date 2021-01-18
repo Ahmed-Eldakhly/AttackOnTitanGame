@@ -19,6 +19,7 @@ a{
 
 .title h1{
     width: fit-content;
+    width: -moz-max-content;
     background-color:rgb(171, 144, 124,0.5);
     margin: auto;
     padding: 10px;
@@ -83,6 +84,7 @@ a{
 
 .level-title {
     width: fit-content;
+    width: -moz-max-content;
     padding: 2px 4px;
 }
 
