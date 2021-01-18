@@ -187,4 +187,10 @@ img {
   }
 }
 
+.stone-img{
+  position: absolute;
+  display: none;
+  z-index: 4;
+}
+
 /* End Media Section */
