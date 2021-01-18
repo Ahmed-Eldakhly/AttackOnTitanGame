@@ -6,16 +6,16 @@ var moveIntervalID;
 /*var jumpKeyListenerID;*/
 var jumpState = 0;
 
-var STAND = 0;
-var MOVE_FORWARD_FROM_STAND = 1;
-var MOVE_FOREARD_FROM_JUMP = 2;
-var MOVING = 3;
-var JUMP_FROM_STAND = 4;
-var JUMP_FROM_MOVE_FORWARD = 5;
-var GO_BACK = 6;
-var JUMPING = 7;
-var LOSE = 8;
-var WIN = 9;
+const STAND = 0;
+const MOVE_FORWARD_FROM_STAND = 1;
+const MOVE_FOREARD_FROM_JUMP = 2;
+const MOVING = 3;
+const JUMP_FROM_STAND = 4;
+const JUMP_FROM_MOVE_FORWARD = 5;
+const GO_BACK = 6;
+const JUMPING = 7;
+const LOSE = 8;
+const WIN = 9;
 
 var MAIN_CHARACTER_STATE = STAND;
 
@@ -44,10 +44,7 @@ class Characters {
     jumpOnly_function(obj) {
         this.jumpPosition++;
         //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -96,10 +93,7 @@ class Characters {
     jumpWithMove_function(obj) {
         this.jumpPosition++;
         //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure();
         switch (this.jumpPosition) {
             case 0:
             case 1:
@@ -163,9 +157,7 @@ class Characters {
         moveImageCureent++;
 
         //Element move with character
-        Building.buildingsMovement();
-        Injection.injectionMovement();
-        Stone.stoneMovementWithCharacter();
+        moveEveryStructure();
     }
 
     backwardMove() {
@@ -188,11 +180,7 @@ class Characters {
             MAIN_CHARACTER_STATE = STAND;
         }
 
-        //Element move with character
-        Building.buildingsMovement();
-        Background.backgroundsMovement();
-        Stone.stoneMovementWithCharacter();
-        Injection.injectionMovement();
+        moveEveryStructure();
     }
 
     /* stop movement only */
@@ -350,4 +338,10 @@ class Characters {
         }
     }
 
+}
+function moveEveryStructure() {
+    Building.buildingsMovement();
+    Background.backgroundsMovement();
+    Stone.stoneMovementWithCharacter();
+    Injection.injectionMovement();
 }
