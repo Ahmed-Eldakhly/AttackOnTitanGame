@@ -58,12 +58,12 @@ function createLevelEnemy(level) {
     }
     else if (level == 2) {
         enemy2 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 1);
-        enemy3 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 2);
-        enemies = [enemy1, enemy2, enemy3];
+        enemies = [enemy1, enemy2];
     }
     else if (level == 3) {
         enemy2 = new Enemy("Reiner", level, enemyAttackReiner2, enemyPhotosArrayReiner, enemySpeed, 1);
-        enemies = [enemy1, enemy2];
+        enemy3 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 2);
+        enemies = [enemy1, enemy2, enemy3];
     }
     //Launch enemy attack function to start the game.
     Enemy.launchAttack(enemies);
