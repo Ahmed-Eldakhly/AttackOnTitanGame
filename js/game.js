@@ -134,8 +134,11 @@ function countdown() {
             mainCharacter.endGame();
         }
 
-        // genetate injection in game every 10 second  
-        if (seconds % 10 == 0) {
+        // Genetate injection in game every 10 second in level 2,3 
+        // and every 20 
+        if (seconds % 10 == 0 && levelId > 1) {
+            Injection.injectionMovementStart();
+        }else if(seconds % 20 == 0) {
             Injection.injectionMovementStart();
         }
 
