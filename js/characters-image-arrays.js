@@ -30,3 +30,6 @@ var arminLosePhotosArray = ["armin-lose", "armin/lose1.png", "armin/lose1.png", 
 // Background arrays
 var firstBackgroundArray = ["game-back1.jpg", "background1-level2.jpg", "sunset.jpg"];
 var secondBackgroundArray = ["game-back2edit.jpg", "background2-level2.jpg", "sunset2.jpg"];
+
+// level soundtracks arrays
+var levelSoundTracks = ["level-1.mp3", "level-2.mp3", "level-3.mp3"];

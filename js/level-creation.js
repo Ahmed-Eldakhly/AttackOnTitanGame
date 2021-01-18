@@ -26,6 +26,7 @@ var stoneObj3;
 
 //Create all opjects of the game based on the user choices
 function gameCreation(level, character) {
+    backgroundAudio.setAttribute('src', 'audio/' + levelSoundTracks[level - 1]);
     injectionObj = new Injection("injection.png", injectionWidth, injectionHeight, "-50px", parseInt(roofLevelPercentage * $(window).innerHeight()) + "px")
     background1 = new Background(firstBackgroundArray[level - 1], window.outerWidth, 760, "0px", "0px");
     background2 = new Background(secondBackgroundArray[level - 1], window.outerWidth, 760, (- window.outerWidth) + "px", "0px");
@@ -51,14 +52,18 @@ function gameCreation(level, character) {
 //create Enemies.
 function createLevelEnemy(level) {
     enemy1 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 0);
-    if (level == 3) {
-        enemy2 = new Enemy("Reiner", level, enemyAttackReiner2, enemyPhotosArrayReiner, enemySpeed, 1);
+    if (level == 1) {
+        enemy2 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 1);
         enemies = [enemy1, enemy2];
     }
-    else {
+    else if (level == 2) {
         enemy2 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 1);
         enemy3 = new Enemy("Eren", level, enemyAttack, enemyPhotosArray, enemySpeed, 2);
         enemies = [enemy1, enemy2, enemy3];
+    }
+    else if (level == 3) {
+        enemy2 = new Enemy("Reiner", level, enemyAttackReiner2, enemyPhotosArrayReiner, enemySpeed, 1);
+        enemies = [enemy1, enemy2];
     }
     //Launch enemy attack function to start the game.
     Enemy.launchAttack(enemies);
